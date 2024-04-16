@@ -1,0 +1,107 @@
+name: chocolatine
+env:
+  EXECUTABLES: "42sh"
+  MIRROR_URL: "git@github.com:EpitechPromo2028/B-PSU-200-LIL-2-1-42sh-augustin.simar.git"
+  REPO_URL: ${{ github.repositoryUrl }}
+on:
+  pull_request:
+    types: [open, reopen]
+    branches-ignore:
+      - 'ga-ignore**'
+  push:
+    branches-ignore:
+      - 'ga-ignore**'
+
+jobs:
+  check_mirror:
+    runs-on: ubuntu-latest
+    outputs:
+      is_mirror: ${{ steps.is_mirror.outputs.is_mirror }}
+    steps:
+      - name: Check if mirror repository
+        id: is_mirror
+        run: |
+          if [ "$(basename $REPO_URL)" = "$(basename $MIRROR_URL)" ]; then
+            echo "is_mirror=true" >> "$GITHUB_OUTPUT"; else
+            echo "is_mirror=false" >> "$GITHUB_OUTPUT"
+          fi
+
+
+  check_coding_style:
+    needs: check_mirror
+    if: ${{ needs.check_mirror.outputs.is_mirror == 'false' }}
+    runs-on: ubuntu-latest
+    container: ghcr.io/epitech/coding-style-checker:latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: "coding-style"
+        run: |
+          check.sh $(pwd) $(pwd)
+          STYLE_ERRORS=$(cat $(pwd)/coding-style-reports.log)
+          while IFS= read -r LINE; do
+            IFS=':' read -r -a TEMP <<< "$LINE"
+            ELEMENTS=()
+            for item in "${TEMP[@]}"; do
+              IFS=' ' read -r -a SUB_ELEMENTS <<< "$item"
+              for sub_item in "${SUB_ELEMENTS[@]}"; do
+                ELEMENTS+=("$sub_item")
+              done
+            done
+            echo "::error title=${ELEMENTS[2]} coding style error,file=${ELEMENTS[0]},line=${ELEMENTS[1]}::${ELEMENTS[3]}"
+          done <<< "$STYLE_ERRORS"
+          FILE="$(pwd)"
+          FILE+="/coding-style-reports.log"
+          if [ -s $FILE ]
+          then
+            exit 1
+          else
+            echo "No Style Errors"
+          fi
+
+  check_program_compilation:
+    needs: check_coding_style
+    if: ${{ needs.check_mirror.outputs.is_mirror == 'false' }}
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker:latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: make
+        timeout-minutes: 2
+        run: make
+      - name: make clean
+        run: make clean
+      - name: verify executables
+        run: |
+          echo "$EXECUTABLES" | tr ',' '\n' | while read -r file; do
+            echo "$file"
+            if [ ! -x "$file" ]; then
+              echo "::error file=$file::File does not exist or is not executable"
+              exit 1
+            fi
+          done
+
+  run_tests:
+    needs: check_program_compilation
+    if: ${{ needs.check_mirror.outputs.is_mirror == 'false' }}
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker:latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: run_tests
+        timeout-minutes: 2
+        run: make tests_run
+
+  push_to_mirror:
+    needs: run_tests
+    if: ${{ github.event_name == 'push' && needs.check_mirror.outputs.is_mirror == 'false' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url:
+            ${{ env.MIRROR_URL }}
+          ssh_private_key:
+            ${{ secrets.GIT_SSH_PRIVATE_KEY }}
