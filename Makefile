@@ -23,6 +23,9 @@ NAME	=	my_rpg
 
 all:		fast
 
+tests_run:
+		echo "No Tests"
+
 fast:		$(SRC)
 		gcc -o $(NAME) $(SRC) $(FAST) $(CFLAGS) $(LDFLAGS)
 
