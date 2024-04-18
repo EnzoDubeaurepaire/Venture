@@ -10,6 +10,8 @@ SRC	=	src/main.c \
 		src/game_struct/init_game_struct.c \
 		src/game_struct/free_game_struct.c \
 		src/event/event.c \
+		src/menu/menu.c \
+		src/menu/buttons_state.c \
 
 OBJ	=	$(SRC:.c=.o)
 

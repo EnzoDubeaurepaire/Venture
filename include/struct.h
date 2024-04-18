@@ -18,6 +18,16 @@ typedef struct launch_screen {
     float fade_value;
 } launch_screen_t;
 
+typedef struct menu_screen {
+    sfTexture *texture;
+    sfClock *clock;
+    sfSprite *new_game;
+    sfSprite *resume;
+    sfSprite *settings;
+    sfSprite *quit;
+    _Bool resume_is_usable;
+} menu_screen_t;
+
 typedef struct screen {
     void *screen;
 } screen_t;
@@ -25,6 +35,7 @@ typedef struct screen {
 typedef struct game {
     sfRenderWindow *window;
     sfClock *clock;
+    _Bool mouse_hold;
     size_t active_screen;
     screen_t *screens[SCREEN_NB + 1];
     void (*screen_renderer[SCREEN_NB + 1])(struct game *game, screen_t

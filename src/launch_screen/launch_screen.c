@@ -46,9 +46,9 @@ screen_t *init_launch_screen(void)
     launch_screen_t *launch_screen = malloc(sizeof(launch_screen_t));
 
     launch_screen->texture = sfTexture_createFromFile(
-        "assets/background_title.png", NULL);
+        "assets/menu/background_title.jpg", NULL);
     launch_screen->sprite = init_launch_screen_sprite(launch_screen->texture);
-    launch_screen->font = sfFont_createFromFile("assets/venite.ttf");
+    launch_screen->font = sfFont_createFromFile("assets/fonts/venite.ttf");
     launch_screen->text = init_launch_screen_text(launch_screen->font);
     launch_screen->fade = init_launch_screen_fade();
     launch_screen->fade_value = 0;
