@@ -18,11 +18,13 @@
 
 #ifndef HUNTER_H
     #define HUNTER_H
+    #include "macros.h"
     #include "struct.h"
     #include "launch_screen.h"
     #include "game_struct.h"
     #include "event.h"
 
-    #define FPS 60
+static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {
+    &render_launch_screen, NULL};
 
 #endif

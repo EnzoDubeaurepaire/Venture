@@ -17,10 +17,18 @@ typedef struct launch_screen {
     sfRectangleShape *fade;
     float fade_value;
 } launch_screen_t;
+
+typedef struct screen {
+    void *screen;
+} screen_t;
+
 typedef struct game {
     sfRenderWindow *window;
     sfClock *clock;
-    launch_screen_t *launch_screen;
+    size_t active_screen;
+    screen_t *screens[SCREEN_NB + 1];
+    void (*screen_renderer[SCREEN_NB + 1])(struct game *game, screen_t
+        *screen);
 } game_t;
 
 #endif

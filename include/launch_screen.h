@@ -12,7 +12,7 @@
 /*
  * launch_screen.c
 */
-void render_launch_screen(game_t *game, launch_screen_t *launch_screen);
-launch_screen_t *init_launch_screen(void);
+void render_launch_screen(game_t *game, screen_t *launch_screen);
+screen_t *init_launch_screen(void);
 
 #endif
