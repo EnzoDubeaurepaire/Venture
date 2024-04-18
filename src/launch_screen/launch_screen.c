@@ -40,8 +40,9 @@ static sfRectangleShape *init_launch_screen_fade(void)
     return rect;
 }
 
-launch_screen_t *init_launch_screen(void)
+screen_t *init_launch_screen(void)
 {
+    screen_t *screen = malloc(sizeof(screen_t));
     launch_screen_t *launch_screen = malloc(sizeof(launch_screen_t));
 
     launch_screen->texture = sfTexture_createFromFile(
@@ -51,12 +52,14 @@ launch_screen_t *init_launch_screen(void)
     launch_screen->text = init_launch_screen_text(launch_screen->font);
     launch_screen->fade = init_launch_screen_fade();
     launch_screen->fade_value = 0;
-    return launch_screen;
+    screen->screen = launch_screen;
+    return screen;
 }
 
-void render_launch_screen(game_t *game, launch_screen_t *launch_screen)
+void render_launch_screen(game_t *game, screen_t *screen)
 {
     sfTime time = sfClock_getElapsedTime(game->clock);
+    launch_screen_t *launch_screen = screen->screen;
 
     launch_screen->fade_value = (float)time.microseconds / 10000;
     if (launch_screen->fade_value > 255)

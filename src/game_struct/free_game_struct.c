@@ -7,19 +7,22 @@
 
 #include "../../include/rpg.h"
 
-static void free_launch_screen(launch_screen_t *launch_screen)
+static void free_launch_screen(screen_t *screen)
 {
+    launch_screen_t *launch_screen = screen->screen;
+
     sfSprite_destroy(launch_screen->sprite);
     sfTexture_destroy(launch_screen->texture);
     sfRectangleShape_destroy(launch_screen->fade);
     sfText_destroy(launch_screen->text);
     sfFont_destroy(launch_screen->font);
     free(launch_screen);
+    free(screen);
 }
 
 void free_game(game_t *game)
 {
-    free_launch_screen(game->launch_screen);
+    free_launch_screen(game->screens[0]);
     sfRenderWindow_destroy(game->window);
     sfClock_destroy(game->clock);
     free(game);
