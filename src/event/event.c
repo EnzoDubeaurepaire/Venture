@@ -17,8 +17,11 @@ void poll_event(game_t *game)
             sfRenderWindow_close(game->window);
         if (game->active_screen & LAUNCH_SCREEN && !(game->active_screen &
             MENU_SCREEN) && event.type == sfEvtKeyPressed && event.key.code
-            == sfKeyEnter)
+            == sfKeyEnter) {
             game->active_screen |= MENU_SCREEN;
+            ((launch_screen_t *)game->screens[0]->screen)->vanish_clock =
+                sfClock_create();
+        }
         if (event.type == sfEvtMouseButtonPressed)
             game->mouse_hold = 1;
         if (event.type == sfEvtMouseButtonReleased)

@@ -16,6 +16,8 @@ typedef struct launch_screen {
     sfText *text;
     sfRectangleShape *fade;
     float fade_value;
+    sfTime text_vanish;
+    sfClock *vanish_clock;
 } launch_screen_t;
 
 typedef struct menu_screen {

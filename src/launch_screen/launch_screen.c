@@ -52,8 +52,34 @@ screen_t *init_launch_screen(void)
     launch_screen->text = init_launch_screen_text(launch_screen->font);
     launch_screen->fade = init_launch_screen_fade();
     launch_screen->fade_value = 0;
+    launch_screen->text_vanish = (sfTime){0};
+    launch_screen->vanish_clock = NULL;
     screen->screen = launch_screen;
     return screen;
+}
+
+static void render_launch_text(game_t *game, launch_screen_t *launch_screen,
+    sfTime time)
+{
+    float t;
+
+    if (launch_screen->vanish_clock != NULL)
+        launch_screen->text_vanish =
+            sfClock_getElapsedTime(launch_screen->vanish_clock);
+    t = (float)launch_screen->text_vanish.microseconds / 100000;
+    if (t < 20) {
+        sfText_setScale(launch_screen->text, (sfVector2f) {1 + 0.02f *
+            (float) sin((double) time.microseconds / 500000),
+            1 + 0.02f *
+            (float) sin((double) time.microseconds / 500000)});
+        sfText_setColor(launch_screen->text, (sfColor) {(int) (240 - 15 * sin(
+            (double) time.microseconds / 300000)), (int) (240 - 15 * sin(
+            (double) time.microseconds / 300000)), (int) (240 - 15 * sin(
+            (double) time.microseconds / 300000)), 255});
+        sfText_setPosition(launch_screen->text, (sfVector2f) {1100,
+            1000.f + t * t - 7.f * t});
+        sfRenderWindow_drawText(game->window, launch_screen->text, NULL);
+    }
 }
 
 void render_launch_screen(game_t *game, screen_t *screen)
@@ -66,15 +92,8 @@ void render_launch_screen(game_t *game, screen_t *screen)
         launch_screen->fade_value = 255;
     sfRectangleShape_setFillColor(launch_screen->fade,
         (sfColor){0, 0, 0, (int)(255 - launch_screen->fade_value)});
-    sfText_setScale(launch_screen->text, (sfVector2f){1 + 0.02f *
-        (float)sin((double)time.microseconds / 500000), 1 + 0.02f *
-        (float)sin((double)time.microseconds / 500000)});
-    sfText_setColor(launch_screen->text, (sfColor){(int)(240 - 15 *
-        sin((double)time.microseconds / 300000)), (int)(240 - 15 *
-        sin((double)time.microseconds / 300000)), (int)(240 - 15 *
-        sin((double)time.microseconds / 300000)), 255});
     sfRenderWindow_drawSprite(game->window, launch_screen->sprite, NULL);
-    sfRenderWindow_drawText(game->window, launch_screen->text, NULL);
+    render_launch_text(game, launch_screen, time);
     sfRenderWindow_drawRectangleShape(game->window, launch_screen->fade,
         NULL);
 }
