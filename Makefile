@@ -12,6 +12,9 @@ SRC	=	src/main.c \
 		src/event/event.c \
 		src/menu/menu.c \
 		src/menu/buttons_state.c \
+		src/dialogue/init_struct_dialogue.c	\
+		src/dialogue/dialogue.c	\
+		src/dialogue/event_dialogue.c	\
 
 OBJ	=	$(SRC:.c=.o)
 

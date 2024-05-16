@@ -9,6 +9,17 @@
     #define STRUCT_H
     #include "rpg.h"
 
+typedef struct bubble_s {
+    sfClock *clock;
+    sfRectangleShape *rect;
+    int compteur;
+    sfFont *font;
+    sfText *text;
+    sfBool is_display;
+    sfBool skip_animation;
+    char *message;
+}bubble_t;
+
 typedef struct launch_screen {
     sfTexture *texture;
     sfSprite *sprite;
@@ -38,6 +49,7 @@ typedef struct game {
     sfRenderWindow *window;
     sfClock *clock;
     _Bool mouse_hold;
+    sfKeyCode key;
     size_t active_screen;
     screen_t *screens[SCREEN_NB + 1];
     void (*screen_renderer[SCREEN_NB + 1])(struct game *game, screen_t
