@@ -11,6 +11,7 @@ static void init_screens(game_t *game)
 {
     game->screens[0] = init_launch_screen();
     game->screens[1] = init_menu();
+    game->screens[2] = init_bubble(game->window);
     game->screens[SCREEN_NB] = NULL;
 }
 
