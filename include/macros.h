@@ -11,7 +11,7 @@
     #define FPS 60
     #define LAUNCH_SCREEN 1
     #define MENU_SCREEN 2
-    #define DIALOGUE_SCREEN 4
+    #define DIALOGUE_SCREEN 32
     #define SCREEN_NB 3
     #define DELAY 0.05
 
