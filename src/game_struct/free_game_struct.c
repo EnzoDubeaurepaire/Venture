@@ -7,6 +7,18 @@
 
 #include "../../include/rpg.h"
 
+static void free_dialogue_screen(screen_t *screen)
+{
+    bubble_t *bubble = screen->screen;
+
+    sfClock_destroy(bubble->clock);
+    sfRectangleShape_destroy(bubble->rect);
+    sfText_destroy(bubble->text);
+    sfFont_destroy(bubble->font);
+    free(bubble);
+    free(screen);
+}
+
 static void free_launch_screen(screen_t *screen)
 {
     launch_screen_t *launch_screen = screen->screen;
@@ -23,6 +35,7 @@ static void free_launch_screen(screen_t *screen)
 void free_game(game_t *game)
 {
     free_launch_screen(game->screens[0]);
+    free_dialogue_screen(game->screens[2]);
     sfRenderWindow_destroy(game->window);
     sfClock_destroy(game->clock);
     free(game);

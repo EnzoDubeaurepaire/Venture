@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <math.h>
+#include <string.h>
 
 #ifndef HUNTER_H
     #define HUNTER_H
@@ -24,9 +25,9 @@
     #include "game_struct.h"
     #include "event.h"
     #include "menu.h"
-
+    #include "dialogue.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {
-    &render_launch_screen, &render_menu, NULL};
+    &render_launch_screen, &render_menu, &render_dialogue, NULL};
 
 #endif
