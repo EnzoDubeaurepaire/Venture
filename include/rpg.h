@@ -31,6 +31,7 @@
     #include "dialogue.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {
-    &render_launch_screen, &render_menu, &map_renderer,&render_dialogue,  NULL};
+    &render_launch_screen, &render_menu, &map_renderer,
+    &render_dialogue, NULL};
 
 #endif

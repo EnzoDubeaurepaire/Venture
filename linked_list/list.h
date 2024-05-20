@@ -21,7 +21,7 @@ void list_dump(list_t *list, value_displayer_t val_disp);
 bool list_add_elem_at_front(list_t **front_ptr, void *elem);
 bool list_add_elem_at_back(list_t **front_ptr, void *elem);
 bool list_add_elem_at_position(list_t **front_ptr, void *elem,
-                               unsigned int position);
+    unsigned int position);
 bool list_del_elem_at_front(list_t **front_ptr);
 bool list_del_elem_at_back(list_t **front_ptr);
 bool list_del_elem_at_position(list_t **front_ptr, unsigned int position);
