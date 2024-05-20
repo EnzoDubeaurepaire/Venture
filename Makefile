@@ -12,6 +12,8 @@ SRC	=	src/main.c \
 		src/event/event.c \
 		src/menu/menu.c \
 		src/menu/buttons_state.c \
+		src/utils/create_sprite.c \
+		src/settings_screen/settings_overlay.c \
 
 OBJ	=	$(SRC:.c=.o)
 

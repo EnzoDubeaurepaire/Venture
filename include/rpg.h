@@ -24,9 +24,9 @@
     #include "game_struct.h"
     #include "event.h"
     #include "menu.h"
-
+    #include "settings_overlay.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {
-    &render_launch_screen, &render_menu, NULL};
+    &render_launch_screen, &render_menu, &render_settings, NULL};
 
 #endif

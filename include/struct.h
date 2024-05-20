@@ -20,6 +20,21 @@ typedef struct launch_screen {
     sfClock *vanish_clock;
 } launch_screen_t;
 
+typedef struct settings_screen {
+    sfTexture *texture;
+    sfTexture *buttons_texture;
+    sfSprite *overlay;
+    sfFont *font;
+    sfText *text;
+    sfRectangleShape *fade;
+    float fade_value;
+    sfTime text_vanish;
+} settings_screen_t;
+
+typedef struct settings {
+    int main_volume;
+} settings_t;
+
 typedef struct menu_screen {
     sfTexture *texture;
     sfClock *clock;
@@ -35,6 +50,7 @@ typedef struct screen {
 } screen_t;
 
 typedef struct game {
+    settings_t settings;
     sfRenderWindow *window;
     sfClock *clock;
     _Bool mouse_hold;
