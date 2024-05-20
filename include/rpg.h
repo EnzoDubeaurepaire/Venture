@@ -28,6 +28,8 @@
     #include "event.h"
     #include "menu.h"
     #include "settings_overlay.h"
+    #include "map_screen.h"
+    #include "dialogue.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {
     &render_launch_screen, &render_menu, &map_renderer,

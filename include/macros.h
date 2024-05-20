@@ -12,7 +12,7 @@
     #define LAUNCH_SCREEN 1
     #define MENU_SCREEN 2
     #define MAP_SCREEN 4
-    #define SCREEN_NB 4
+    #define SCREEN_NB 5
     #define DIALOGUE_SCREEN 8
     #define SETTINGS_SCREEN 64
     #define DELAY 0.05
