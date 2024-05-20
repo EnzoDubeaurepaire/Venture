@@ -35,7 +35,7 @@ static void free_launch_screen(screen_t *screen)
 void free_game(game_t *game)
 {
     free_launch_screen(game->screens[0]);
-    free_dialogue_screen(game->screens[2]);
+    free_dialogue_screen(game->screens[3]);
     sfRenderWindow_destroy(game->window);
     sfClock_destroy(game->clock);
     free(game);

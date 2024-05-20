@@ -28,7 +28,8 @@ void render_dialogue(game_t *game, screen_t *screen)
         bubble->compteur < (int)strlen(bubble->message)) {
         bubble->compteur++;
         sfClock_restart(bubble->clock);
-    } else if (bubble->skip_animation == sfTrue) {
+    }
+    if (bubble->skip_animation == sfTrue) {
         strcpy(displayed_message, bubble->message);
         bubble->compteur = strlen(bubble->message);
     } else {

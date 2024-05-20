@@ -22,11 +22,12 @@ static void event_mouse_keybord(game_t *game, sfEvent event)
         key_pressed = 0;
         game->key = event.key.code;
     }
-    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyE) {
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyE &&
+        (game->active_screen & DIALOGUE_SCREEN) == 0) {
         game->active_screen |= DIALOGUE_SCREEN;
-        ((bubble_t *)(game->screens[3]->screen))->message = "caca\n";
+        ((bubble_t *)(game->screens[3]->screen))->message = "ca marche ?";
         ((bubble_t *)(game->screens[3]->screen))->compteur = 0;
-        ((bubble_t *)(game->screens[3]->screen))->skip_animation = 0;
+        ((bubble_t *)(game->screens[3]->screen))->skip_animation = sfFalse;
     }
 }
 
