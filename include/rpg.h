@@ -15,9 +15,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <math.h>
+#include <string.h>
 
 #ifndef HUNTER_H
     #define HUNTER_H
+    #include "math.h"
+    #include "../linked_list/list.h"
     #include "macros.h"
     #include "struct.h"
     #include "launch_screen.h"
@@ -27,6 +30,7 @@
     #include "settings_overlay.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {
-    &render_launch_screen, &render_menu, &render_settings, NULL};
+    &render_launch_screen, &render_menu, &map_renderer,
+    &render_dialogue, &render_settings ,NULL};
 
 #endif

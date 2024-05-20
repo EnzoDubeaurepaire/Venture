@@ -1,0 +1,5 @@
+*.o
+my_rpg
+.idea
+CMakeList.txt
+cmake-build-debug

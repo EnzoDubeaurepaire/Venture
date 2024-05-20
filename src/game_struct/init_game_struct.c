@@ -11,7 +11,9 @@ static void init_screens(game_t *game)
 {
     game->screens[0] = init_launch_screen();
     game->screens[1] = init_menu();
-    game->screens[2] = init_settings_screen();
+    game->screens[2] = init_map();
+    game->screens[3] = init_bubble(game->window);
+    game->screens[4] = init_settings_screen();
     game->screens[SCREEN_NB] = NULL;
 }
 
@@ -27,6 +29,7 @@ game_t *init_game(void)
     for (int i = 0; renderers[i]; i++)
         game->screen_renderer[i] = renderers[i];
     game->screen_renderer[SCREEN_NB] = NULL;
+    game->last_frame_time = 0;
     game->mouse_hold = 0;
     return game;
 }
