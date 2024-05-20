@@ -20,7 +20,7 @@ static sfText *init_launch_screen_text(sfFont *font)
 {
     sfText *text = sfText_create();
 
-    sfText_setOrigin(text, (sfVector2f){29.f * 0.5f * 35.f - 50, 15});
+    sfText_setOrigin(text, (sfVector2f){29.f * 0.5f * 35.f - 20, 15});
     sfText_setCharacterSize(text, 35);
     sfText_setString(text, "Press Enter To Start The Game\0");
     sfText_setPosition(text, (sfVector2f){1100, 1000});
@@ -80,6 +80,14 @@ static void render_launch_text(game_t *game, launch_screen_t *launch_screen,
             1000.f + t * t - 7.f * t});
         sfRenderWindow_drawText(game->window, launch_screen->text, NULL);
     }
+}
+
+static void render_launch_music(game_t *game, launch_screen_t *launch_screen)
+{
+    float f = launch_screen->fade_value;
+
+    sfMusic_setPosition(launch_screen->music,
+        (sfVector3f){255 - f, 255 - f, 255 - f});
 }
 
 void render_launch_screen(game_t *game, screen_t *screen)

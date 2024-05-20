@@ -9,6 +9,31 @@
     #define STRUCT_H
     #include "rpg.h"
 
+typedef struct entity {
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfIntRect rect;
+    sfVector2f position;
+} entity_t;
+
+typedef struct sprint {
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfIntRect rect;
+    float stamina;
+} sprint_t;
+
+typedef struct map_screen {
+    sfSprite *map_sprite;
+    sfTexture *map_texture;
+    entity_t *player;
+    sfVector2f map_position;
+    sfVector2f player_direction;
+    float speed;
+    float sprint_speed;
+    sprint_t *sprint;
+} map_screen_t;
+
 typedef struct bubble_s {
     sfClock *clock;
     sfRectangleShape *rect;
@@ -29,6 +54,7 @@ typedef struct launch_screen {
     float fade_value;
     sfTime text_vanish;
     sfClock *vanish_clock;
+    sfMusic *music;
 } launch_screen_t;
 
 typedef struct menu_screen {
@@ -54,6 +80,7 @@ typedef struct game {
     screen_t *screens[SCREEN_NB + 1];
     void (*screen_renderer[SCREEN_NB + 1])(struct game *game, screen_t
         *screen);
+    long long last_frame_time;
 } game_t;
 
 #endif
