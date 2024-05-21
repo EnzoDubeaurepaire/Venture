@@ -22,7 +22,9 @@ game_t *init_game(void)
     game_t *game = malloc(sizeof(game_t));
 
     game->window = sfRenderWindow_create((sfVideoMode){1920, 1080, 32},
-        "Venture", sfResize | sfClose, NULL);
+        "Venture", sfFullscreen, NULL);
+    sfRenderWindow_setFramerateLimit(game->window, 60);
+    sfRenderWindow_setTitle(game->window, "Venture");
     game->clock = sfClock_create();
     init_screens(game);
     game->active_screen = LAUNCH_SCREEN;
