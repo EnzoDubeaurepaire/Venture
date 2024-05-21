@@ -8,7 +8,8 @@
 #include "../../include/rpg.h"
 
 sfSprite *create_sprite
-    (sfTexture *texture, sfVector2f position, sfVector2f scale)
+    (sfTexture *texture, sfVector2f position,
+     sfVector2f scale)
 {
     sfSprite *sprite = sfSprite_create();
 

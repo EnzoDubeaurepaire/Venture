@@ -14,6 +14,7 @@ SRC	=	src/main.c \
 		src/menu/buttons_state.c \
 		src/utils/create_sprite.c \
 		src/settings_screen/settings_overlay.c \
+		src/settings_screen/settings_buttons.c \
 		src/map_screen/init_map_screen.c \
 		src/map_screen/map_screen.c \
 		linked_list/list1.c \

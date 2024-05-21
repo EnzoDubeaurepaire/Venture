@@ -60,17 +60,15 @@ typedef struct launch_screen {
 typedef struct settings_screen {
     sfTexture *texture;
     sfTexture *buttons_texture;
-    sfSprite *overlay;
-    sfFont *font;
-    sfText *text;
-    sfRectangleShape *fade;
-    float fade_value;
-    sfTime text_vanish;
-} settings_screen_t;
-
-typedef struct settings {
     int main_volume;
-} settings_t;
+    sfText *text_main_volume;
+    sfText *text_volume;
+    sfSprite *overlay;
+    sfSprite *cross;
+    sfSprite *plus_button;
+    sfSprite *minus_button;
+    sfFont *font;
+} settings_screen_t;
 
 typedef struct menu_screen {
     sfTexture *texture;
@@ -87,7 +85,6 @@ typedef struct screen {
 } screen_t;
 
 typedef struct game {
-    settings_t settings;
     sfRenderWindow *window;
     sfClock *clock;
     _Bool mouse_hold;

@@ -23,6 +23,7 @@ void free_game(game_t *game);
  * create_sprite.c
 */
 sfSprite *create_sprite
-    (sfTexture *texture, sfVector2f position, sfVector2f scale);
+    (sfTexture *texture, sfVector2f position,
+     sfVector2f scale);
 
 #endif
