@@ -35,7 +35,7 @@ static void check_mouse_settings(game_t *game, menu_screen_t *menu,
 
     if (pressed == 1 && !game->mouse_hold
         && sfFloatRect_contains(&rect, pos.x, pos.y)) {
-        game->active_screen |= SETTINGS_SCREEN;
+        game->active_screen ^= SETTINGS_SCREEN;
         pressed = 0;
         return;
     }
