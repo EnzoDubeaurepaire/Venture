@@ -14,6 +14,7 @@ typedef struct entity {
     sfTexture *texture;
     sfIntRect rect;
     sfVector2f position;
+    sfVector2f pos_rel_to_map;
 } entity_t;
 
 typedef struct sprint {
@@ -32,6 +33,8 @@ typedef struct map_screen {
     float speed;
     float sprint_speed;
     sprint_t *sprint;
+    sfRectangleShape *mini_map;
+    sfSprite *mini_map_player;
 } map_screen_t;
 
 typedef struct bubble_s {

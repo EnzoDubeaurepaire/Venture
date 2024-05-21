@@ -14,6 +14,7 @@
  * map_screen.c
 */
 void map_renderer(game_t *game, screen_t *screen);
+sfVector2f get_pos_rel_to_map(sfVector2f pos, sfVector2f map_pos);
 
 /*
  * init_map_screen.c
