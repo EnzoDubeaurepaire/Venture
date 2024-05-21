@@ -14,6 +14,7 @@ static void init_screens(game_t *game)
     game->screens[2] = init_map();
     game->screens[3] = init_bubble(game->window);
     game->screens[4] = init_stats();
+    game->screens[5] = init_settings_screen();
     game->screens[SCREEN_NB] = NULL;
 }
 
