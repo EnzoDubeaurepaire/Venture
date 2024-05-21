@@ -11,8 +11,10 @@ sfVector2i get_mouse(game_t *game)
 {
     sfVector2u size = sfRenderWindow_getSize(game->window);
     sfVector2i pos = sfMouse_getPositionRenderWindow(game->window);
+    sfVector2i res = (game->resolution_state) ? (sfVector2i){1280, 720} :
+        (sfVector2i){1920, 1080};
 
-    pos.x *= 1920 / (int)size.x;
-    pos.y *= 1080 / (int)size.y;
+    pos.x *= res.x / (int)size.x;
+    pos.y *= res.y / (int)size.y;
     return pos;
 }

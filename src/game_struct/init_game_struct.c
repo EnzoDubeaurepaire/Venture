@@ -34,5 +34,6 @@ game_t *init_game(void)
     game->last_frame_time = 0;
     game->mouse_hold = 0;
     game->window_state = 0;
+    game->resolution_state = 0;
     return game;
 }
