@@ -37,7 +37,7 @@ static void update_window(game_t *game)
         game->window_state = 1;
         sfRenderWindow_close(game->window);
         game->window = sfRenderWindow_create((sfVideoMode){1920, 1080, 32},
-            "Venture", 0, NULL);
+            "Venture", sfClose | sfResize, NULL);
         sfRenderWindow_setFramerateLimit(game->window, 60);
     } else {
         game->window_state = 0;
@@ -66,7 +66,7 @@ void poll_event(game_t *game)
         if (event.type == sfEvtKeyPressed && event.key.code == sfKeyY &&
             (game->active_screen & MAP_SCREEN))
             game->active_screen ^= STATS_SCREEN;
-        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyF11)
+        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyA)
             update_window(game);
         event_mouse_keybord(game, event);
     }
