@@ -33,6 +33,9 @@ static void event_mouse_keybord(game_t *game, sfEvent event)
 
 static void update_window(game_t *game)
 {
+    const sfView *view = sfRenderWindow_getView(game->window);
+    sfView *new_view = sfView_copy(view);
+
     if (game->window_state == 0) {
         game->window_state = 1;
         sfRenderWindow_close(game->window);
@@ -45,6 +48,7 @@ static void update_window(game_t *game)
         game->window = sfRenderWindow_create((sfVideoMode){1920, 1080, 32},
             "Venture", sfFullscreen, NULL);
         sfRenderWindow_setFramerateLimit(game->window, 60);
+        sfRenderWindow_setView(game->window, new_view);
     }
     sfRenderWindow_setSize(game->window, (sfVector2u){1920, 1080});
 }
