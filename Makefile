@@ -22,6 +22,7 @@ SRC	=	src/main.c \
 		src/dialogue/event_dialogue.c \
 		src/stats/init_stats.c \
 		src/stats/stats_renderer.c \
+		src/utils/get_mouse_pos.c \
 
 OBJ	=	$(SRC:.c=.o)
 

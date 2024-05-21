@@ -30,6 +30,7 @@
     #include "map_screen.h"
     #include "dialogue.h"
     #include "stats.h"
+    #include "utils.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {
     &render_launch_screen, &render_menu, &map_renderer,

@@ -96,7 +96,7 @@ static void check_mouse_quit(game_t *game, menu_screen_t *menu, sfVector2f pos,
 
 void check_mouse_on_menu(game_t *game, menu_screen_t *menu)
 {
-    sfVector2i pos = sfMouse_getPositionRenderWindow(game->window);
+    sfVector2i pos = get_mouse(game);
 
     check_mouse_new_game(game, menu, (sfVector2f){(float)pos.x, (float)pos.y},
         sfSprite_getGlobalBounds(menu->new_game));
