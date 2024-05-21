@@ -47,10 +47,10 @@ screen_t *init_settings_screen(void)
     settings->text_main_volume = init_text(settings->font, "50 %\0");
     settings->text_volume = init_text(settings->font, "Volume :\0");
     settings->window_mode = init_text(settings->font, "Window mode :\0");
-    settings->window_size = init_text(settings->font, "Window size :\0");
+    settings->window_size = init_text(settings->font, "Resolution :\0");
     sfText_setPosition(settings->text_volume, (sfVector2f){2075, 200});
-    sfText_setPosition(settings->window_mode, (sfVector2f){2025, 400});
-    sfText_setPosition(settings->window_size, (sfVector2f){2025, 600});
+    sfText_setPosition(settings->window_mode, (sfVector2f){2020, 400});
+    sfText_setPosition(settings->window_size, (sfVector2f){2035, 600});
     init_sprites_buttons_settings(settings);
     screen->screen = settings;
     return screen;
@@ -58,7 +58,7 @@ screen_t *init_settings_screen(void)
 
 void manage_settings_buttons(game_t *game, settings_screen_t *settings_screen)
 {
-    sfVector2i pos = sfMouse_getPositionRenderWindow(game->window);
+    sfVector2i pos = get_mouse(game);
 
     check_plus_button(game, settings_screen,
     (sfVector2f){(float)pos.x, (float)pos.y});
