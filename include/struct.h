@@ -63,10 +63,14 @@ typedef struct settings_screen {
     int main_volume;
     sfText *text_main_volume;
     sfText *text_volume;
+    sfText *window_mode;
+    sfText *window_size;
     sfSprite *overlay;
     sfSprite *cross;
     sfSprite *plus_button;
     sfSprite *minus_button;
+    sfSprite *fullscreen_button;
+    sfSprite *window_button;
     sfFont *font;
 } settings_screen_t;
 
