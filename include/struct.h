@@ -101,6 +101,7 @@ typedef struct player_stat {
 
 typedef struct game {
     sfRenderWindow *window;
+    _Bool window_state;
     sfClock *clock;
     _Bool mouse_hold;
     sfKeyCode key;
