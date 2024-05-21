@@ -42,13 +42,13 @@ static void update_window(game_t *game)
         game->window = sfRenderWindow_create((sfVideoMode){1920, 1080, 32},
             "Venture", sfClose | sfResize, NULL);
         sfRenderWindow_setFramerateLimit(game->window, 60);
+        sfRenderWindow_setView(game->window, new_view);
     } else {
         game->window_state = 0;
         sfRenderWindow_close(game->window);
         game->window = sfRenderWindow_create((sfVideoMode){1920, 1080, 32},
             "Venture", sfFullscreen, NULL);
         sfRenderWindow_setFramerateLimit(game->window, 60);
-        sfRenderWindow_setView(game->window, new_view);
     }
     sfRenderWindow_setSize(game->window, (sfVector2u){1920, 1080});
 }
