@@ -58,6 +58,7 @@ screen_t *init_settings_screen(void)
     settings->buttons_texture = sfTexture_createFromFile("assets/settings/settings_buttons.png", NULL);
     settings->text_main_volume = init_main_volume_text(settings->font);
     settings->text_volume = init_volume_text(settings->font);
+    init_sprites_buttons_settings(settings);
     screen->screen = settings;
     return screen;
 }
