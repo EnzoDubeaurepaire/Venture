@@ -1,8 +1,8 @@
 /*
-** EPITECH PROJECT, 2023
-** my_sokoban
+** EPITECH PROJECT, 2024
+** rpg_mirror
 ** File description:
-** my_sokoban
+** rpg.h
 */
 
 #include <SFML/System.h>
@@ -29,6 +29,8 @@
     #include "menu.h"
     #include "map_screen.h"
     #include "dialogue.h"
+    #include <stdbool.h>
+    #include "collision.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {
     &render_launch_screen, &render_menu, &map_renderer,

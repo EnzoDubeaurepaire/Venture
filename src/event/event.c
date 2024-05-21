@@ -29,6 +29,15 @@ static void event_mouse_keybord(game_t *game, sfEvent event)
         ((bubble_t *)(game->screens[3]->screen))->compteur = 0;
         ((bubble_t *)(game->screens[3]->screen))->skip_animation = sfFalse;
     }
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyH) {
+        if (((map_screen_t *) (game->screens[2]->screen))->player->is_hitbox
+            == sfTrue)
+            ((map_screen_t *) (game->screens[2]->screen))->player->is_hitbox
+                = sfFalse;
+        else
+            ((map_screen_t *)(game->screens[2]->screen))->player->is_hitbox =
+                sfTrue;
+    }
 }
 
 void poll_event(game_t *game)

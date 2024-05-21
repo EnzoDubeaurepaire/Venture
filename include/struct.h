@@ -14,6 +14,8 @@ typedef struct entity {
     sfTexture *texture;
     sfIntRect rect;
     sfVector2f position;
+    sfRectangleShape *hitbox;
+    sfBool is_hitbox;
 } entity_t;
 
 typedef struct sprint {
@@ -24,6 +26,8 @@ typedef struct sprint {
 } sprint_t;
 
 typedef struct map_screen {
+    sfSprite *collision_sprite;
+    sfTexture *collision_texture;
     sfSprite *map_sprite;
     sfTexture *map_texture;
     entity_t *player;

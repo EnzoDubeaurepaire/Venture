@@ -20,6 +20,7 @@ SRC	=	src/main.c \
 		src/dialogue/init_struct_dialogue.c	\
 		src/dialogue/dialogue.c	\
 		src/dialogue/event_dialogue.c	\
+		src/collision/collision.c	\
 
 OBJ	=	$(SRC:.c=.o)
 

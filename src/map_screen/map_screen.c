@@ -75,14 +75,22 @@ static void update_position(game_t *game, map_screen_t *map)
         map->speed * (float)!sprinting + map->sprint_speed * (float)sprinting)
         * time_diff, -map->player_direction.y * (map->speed * (float)!
         sprinting + map->sprint_speed * (float)sprinting) * time_diff});
+    sfSprite_move(map->collision_sprite, (sfVector2f){-map->player_direction.x * (
+    map->speed * (float)!sprinting + map->sprint_speed * (float)sprinting)
+        * time_diff, -map->player_direction.y * (map->speed * (float)!
+    sprinting + map->sprint_speed * (float)sprinting) * time_diff});
     update_player_rect(map);
 }
 
 static void show_map(game_t *game, map_screen_t *map)
 {
+    sfRenderWindow_drawSprite(game->window, map->collision_sprite, NULL);
     sfSprite_setTextureRect(map->sprint->sprite, map->sprint->rect);
     sfRenderWindow_drawSprite(game->window, map->map_sprite, NULL);
     sfRenderWindow_drawSprite(game->window, map->player->sprite, NULL);
+    if (map->player->is_hitbox == sfTrue)
+        sfRenderWindow_drawRectangleShape(game->window, map->player->hitbox,
+        NULL);
     sfRenderWindow_drawSprite(game->window, map->sprint->sprite, NULL);
 }
 
