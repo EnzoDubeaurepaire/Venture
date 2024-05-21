@@ -84,6 +84,34 @@ typedef struct screen {
     void *screen;
 } screen_t;
 
+typedef struct player_stat {
+    sfTexture *stat_button;
+    int level;
+    double needed_exp;
+    int att;
+    int att_activated;
+    sfSprite *att_sprite;
+    sfRectangleShape *att_hitbox;
+    int hp;
+    int hp_activated;
+    sfSprite *hp_sprite;
+    sfRectangleShape *hp_hitbox;
+    int res;
+    int res_activated;
+    sfSprite *res_sprite;
+    sfRectangleShape *res_hitbox;
+    double as;
+    int as_activated;
+    sfSprite *as_sprite;
+    sfRectangleShape *as_hitbox;
+    int total_points;
+    sfTexture *skill_tree_back_t;
+    sfSprite *skill_tree_back;
+    sfText *level_text;
+    sfText *points_text;
+    sfFont *font;
+} player_stat_t;
+
 typedef struct game {
     sfRenderWindow *window;
     sfClock *clock;

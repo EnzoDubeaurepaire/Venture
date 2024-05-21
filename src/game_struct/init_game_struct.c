@@ -13,7 +13,8 @@ static void init_screens(game_t *game)
     game->screens[1] = init_menu();
     game->screens[2] = init_map();
     game->screens[3] = init_bubble(game->window);
-    game->screens[4] = init_settings_screen();
+    game->screens[4] = init_stats();
+    game->screens[5] = init_settings_screen();
     game->screens[SCREEN_NB] = NULL;
 }
 
@@ -22,7 +23,9 @@ game_t *init_game(void)
     game_t *game = malloc(sizeof(game_t));
 
     game->window = sfRenderWindow_create((sfVideoMode){1920, 1080, 32},
-        "Venture", sfResize | sfClose, NULL);
+        "Venture", sfFullscreen, NULL);
+    sfRenderWindow_setFramerateLimit(game->window, 60);
+    sfRenderWindow_setTitle(game->window, "Venture");
     game->clock = sfClock_create();
     init_screens(game);
     game->active_screen = LAUNCH_SCREEN;

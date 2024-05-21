@@ -22,7 +22,9 @@ SRC	=	src/main.c \
 		linked_list/list3.c \
 		src/dialogue/init_struct_dialogue.c	\
 		src/dialogue/dialogue.c	\
-		src/dialogue/event_dialogue.c	\
+		src/dialogue/event_dialogue.c \
+		src/stats/init_stats.c \
+		src/stats/stats_renderer.c \
 
 OBJ	=	$(SRC:.c=.o)
 
