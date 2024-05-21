@@ -46,6 +46,7 @@ static void update_window(game_t *game)
             "Venture", sfFullscreen, NULL);
         sfRenderWindow_setFramerateLimit(game->window, 60);
     }
+    sfRenderWindow_setSize(game->window, (sfVector2u){1920, 1080});
 }
 
 void poll_event(game_t *game)
