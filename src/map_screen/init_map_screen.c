@@ -76,6 +76,21 @@ static sprint_t *init_sprint(void)
     return sprint;
 }
 
+static void init_mini_map(map_screen_t *map)
+{
+    map->mini_map = sfRectangleShape_create();
+    sfRectangleShape_setTexture(map->mini_map, map->map_texture, true);
+    sfRectangleShape_setSize(map->mini_map, (sfVector2f){250, 250});
+    sfRectangleShape_setPosition(map->mini_map, (sfVector2f){1620, 50});
+    sfRectangleShape_setOutlineThickness(map->mini_map, 3);
+    sfRectangleShape_setOutlineColor(map->mini_map, sfBlack);
+    map->mini_map_player = sfSprite_create();
+    sfSprite_setTexture(map->mini_map_player, map->player->texture, true);
+    sfSprite_setTextureRect(map->mini_map_player, (sfIntRect){0, 0, 32, 32});
+    sfSprite_setScale(map->mini_map_player, (sfVector2f){0.5f, 0.5f});
+    sfSprite_setOrigin(map->mini_map_player, (sfVector2f){8, 8});
+}
+
 screen_t *init_map(void)
 {
     screen_t *screen = malloc(sizeof(screen_t));
@@ -107,6 +122,9 @@ screen_t *init_map(void)
     }
     sfTexture_updateFromImage(map->map_texture, image, 0, 0);
     sfImage_destroy(image);
+    map->player->pos_rel_to_map = get_pos_rel_to_map(map->player->position,
+        map->map_position);
+    init_mini_map(map);
     screen->screen = map;
     return screen;
 }

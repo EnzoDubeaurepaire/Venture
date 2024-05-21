@@ -40,6 +40,27 @@ static void event_mouse_keybord(game_t *game, sfEvent event)
     }
 }
 
+static void update_window(game_t *game)
+{
+    const sfView *view = sfRenderWindow_getView(game->window);
+
+    if (game->window_state == 0) {
+        game->window_state = 1;
+        sfRenderWindow_close(game->window);
+        game->window = sfRenderWindow_create((sfVideoMode){1920, 1080, 32},
+            "Venture", sfClose | sfResize, NULL);
+        sfRenderWindow_setFramerateLimit(game->window, 60);
+        sfRenderWindow_setView(game->window, sfView_copy(view));
+    } else {
+        game->window_state = 0;
+        sfRenderWindow_close(game->window);
+        game->window = sfRenderWindow_create((sfVideoMode){1920, 1080, 32},
+            "Venture", sfFullscreen, NULL);
+        sfRenderWindow_setFramerateLimit(game->window, 60);
+    }
+    sfRenderWindow_setSize(game->window, (sfVector2u){1920, 1080});
+}
+
 void poll_event(game_t *game)
 {
     sfEvent event;
@@ -55,6 +76,11 @@ void poll_event(game_t *game)
             ((launch_screen_t *)game->screens[0]->screen)->vanish_clock =
                 sfClock_create();
         }
+        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyY &&
+            (game->active_screen & MAP_SCREEN))
+            game->active_screen ^= STATS_SCREEN;
+        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyA)
+            update_window(game);
         event_mouse_keybord(game, event);
     }
 }
