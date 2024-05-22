@@ -17,12 +17,14 @@ SRC	=	src/main.c \
 		src/settings_screen/settings_buttons.c \
 		src/map_screen/init_map_screen.c \
 		src/map_screen/map_screen.c \
+		src/map_screen/map_renderer.c	\
 		linked_list/list1.c \
 		linked_list/list2.c \
 		linked_list/list3.c \
 		src/dialogue/init_struct_dialogue.c	\
 		src/dialogue/dialogue.c	\
-		src/dialogue/event_dialogue.c \
+		src/dialogue/event_dialogue.c	\
+		src/collision/collision.c	\
 		src/stats/init_stats.c \
 		src/stats/stats_renderer.c \
 		src/utils/get_mouse_pos.c \

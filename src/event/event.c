@@ -7,6 +7,26 @@
 
 #include "../../include/rpg.h"
 
+static void event_hitbox(game_t *game, sfEvent event)
+{
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyH) {
+        if (((map_screen_t *) (game->screens[2]->screen))->player->is_hitbox
+            == sfTrue)
+            ((map_screen_t *) (game->screens[2]->screen))->player->is_hitbox
+            = sfFalse;
+        else
+            ((map_screen_t *)(game->screens[2]->screen))->player->is_hitbox =
+            sfTrue;
+    }
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyE &&
+        (game->active_screen & DIALOGUE_SCREEN) == 0) {
+        game->active_screen |= DIALOGUE_SCREEN;
+        ((bubble_t *)(game->screens[3]->screen))->message = "ca marche ?";
+        ((bubble_t *)(game->screens[3]->screen))->compteur = 0;
+        ((bubble_t *)(game->screens[3]->screen))->skip_animation = sfFalse;
+    }
+}
+
 static void event_mouse_keybord(game_t *game, sfEvent event)
 {
     static _Bool key_pressed = 0;
@@ -22,13 +42,7 @@ static void event_mouse_keybord(game_t *game, sfEvent event)
         key_pressed = 0;
         game->key = event.key.code;
     }
-    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyE &&
-        (game->active_screen & DIALOGUE_SCREEN) == 0) {
-        game->active_screen |= DIALOGUE_SCREEN;
-        ((bubble_t *)(game->screens[3]->screen))->message = "ca marche ?";
-        ((bubble_t *)(game->screens[3]->screen))->compteur = 0;
-        ((bubble_t *)(game->screens[3]->screen))->skip_animation = sfFalse;
-    }
+    event_hitbox(game, event);
 }
 
 static void update_resolution(game_t *game)
@@ -74,6 +88,14 @@ static void update_window(game_t *game)
     sfRenderWindow_setSize(game->window, (sfVector2u){1920, 1080});
 }
 
+static void event_resolution(game_t *game, sfEvent event)
+{
+    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyA)
+        update_window(game);
+    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyR)
+        update_resolution(game);
+}
+
 void poll_event(game_t *game)
 {
     sfEvent event;
@@ -92,10 +114,7 @@ void poll_event(game_t *game)
         if (event.type == sfEvtKeyPressed && event.key.code == sfKeyY &&
             (game->active_screen & MAP_SCREEN))
             game->active_screen ^= STATS_SCREEN;
-        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyA)
-            update_window(game);
-        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyR)
-            update_resolution(game);
+        event_resolution(game, event);
         event_mouse_keybord(game, event);
     }
 }

@@ -1,8 +1,8 @@
 /*
-** EPITECH PROJECT, 2023
-** my_sokoban
+** EPITECH PROJECT, 2024
+** rpg_mirror
 ** File description:
-** my_sokoban
+** rpg.h
 */
 
 #include <SFML/System.h>
@@ -30,6 +30,8 @@
     #include "settings_overlay.h"
     #include "map_screen.h"
     #include "dialogue.h"
+    #include <stdbool.h>
+    #include "collision.h"
     #include "stats.h"
     #include "utils.h"
 
