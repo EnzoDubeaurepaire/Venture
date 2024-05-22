@@ -17,5 +17,11 @@ void check_minus_button(game_t *game,
     settings_screen_t *settings, sfVector2f pos);
 void check_cross_button(game_t *game,
     settings_screen_t *settings, sfVector2f pos);
+void check_fullscreen_button(game_t *game,
+    settings_screen_t *settings, sfVector2f pos);
+void check_1280x720_button(game_t *game,
+    settings_screen_t *settings, sfVector2f pos);
+void check_1920x1080_button(game_t *game,
+    settings_screen_t *settings, sfVector2f pos);
 
 #endif
