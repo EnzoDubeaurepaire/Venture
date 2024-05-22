@@ -12,5 +12,6 @@
 /*
  * collsion.c
 */
+bool check_collision(map_screen_t *map, int x, int y);
 
 #endif //COLLISION_H

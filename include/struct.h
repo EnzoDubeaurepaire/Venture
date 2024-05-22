@@ -39,6 +39,7 @@ typedef struct map_screen {
     sprint_t *sprint;
     sfRectangleShape *mini_map;
     sfSprite *mini_map_player;
+    sfImage *image_collision;
 } map_screen_t;
 
 typedef struct bubble_s {

@@ -12,7 +12,7 @@ static sfSprite *init_collision_sprite(sfTexture *texture_col)
     sfSprite *sprite_col = sfSprite_create();
 
     sfSprite_setTexture(sprite_col, texture_col, 0);
-    sfSprite_setPosition(sprite_col, (sfVector2f){-24, -24});
+    sfSprite_setPosition(sprite_col, (sfVector2f){0, 0});
     sfSprite_setScale(sprite_col, (sfVector2f){3, 3});
     return sprite_col;
 }
@@ -33,7 +33,7 @@ static sfRectangleShape *init_hitobx(entity_t *player)
     sfFloatRect rect = sfSprite_getGlobalBounds(player->sprite);
 
     sfRectangleShape_setPosition(hitbox,
-        (sfVector2f){rect.left + 15, rect.top + rect.height * (3.f/4) - 10});
+        (sfVector2f){rect.left + 15, rect.top + rect.height * (3.f / 4) - 10});
     sfRectangleShape_setSize(hitbox, (sfVector2f){rect.width - 30, rect
     .height / 4});
     sfRectangleShape_setOutlineColor(hitbox, sfBlue);
@@ -91,6 +91,18 @@ static void init_mini_map(map_screen_t *map)
     sfSprite_setOrigin(map->mini_map_player, (sfVector2f){8, 8});
 }
 
+static void init_value_map(map_screen_t *map)
+{
+    map->map_sprite = init_map_sprite(map->map_texture);
+    map->collision_sprite = init_collision_sprite(map->collision_texture);
+    map->player = malloc(sizeof(entity_t));
+    map->player = init_player();
+    map->sprint = init_sprint();
+    map->image_collision = sfTexture_copyToImage(map->collision_texture);
+    map->player->pos_rel_to_map = get_pos_rel_to_map(map->player->position,
+        map->map_position);
+}
+
 screen_t *init_map(void)
 {
     screen_t *screen = malloc(sizeof(screen_t));
@@ -103,27 +115,7 @@ screen_t *init_map(void)
     map->map_texture = sfTexture_createFromFile("assets/map.png", NULL);
     map->collision_texture = sfTexture_createFromFile("assets/collision.png",
         NULL);
-    map->map_sprite = init_map_sprite(map->map_texture);
-    map->collision_sprite = init_collision_sprite(map->collision_texture);
-    map->player = malloc(sizeof(entity_t));
-    map->player = init_player();
-    map->sprint = init_sprint();
-
-    sfImage* image = sfTexture_copyToImage(map->map_texture);
-    sfVector2u size = sfImage_getSize(image);
-    for (unsigned int x = 0; x < size.x; x++)
-    {
-        for (unsigned int y = 0; y < size.y; y++)
-        {
-            sfColor color = sfImage_getPixel(image, x, y);
-            color.a = 128; // 128 pour 50% de transparence
-            sfImage_setPixel(image, x, y, color);
-        }
-    }
-    sfTexture_updateFromImage(map->map_texture, image, 0, 0);
-    sfImage_destroy(image);
-    map->player->pos_rel_to_map = get_pos_rel_to_map(map->player->position,
-        map->map_position);
+    init_value_map(map);
     init_mini_map(map);
     screen->screen = map;
     return screen;

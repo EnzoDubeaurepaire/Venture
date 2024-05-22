@@ -14,6 +14,7 @@ SRC	=	src/main.c \
 		src/menu/buttons_state.c \
 		src/map_screen/init_map_screen.c \
 		src/map_screen/map_screen.c \
+		src/map_screen/map_renderer.c	\
 		linked_list/list1.c \
 		linked_list/list2.c \
 		linked_list/list3.c \
@@ -21,7 +22,6 @@ SRC	=	src/main.c \
 		src/dialogue/dialogue.c	\
 		src/dialogue/event_dialogue.c	\
 		src/collision/collision.c	\
-		src/dialogue/event_dialogue.c \
 		src/stats/init_stats.c \
 		src/stats/stats_renderer.c \
 
