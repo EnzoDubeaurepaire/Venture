@@ -35,9 +35,15 @@
     #include "stats.h"
     #include "utils.h"
     #include "pause_screen.h"
+    #include "destroyer.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {
     &render_launch_screen, &render_menu, &map_renderer,
     &render_dialogue, &render_pause, &stats_renderer, &render_settings, NULL};
+
+static void (*destroyers[SCREEN_NB + 1])(screen_t *screen) = {
+    &launch_screen_destroyer, &menu_destroyer, &map_screen_destroyer,
+    &dialogue_destroyer, &pause_screen_destroyer, &stats_destroyer,
+    &settings_screen_destroyer, NULL};
 
 #endif

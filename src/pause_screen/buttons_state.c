@@ -87,7 +87,7 @@ static void check_mouse_quit(game_t *game, pause_screen_t *pause,
 
     if (pressed == 1 && !game->mouse_hold &&
         sfFloatRect_contains(&rect, pos.x, pos.y)) {
-        sfRenderWindow_close(game->window);
+        exit_game(game);
         return;
     }
     if (sfFloatRect_contains(&rect, pos.x, pos.y) && game->mouse_hold) {

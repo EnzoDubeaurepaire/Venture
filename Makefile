@@ -30,6 +30,14 @@ SRC	=	src/main.c \
 		src/utils/get_mouse_pos.c \
 		src/pause_screen/buttons_state.c \
 		src/pause_screen/pause.c \
+		src/utils/exit_game.c \
+		src/dialogue/destroyer.c \
+		src/launch_screen/destroyer.c \
+		src/map_screen/destroyer.c \
+		src/menu/destroyer.c \
+		src/pause_screen/destroyer.c \
+		src/settings_screen/destroyer.c \
+		src/stats/destroyer.c \
 
 OBJ	=	$(SRC:.c=.o)
 

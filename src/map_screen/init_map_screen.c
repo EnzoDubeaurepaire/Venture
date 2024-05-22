@@ -95,7 +95,6 @@ static void init_value_map(map_screen_t *map)
 {
     map->map_sprite = init_map_sprite(map->map_texture);
     map->collision_sprite = init_collision_sprite(map->collision_texture);
-    map->player = malloc(sizeof(entity_t));
     map->player = init_player();
     map->sprint = init_sprint();
     map->image_collision = sfTexture_copyToImage(map->collision_texture);

@@ -11,4 +11,9 @@
 
 sfVector2i get_mouse(game_t *game);
 
+/*
+ * exit_game.c
+*/
+void exit_game(game_t *game);
+
 #endif

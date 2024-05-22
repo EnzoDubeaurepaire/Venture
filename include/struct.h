@@ -143,6 +143,7 @@ typedef struct game {
     screen_t *screens[SCREEN_NB + 1];
     void (*screen_renderer[SCREEN_NB + 1])(struct game *game, screen_t
         *screen);
+    void (*screen_destroyer[SCREEN_NB + 1])(screen_t *screen);
     long long last_frame_time;
 } game_t;
 
