@@ -14,16 +14,16 @@ void check_fullscreen_button(game_t *game,
 
     if (sfFloatRect_contains(&rect, pos.x, pos.y) && game->mouse_hold) {
         sfSprite_setTextureRect(settings->plus_button,
-        (sfIntRect){160, 80, 16, 16});
+        (sfIntRect){762, 10, 376, 126});
         update_window(game);
         return;
     }
     if (sfFloatRect_contains(&rect, pos.x, pos.y) && !game->mouse_hold)
         sfSprite_setTextureRect(settings->fullscreen_button,
-        (sfIntRect){0, 80, 16, 16});
+        (sfIntRect){382, 6, 376, 133});
     if (!sfFloatRect_contains(&rect, pos.x, pos.y))
         sfSprite_setTextureRect(settings->fullscreen_button,
-        (sfIntRect){80, 80, 16, 16});
+        (sfIntRect){8, 8, 364, 121});
 }
 
 void check_1280x720_button(game_t *game,
@@ -33,16 +33,16 @@ void check_1280x720_button(game_t *game,
 
     if (sfFloatRect_contains(&rect, pos.x, pos.y) && game->mouse_hold) {
         sfSprite_setTextureRect(settings->resize_button,
-        (sfIntRect){176, 80, 16, 16});
+        (sfIntRect){762, 284, 376, 126});
         update_resolution(game);
         return;
     }
     if (sfFloatRect_contains(&rect, pos.x, pos.y) && !game->mouse_hold)
         sfSprite_setTextureRect(settings->resize_button,
-        (sfIntRect){16, 80, 16, 16});
+        (sfIntRect){382, 280, 376, 133});
     if (!sfFloatRect_contains(&rect, pos.x, pos.y))
         sfSprite_setTextureRect(settings->resize_button,
-        (sfIntRect){96, 80, 16, 16});
+        (sfIntRect){8, 282, 364, 121});
 }
 
 void check_1920x1080_button(game_t *game,
@@ -52,14 +52,14 @@ void check_1920x1080_button(game_t *game,
 
     if (sfFloatRect_contains(&rect, pos.x, pos.y) && game->mouse_hold) {
         sfSprite_setTextureRect(settings->window_button,
-        (sfIntRect){176, 48, 16, 16});
+        (sfIntRect){762, 149, 376, 126});
         update_resolution(game);
         return;
     }
     if (sfFloatRect_contains(&rect, pos.x, pos.y) && !game->mouse_hold)
         sfSprite_setTextureRect(settings->window_button,
-        (sfIntRect){16, 48, 16, 16});
+        (sfIntRect){382, 145, 376, 133});
     if (!sfFloatRect_contains(&rect, pos.x, pos.y))
         sfSprite_setTextureRect(settings->window_button,
-        (sfIntRect){96, 48, 16, 16});
+        (sfIntRect){8, 147, 364, 121});
 }
