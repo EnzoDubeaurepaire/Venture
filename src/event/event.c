@@ -88,6 +88,14 @@ static void update_window(game_t *game)
     sfRenderWindow_setSize(game->window, (sfVector2u){1920, 1080});
 }
 
+static void event_resolution(game_t *game, sfEvent event)
+{
+    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyA)
+        update_window(game);
+    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyR)
+        update_resolution(game);
+}
+
 void poll_event(game_t *game)
 {
     sfEvent event;
@@ -106,10 +114,7 @@ void poll_event(game_t *game)
         if (event.type == sfEvtKeyPressed && event.key.code == sfKeyY &&
             (game->active_screen & MAP_SCREEN))
             game->active_screen ^= STATS_SCREEN;
-        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyA)
-            update_window(game);
-        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyR)
-            update_resolution(game);
+        event_resolution(game, event);
         event_mouse_keybord(game, event);
     }
 }
