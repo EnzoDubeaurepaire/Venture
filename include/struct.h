@@ -65,6 +65,23 @@ typedef struct launch_screen {
     sfMusic *music;
 } launch_screen_t;
 
+typedef struct settings_screen {
+    sfTexture *texture;
+    sfTexture *buttons_texture;
+    int main_volume;
+    sfText *text_main_volume;
+    sfText *text_volume;
+    sfText *window_mode;
+    sfText *window_size;
+    sfSprite *overlay;
+    sfSprite *cross;
+    sfSprite *plus_button;
+    sfSprite *minus_button;
+    sfSprite *fullscreen_button;
+    sfSprite *window_button;
+    sfFont *font;
+} settings_screen_t;
+
 typedef struct menu_screen {
     sfTexture *texture;
     sfClock *clock;
@@ -110,6 +127,7 @@ typedef struct player_stat {
 typedef struct game {
     sfRenderWindow *window;
     _Bool window_state;
+    _Bool resolution_state;
     sfClock *clock;
     _Bool mouse_hold;
     sfKeyCode key;

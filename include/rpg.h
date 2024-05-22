@@ -27,14 +27,16 @@
     #include "game_struct.h"
     #include "event.h"
     #include "menu.h"
+    #include "settings_overlay.h"
     #include "map_screen.h"
     #include "dialogue.h"
     #include <stdbool.h>
     #include "collision.h"
     #include "stats.h"
+    #include "utils.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {
     &render_launch_screen, &render_menu, &map_renderer,
-    &render_dialogue, &stats_renderer, NULL};
+    &render_dialogue, &stats_renderer, &render_settings, NULL};
 
 #endif
