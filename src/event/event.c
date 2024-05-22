@@ -123,9 +123,6 @@ void poll_event(game_t *game)
             ((launch_screen_t *)game->screens[0]->screen)->vanish_clock =
                 sfClock_create();
         }
-        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyY &&
-            (game->active_screen & MAP_SCREEN))
-            game->active_screen ^= STATS_SCREEN;
         event_resolution(game, event);
         event_mouse_keybord(game, event);
     }
