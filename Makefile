@@ -33,25 +33,35 @@ LDFLAGS	=	-lcsfml-graphics -lcsfml-system -lcsfml-window
 LDFLAGS	+=	-lcsfml-network -lcsfml-audio -lm
 CFLAGS	=	-Wall -Wextra -I./include
 CFLAGS	+=	-Wno-unused-parameter -Wno-unused-variable -Wno-unused-function
-FAST	=	-g3 -Ofast -march=native -fno-builtin
+FAST	=	-Ofast -march=native -fno-builtin
 
 NAME	=	my_rpg
 
-all:		fast
+all:		best
 
 tests_run:
 		echo "No Tests"
 
-fast:		$(SRC)
-		gcc -o $(NAME) $(SRC) $(FAST) $(CFLAGS) $(LDFLAGS)
-
 $(NAME):	$(OBJ)
-		gcc -o $(NAME) $(OBJ) $(CFLAGS) $(LDFLAGS)
+		gcc $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJ)
+
+fast:		$(SRC)
+		gcc $(CFLAGS) $(LDFLAGS) -o $(NAME) $(SRC) $(FAST)
+
+debug:		$(OBJ)
+		gcc $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJ) -g3
+
+debug-fast:		$(SRC)
+		gcc $(CFLAGS) $(LDFLAGS) -o $(NAME) $(SRC) $(FAST) -g3
+
+best:		fclean $(SRC)
+		@make --no-print-directory -j debug
+		@make --no-print-directory clean
 
 clean:
-		rm -f $(OBJ)
+		rm -f $(OBJ) *.gcda *.gcno
 
-fclean: 	clean
-		rm -f $(NAME)
+fclean:		clean
+		rm -f $(NAME) unit_tests
 
-re: 		fclean all
+re:		fclean $(NAME)
