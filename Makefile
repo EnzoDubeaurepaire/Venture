@@ -28,6 +28,8 @@ SRC	=	src/main.c \
 		src/stats/init_stats.c \
 		src/stats/stats_renderer.c \
 		src/utils/get_mouse_pos.c \
+		src/pause_screen/buttons_state.c \
+		src/pause_screen/pause.c \
 
 OBJ	=	$(SRC:.c=.o)
 

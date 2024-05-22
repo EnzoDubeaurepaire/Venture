@@ -92,6 +92,14 @@ typedef struct menu_screen {
     _Bool resume_is_usable;
 } menu_screen_t;
 
+typedef struct pause_screen {
+    sfTexture *texture;
+    sfSprite *quit;
+    sfSprite *save;
+    sfSprite *chara;
+    sfSprite *sett;
+} pause_screen_t;
+
 typedef struct screen {
     void *screen;
 } screen_t;

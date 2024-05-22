@@ -34,9 +34,10 @@
     #include "collision.h"
     #include "stats.h"
     #include "utils.h"
+    #include "pause_screen.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {
     &render_launch_screen, &render_menu, &map_renderer,
-    &render_dialogue, &stats_renderer, &render_settings, NULL};
+    &render_dialogue, &render_pause, &stats_renderer, &render_settings, NULL};
 
 #endif
