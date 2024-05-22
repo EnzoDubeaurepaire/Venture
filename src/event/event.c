@@ -7,6 +7,26 @@
 
 #include "../../include/rpg.h"
 
+static void event_hitbox(game_t *game, sfEvent event)
+{
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyH) {
+        if (((map_screen_t *) (game->screens[2]->screen))->player->is_hitbox
+            == sfTrue)
+            ((map_screen_t *) (game->screens[2]->screen))->player->is_hitbox
+            = sfFalse;
+        else
+            ((map_screen_t *)(game->screens[2]->screen))->player->is_hitbox =
+            sfTrue;
+    }
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyE &&
+        (game->active_screen & DIALOGUE_SCREEN) == 0) {
+        game->active_screen |= DIALOGUE_SCREEN;
+        ((bubble_t *)(game->screens[3]->screen))->message = "ca marche ?";
+        ((bubble_t *)(game->screens[3]->screen))->compteur = 0;
+        ((bubble_t *)(game->screens[3]->screen))->skip_animation = sfFalse;
+    }
+}
+
 static void event_mouse_keybord(game_t *game, sfEvent event)
 {
     static _Bool key_pressed = 0;
@@ -22,13 +42,70 @@ static void event_mouse_keybord(game_t *game, sfEvent event)
         key_pressed = 0;
         game->key = event.key.code;
     }
-    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyE &&
-        (game->active_screen & DIALOGUE_SCREEN) == 0) {
-        game->active_screen |= DIALOGUE_SCREEN;
-        ((bubble_t *)(game->screens[3]->screen))->message = "ca marche ?";
-        ((bubble_t *)(game->screens[3]->screen))->compteur = 0;
-        ((bubble_t *)(game->screens[3]->screen))->skip_animation = sfFalse;
+    event_hitbox(game, event);
+}
+
+static void update_resolution(game_t *game)
+{
+    const sfView *view = sfRenderWindow_getView(game->window);
+    sfVideoMode mode;
+
+    if (game->resolution_state == 0) {
+        game->resolution_state = 1;
+        mode = (sfVideoMode){1280, 720, 32};
+    } else {
+        game->resolution_state = 0;
+        mode = (sfVideoMode){1920, 1080, 32};
     }
+    sfRenderWindow_close(game->window);
+    game->window = sfRenderWindow_create(mode, "Venture", (sfFullscreen *
+        game->window_state == 0) | ((sfClose | sfResize) *
+        game->window_state == 1), NULL);
+    sfRenderWindow_setFramerateLimit(game->window, 60);
+    sfRenderWindow_setView(game->window, sfView_copy(view));
+}
+
+static void update_window(game_t *game)
+{
+    const sfView *view = sfRenderWindow_getView(game->window);
+    sfVideoMode mode = (game->resolution_state) ? (sfVideoMode){1280,
+        720, 32} : (sfVideoMode){1920, 1080, 32};
+
+    if (game->window_state == 0) {
+        game->window_state = 1;
+        sfRenderWindow_close(game->window);
+        game->window = sfRenderWindow_create(mode,
+            "Venture", sfClose | sfResize, NULL);
+        sfRenderWindow_setFramerateLimit(game->window, 60);
+        sfRenderWindow_setView(game->window, sfView_copy(view));
+    } else {
+        game->window_state = 0;
+        sfRenderWindow_close(game->window);
+        game->window = sfRenderWindow_create(mode,
+            "Venture", sfFullscreen, NULL);
+        sfRenderWindow_setFramerateLimit(game->window, 60);
+    }
+    sfRenderWindow_setSize(game->window, (sfVector2u){1920, 1080});
+}
+
+static void event_resolution(game_t *game, sfEvent event)
+{
+    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyA)
+        update_window(game);
+    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyR)
+        update_resolution(game);
+}
+
+static void check_echap(sfEvent event, game_t *game)
+{
+    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyEscape
+        && (game->active_screen & MAP_SCREEN) && !(game->active_screen
+        & STATS_SCREEN))
+        game->active_screen ^= PAUSE_SCREEN;
+    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyEscape
+        && (game->active_screen & MAP_SCREEN) && (game->active_screen
+        & STATS_SCREEN))
+        game->active_screen ^= STATS_SCREEN;
 }
 
 void poll_event(game_t *game)
@@ -36,9 +113,9 @@ void poll_event(game_t *game)
     sfEvent event;
 
     while (sfRenderWindow_pollEvent(game->window, &event)) {
-        if (event.type == sfEvtClosed || (event.type == sfEvtKeyPressed &&
-            event.key.code == sfKeyEscape))
-            sfRenderWindow_close(game->window);
+        if (event.type == sfEvtClosed)
+            exit_game(game);
+        check_echap(event, game);
         if (game->active_screen & LAUNCH_SCREEN && !(game->active_screen &
             MENU_SCREEN) && event.type == sfEvtKeyPressed && event.key.code
             == sfKeyEnter) {
@@ -46,9 +123,7 @@ void poll_event(game_t *game)
             ((launch_screen_t *)game->screens[0]->screen)->vanish_clock =
                 sfClock_create();
         }
-        if (event.type == sfEvtKeyPressed && event.key.code == sfKeyY &&
-            (game->active_screen & MAP_SCREEN))
-            game->active_screen ^= STATS_SCREEN;
+        event_resolution(game, event);
         event_mouse_keybord(game, event);
     }
 }

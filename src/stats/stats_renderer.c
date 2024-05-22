@@ -96,8 +96,7 @@ static void update_res(player_stat_t *stats, sfVector2i pos)
 
 static void update_stats(game_t *game, player_stat_t *stats)
 {
-    sfVector2i pos = {sfMouse_getPositionRenderWindow(game->window).x,
-        sfMouse_getPositionRenderWindow(game->window).y};
+    sfVector2i pos = get_mouse(game);
 
     if (!sfMouse_isButtonPressed(sfMouseLeft))
         return;

@@ -13,8 +13,9 @@ static void init_screens(game_t *game)
     game->screens[1] = init_menu();
     game->screens[2] = init_map();
     game->screens[3] = init_bubble(game->window);
-    game->screens[4] = init_stats();
-    game->screens[5] = init_settings_screen();
+    game->screens[4] = init_pause();
+    game->screens[5] = init_stats();
+    game->screens[6] = init_settings_screen();
     game->screens[SCREEN_NB] = NULL;
 }
 
@@ -29,10 +30,14 @@ game_t *init_game(void)
     game->clock = sfClock_create();
     init_screens(game);
     game->active_screen = LAUNCH_SCREEN;
-    for (int i = 0; renderers[i]; i++)
+    for (int i = 0; renderers[i]; i++) {
         game->screen_renderer[i] = renderers[i];
+        game->screen_destroyer[i] = destroyers[i];
+    }
     game->screen_renderer[SCREEN_NB] = NULL;
     game->last_frame_time = 0;
     game->mouse_hold = 0;
+    game->window_state = 0;
+    game->resolution_state = 0;
     return game;
 }

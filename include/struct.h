@@ -14,6 +14,9 @@ typedef struct entity {
     sfTexture *texture;
     sfIntRect rect;
     sfVector2f position;
+    sfRectangleShape *hitbox;
+    sfBool is_hitbox;
+    sfVector2f pos_rel_to_map;
 } entity_t;
 
 typedef struct sprint {
@@ -24,6 +27,8 @@ typedef struct sprint {
 } sprint_t;
 
 typedef struct map_screen {
+    sfSprite *collision_sprite;
+    sfTexture *collision_texture;
     sfSprite *map_sprite;
     sfTexture *map_texture;
     entity_t *player;
@@ -32,6 +37,9 @@ typedef struct map_screen {
     float speed;
     float sprint_speed;
     sprint_t *sprint;
+    sfRectangleShape *mini_map;
+    sfSprite *mini_map_player;
+    sfImage *image_collision;
 } map_screen_t;
 
 typedef struct bubble_s {
@@ -86,6 +94,14 @@ typedef struct menu_screen {
     _Bool resume_is_usable;
 } menu_screen_t;
 
+typedef struct pause_screen {
+    sfTexture *texture;
+    sfSprite *quit;
+    sfSprite *save;
+    sfSprite *chara;
+    sfSprite *sett;
+} pause_screen_t;
+
 typedef struct screen {
     void *screen;
 } screen_t;
@@ -120,6 +136,8 @@ typedef struct player_stat {
 
 typedef struct game {
     sfRenderWindow *window;
+    _Bool window_state;
+    _Bool resolution_state;
     sfClock *clock;
     _Bool mouse_hold;
     sfKeyCode key;
@@ -127,6 +145,7 @@ typedef struct game {
     screen_t *screens[SCREEN_NB + 1];
     void (*screen_renderer[SCREEN_NB + 1])(struct game *game, screen_t
         *screen);
+    void (*screen_destroyer[SCREEN_NB + 1])(screen_t *screen);
     long long last_frame_time;
 } game_t;
 

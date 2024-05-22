@@ -35,7 +35,7 @@ static void check_mouse_settings(game_t *game, menu_screen_t *menu,
 
     if (pressed == 1 && !game->mouse_hold
         && sfFloatRect_contains(&rect, pos.x, pos.y)) {
-        game->active_screen |= SETTINGS_SCREEN;
+        game->active_screen ^= SETTINGS_SCREEN;
         pressed = 0;
         return;
     }
@@ -85,7 +85,7 @@ static void check_mouse_quit(game_t *game, menu_screen_t *menu, sfVector2f pos,
 
     if (pressed == 1 && !game->mouse_hold &&
         sfFloatRect_contains(&rect, pos.x, pos.y)) {
-        sfRenderWindow_close(game->window);
+        exit_game(game);
         return;
     }
     if (sfFloatRect_contains(&rect, pos.x, pos.y) && game->mouse_hold) {
@@ -105,7 +105,7 @@ static void check_mouse_quit(game_t *game, menu_screen_t *menu, sfVector2f pos,
 
 void check_mouse_on_menu(game_t *game, menu_screen_t *menu)
 {
-    sfVector2i pos = sfMouse_getPositionRenderWindow(game->window);
+    sfVector2i pos = get_mouse(game);
 
     check_mouse_new_game(game, menu, (sfVector2f){(float)pos.x, (float)pos.y},
         sfSprite_getGlobalBounds(menu->new_game));
