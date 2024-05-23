@@ -19,9 +19,6 @@ SRC	=	src/main.c \
 		src/map_screen/init_map_screen.c \
 		src/map_screen/map_screen.c \
 		src/map_screen/map_renderer.c	\
-		linked_list/list1.c \
-		linked_list/list2.c \
-		linked_list/list3.c \
 		src/dialogue/init_struct_dialogue.c	\
 		src/dialogue/dialogue.c	\
 		src/dialogue/event_dialogue.c	\
