@@ -145,4 +145,5 @@ void update_map(game_t *game, map_screen_t *map_screen)
     update_position(game, map_screen);
     animate_player(game, map_screen);
     show_map(game, map_screen);
+    show_inventory_map(game, map_screen);
 }
