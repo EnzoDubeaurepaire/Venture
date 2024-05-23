@@ -28,6 +28,12 @@ static void check_mouse_resume(game_t *game, menu_screen_t *menu,
             137});
 }
 
+static void settings_button(game_t *game)
+{
+    game->active_screen ^= SETTINGS_SCREEN;
+    click_sound(game);
+}
+
 static void check_mouse_settings(game_t *game, menu_screen_t *menu,
     sfVector2f pos, sfFloatRect rect)
 {
@@ -35,8 +41,8 @@ static void check_mouse_settings(game_t *game, menu_screen_t *menu,
 
     if (pressed == 1 && !game->mouse_hold
         && sfFloatRect_contains(&rect, pos.x, pos.y)) {
-        game->active_screen ^= SETTINGS_SCREEN;
         pressed = 0;
+        settings_button(game);
         return;
     }
     if (sfFloatRect_contains(&rect, pos.x, pos.y) && !game->mouse_hold)
@@ -53,6 +59,13 @@ static void check_mouse_settings(game_t *game, menu_screen_t *menu,
     pressed = 0;
 }
 
+static void new_game_button(game_t *game)
+{
+    click_sound(game);
+    game->active_screen = 0;
+    game->active_screen |= MAP_SCREEN;
+}
+
 static void check_mouse_new_game(game_t *game, menu_screen_t *menu,
     sfVector2f pos, sfFloatRect rect)
 {
@@ -60,22 +73,28 @@ static void check_mouse_new_game(game_t *game, menu_screen_t *menu,
 
     if (pressed == 1 && sfFloatRect_contains(&rect, pos.x, pos.y) &&
         !game->mouse_hold) {
-        game->active_screen = 0;
-        game->active_screen |= MAP_SCREEN;
+        new_game_button(game);
         return;
     }
     if (sfFloatRect_contains(&rect, pos.x, pos.y) && game->mouse_hold) {
-        sfSprite_setTextureRect(menu->new_game, (sfIntRect)
-            {760, 0, 380, 137});
+        sfSprite_setTextureRect(menu->new_game, (sfIntRect){760, 0, 380, 137});
         pressed = 1;
         return;
     }
-    if (sfFloatRect_contains(&rect, pos.x, pos.y) && !game->mouse_hold)
-        sfSprite_setTextureRect(menu->new_game, (sfIntRect)
-            {380, 0, 380, 137});
-    if (!sfFloatRect_contains(&rect, pos.x, pos.y))
-        sfSprite_setTextureRect(menu->new_game, (sfIntRect){0, 0, 380, 137});
+    if (sfFloatRect_contains(&rect, pos.x, pos.y) && !game->mouse_hold) {
+        sfSprite_setTextureRect(menu->new_game, (sfIntRect){380, 0, 380, 137});
+    }
+    if (!sfFloatRect_contains(&rect, pos.x, pos.y)) {
+        sfSprite_setTextureRect(menu->new_game, (sfIntRect) {0, 0, 380, 137});
+    }
     pressed = 0;
+}
+
+static void quite_button(game_t *game)
+{
+    click_sound(game);
+    usleep(0.5);
+    exit_game(game);
 }
 
 static void check_mouse_quit(game_t *game, menu_screen_t *menu, sfVector2f pos,
@@ -85,7 +104,7 @@ static void check_mouse_quit(game_t *game, menu_screen_t *menu, sfVector2f pos,
 
     if (pressed == 1 && !game->mouse_hold &&
         sfFloatRect_contains(&rect, pos.x, pos.y)) {
-        exit_game(game);
+        quite_button(game);
         return;
     }
     if (sfFloatRect_contains(&rect, pos.x, pos.y) && game->mouse_hold) {

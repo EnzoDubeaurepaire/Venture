@@ -92,6 +92,7 @@ typedef struct menu_screen {
     sfSprite *settings;
     sfSprite *quit;
     _Bool resume_is_usable;
+    sfMusic *music;
 } menu_screen_t;
 
 typedef struct pause_screen {
@@ -134,6 +135,13 @@ typedef struct player_stat {
     sfFont *font;
 } player_stat_t;
 
+typedef struct music_s {
+    sfMusic *menu_music;
+    sfMusic *typing_music;
+    sfMusic *button_click;
+    sfMusic *walking;
+} music_t;
+
 typedef struct game {
     sfRenderWindow *window;
     _Bool window_state;
@@ -147,6 +155,7 @@ typedef struct game {
         *screen);
     void (*screen_destroyer[SCREEN_NB + 1])(screen_t *screen);
     long long last_frame_time;
+    music_t *music;
 } game_t;
 
 #endif

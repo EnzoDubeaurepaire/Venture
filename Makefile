@@ -36,6 +36,9 @@ SRC	=	src/main.c \
 		src/pause_screen/destroyer.c \
 		src/settings_screen/destroyer.c \
 		src/stats/destroyer.c \
+		src/music/music.c	\
+		src/music/destroyer.c	\
+		src/music/init_music.c	\
 
 OBJ	=	$(SRC:.c=.o)
 
