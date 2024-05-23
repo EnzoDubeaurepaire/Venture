@@ -40,6 +40,8 @@ typedef struct map_screen {
     sfRectangleShape *mini_map;
     sfSprite *mini_map_player;
     sfImage *image_collision;
+    sfTexture *bush_texture;
+    sfSprite *bush_sprite;
 } map_screen_t;
 
 typedef struct bubble_s {
