@@ -40,6 +40,18 @@ static sfRectangleShape *init_launch_screen_fade(void)
     return rect;
 }
 
+static void init_tuto(launch_screen_t *launch)
+{
+    launch->tuto_texture = sfTexture_createFromFile("assets/how_to_play.png",
+        NULL);
+    launch->tuto = sfSprite_create();
+    sfSprite_setTexture(launch->tuto, launch->tuto_texture, 1);
+    sfSprite_setOrigin(launch->tuto, (sfVector2f){(float)sfTexture_getSize
+        (launch->tuto_texture).x / 2, (float)sfTexture_getSize
+        (launch->tuto_texture).y / 2});
+    sfSprite_setPosition(launch->tuto, (sfVector2f){960, 640});
+}
+
 screen_t *init_launch_screen(void)
 {
     screen_t *screen = malloc(sizeof(screen_t));
@@ -54,6 +66,8 @@ screen_t *init_launch_screen(void)
     launch_screen->fade_value = 0;
     launch_screen->text_vanish = (sfTime){0};
     launch_screen->vanish_clock = NULL;
+    launch_screen->show_tuto = 0;
+    init_tuto(launch_screen);
     screen->screen = launch_screen;
     return screen;
 }
@@ -104,4 +118,6 @@ void render_launch_screen(game_t *game, screen_t *screen)
     render_launch_text(game, launch_screen, time);
     sfRenderWindow_drawRectangleShape(game->window, launch_screen->fade,
         NULL);
+    if (launch_screen->show_tuto)
+        sfRenderWindow_drawSprite(game->window, launch_screen->tuto, NULL);
 }

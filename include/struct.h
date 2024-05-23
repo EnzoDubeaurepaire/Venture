@@ -65,6 +65,9 @@ typedef struct launch_screen {
     sfTime text_vanish;
     sfClock *vanish_clock;
     sfMusic *music;
+    sfTexture *tuto_texture;
+    sfSprite *tuto;
+    _Bool show_tuto;
 } launch_screen_t;
 
 typedef struct settings_screen {

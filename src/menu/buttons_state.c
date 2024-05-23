@@ -74,8 +74,8 @@ static void check_mouse_settings(game_t *game, menu_screen_t *menu,
 static void new_game_button(game_t *game)
 {
     click_sound(game);
-    game->active_screen = 0;
-    game->active_screen |= MAP_SCREEN;
+    game->active_screen ^= MENU_SCREEN;
+    ((launch_screen_t *)game->screens[0]->screen)->show_tuto = 1;
 }
 
 static void check_mouse_new_game(game_t *game, menu_screen_t *menu,

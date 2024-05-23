@@ -110,6 +110,16 @@ static void check_echap(sfEvent event, game_t *game)
         game->active_screen ^= STATS_SCREEN;
 }
 
+static void event_tuto(game_t *game, sfEvent event)
+{
+    if (((launch_screen_t *)game->screens[0]->screen)->show_tuto &&
+        game->active_screen & LAUNCH_SCREEN && event.type == sfEvtKeyPressed
+        && event.key.code == sfKeyEnter) {
+        game->active_screen = 0;
+        game->active_screen |= MAP_SCREEN;
+    }
+}
+
 void poll_event(game_t *game)
 {
     sfEvent event;
@@ -125,6 +135,7 @@ void poll_event(game_t *game)
             ((launch_screen_t *)game->screens[0]->screen)->vanish_clock =
                 sfClock_create();
         }
+        event_tuto(game, event);
         event_resolution(game, event);
         event_mouse_keybord(game, event);
     }

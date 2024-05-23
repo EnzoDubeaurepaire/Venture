@@ -55,7 +55,8 @@ static void check_textures(void)
         !exist("assets/settings/buttons_screen.png") ||
         !exist("assets/settings/settings.png") ||
         !exist("assets/settings/settings_overlay.png") ||
-        !exist("assets/settings/settings_overlay.png"))
+        !exist("assets/settings/settings_overlay.png") ||
+        !exist("assets/how_to_play.png"))
         exit(84);
 }
 
