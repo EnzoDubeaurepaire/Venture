@@ -25,6 +25,9 @@ static void event_hitbox(game_t *game, sfEvent event)
         ((bubble_t *)(game->screens[3]->screen))->compteur = 0;
         ((bubble_t *)(game->screens[3]->screen))->skip_animation = sfFalse;
     }
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyB) {
+        pick_up_item(game, MAP);
+    }
 }
 
 static void event_mouse_keybord(game_t *game, sfEvent event)
