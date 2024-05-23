@@ -19,6 +19,7 @@ int main(void)
 {
     game_t *game = init_game();
 
+    game->save = is_save_ok();
     sfRenderWindow_setFramerateLimit(game->window, 60);
     while (sfRenderWindow_isOpen(game->window)) {
         sfRenderWindow_clear(game->window, sfBlack);

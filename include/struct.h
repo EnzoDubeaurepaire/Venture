@@ -155,6 +155,7 @@ typedef struct game {
         *screen);
     void (*screen_destroyer[SCREEN_NB + 1])(screen_t *screen);
     long long last_frame_time;
+    _Bool save;
     music_t *music;
 } game_t;
 

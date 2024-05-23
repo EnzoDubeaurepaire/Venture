@@ -35,6 +35,7 @@
     #include "utils.h"
     #include "pause_screen.h"
     #include "destroyer.h"
+    #include "save.h"
     #include "music.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {
