@@ -5,13 +5,6 @@
 ** buttons_state.c
 */
 
-/*
-** EPITECH PROJECT, 2024
-** rpg_mirror
-** File description:
-** buttons_state.c
-*/
-
 #include "rpg.h"
 
 static void check_mouse_save(game_t *game, pause_screen_t *pause,
@@ -30,6 +23,12 @@ static void check_mouse_save(game_t *game, pause_screen_t *pause,
             137});
 }
 
+static void setting_button(game_t *game)
+{
+    game->active_screen ^= SETTINGS_SCREEN;
+    click_sound(game);
+}
+
 static void check_mouse_settings(game_t *game, pause_screen_t *pause,
     sfVector2f pos, sfFloatRect rect)
 {
@@ -37,8 +36,8 @@ static void check_mouse_settings(game_t *game, pause_screen_t *pause,
 
     if (pressed == 1 && !game->mouse_hold
         && sfFloatRect_contains(&rect, pos.x, pos.y)) {
-        game->active_screen ^= SETTINGS_SCREEN;
         pressed = 0;
+        setting_button(game);
         return;
     }
     if (sfFloatRect_contains(&rect, pos.x, pos.y) && !game->mouse_hold)
@@ -55,6 +54,13 @@ static void check_mouse_settings(game_t *game, pause_screen_t *pause,
     pressed = 0;
 }
 
+static void characteristic_button(game_t *game)
+{
+    game->active_screen ^= PAUSE_SCREEN;
+    game->active_screen ^= STATS_SCREEN;
+    click_sound(game);
+}
+
 static void check_mouse_characteristics(game_t *game, pause_screen_t *pause,
     sfVector2f pos, sfFloatRect rect)
 {
@@ -62,8 +68,7 @@ static void check_mouse_characteristics(game_t *game, pause_screen_t *pause,
 
     if (pressed == 1 && sfFloatRect_contains(&rect, pos.x, pos.y) &&
         !game->mouse_hold) {
-        game->active_screen ^= PAUSE_SCREEN;
-        game->active_screen ^= STATS_SCREEN;
+        characteristic_button(game);
         return;
     }
     if (sfFloatRect_contains(&rect, pos.x, pos.y) && game->mouse_hold) {
@@ -80,6 +85,13 @@ static void check_mouse_characteristics(game_t *game, pause_screen_t *pause,
     pressed = 0;
 }
 
+static void quite_button(game_t *game)
+{
+    click_sound(game);
+    usleep(0.5);
+    exit_game(game);
+}
+
 static void check_mouse_quit(game_t *game, pause_screen_t *pause,
     sfVector2f pos, sfFloatRect rect)
 {
@@ -87,7 +99,7 @@ static void check_mouse_quit(game_t *game, pause_screen_t *pause,
 
     if (pressed == 1 && !game->mouse_hold &&
         sfFloatRect_contains(&rect, pos.x, pos.y)) {
-        exit_game(game);
+        quite_button(game);
         return;
     }
     if (sfFloatRect_contains(&rect, pos.x, pos.y) && game->mouse_hold) {
