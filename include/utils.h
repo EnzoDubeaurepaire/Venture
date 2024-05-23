@@ -9,6 +9,15 @@
     #define UTILS_H
     #include "rpg.h"
 
+enum items {
+    NONE = 0,
+    map,
+    sword
+};
+
+/*
+ * get_mouse.c
+*/
 sfVector2i get_mouse(game_t *game);
 
 /*

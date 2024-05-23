@@ -19,6 +19,7 @@
 
 #ifndef HUNTER_H
     #define HUNTER_H
+    #include "utils.h"
     #include "math.h"
     #include "macros.h"
     #include "struct.h"
@@ -32,7 +33,6 @@
     #include <stdbool.h>
     #include "collision.h"
     #include "stats.h"
-    #include "utils.h"
     #include "pause_screen.h"
     #include "destroyer.h"
 

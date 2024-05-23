@@ -25,4 +25,9 @@ void update_map(game_t *game, map_screen_t *map_screen);
 */
 screen_t *init_map(void);
 
+/*
+ * init_inventory.c
+*/
+void init_inventory(map_screen_t *map);
+
 #endif
