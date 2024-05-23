@@ -39,5 +39,6 @@ game_t *init_game(void)
     game->mouse_hold = 0;
     game->window_state = 0;
     game->resolution_state = 0;
+    game->music = init_music();
     return game;
 }
