@@ -6,6 +6,7 @@
 ##
 
 SRC	=	src/main.c \
+		src/inventory/init_inventory.c	\
 		src/launch_screen/launch_screen.c \
 		src/game_struct/init_game_struct.c \
 		src/game_struct/free_game_struct.c \
