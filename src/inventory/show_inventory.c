@@ -10,6 +10,7 @@
 void show_inventory_map(game_t *game, map_screen_t *map_screen)
 {
     inventory_t *inventory = map_screen->inventory;
+
     sfRenderWindow_drawSprite(game->window, inventory->hotbar, NULL);
     for (int i = 0; i < 8; i++) {
         if (inventory->slot_tab[i]->stored_item != NONE) {

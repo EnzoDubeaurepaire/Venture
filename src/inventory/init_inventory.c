@@ -60,6 +60,6 @@ void init_inventory(map_screen_t *map)
     new_inventory->pos_tab = init_pos_tab();
     new_inventory->rect_tab = init_rect_tab();
     new_inventory->slot_tab = init_slots(new_inventory->items_texture,
-         new_inventory->pos_tab);
+        new_inventory->pos_tab);
     map->inventory = new_inventory;
 }
