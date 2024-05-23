@@ -7,7 +7,8 @@
 
 #include "../../include/rpg.h"
 
-static void check_refresh_text(settings_screen_t *settings, int mode)
+static void check_refresh_text(settings_screen_t *settings, int mode,
+    game_t *game)
 {
     char *new_text;
 
@@ -20,6 +21,7 @@ static void check_refresh_text(settings_screen_t *settings, int mode)
         sprintf(new_text, "%d %%", settings->main_volume);
         sfText_setString(settings->text_main_volume, new_text);
         free(new_text);
+        manage_volume(game->music, settings->main_volume);
         return;
     }
     if (mode == 0) {
@@ -27,6 +29,7 @@ static void check_refresh_text(settings_screen_t *settings, int mode)
         sprintf(new_text, "%d %%", settings->main_volume);
         sfText_setString(settings->text_main_volume, new_text);
         free(new_text);
+        manage_volume(game->music, settings->main_volume);
         return;
     }
 }
@@ -36,7 +39,7 @@ static void plus_button(game_t *game, settings_screen_t *settings)
     sfSprite_setTextureRect(settings->plus_button,
         (sfIntRect){160, 80, 16, 16});
     click_sound(game);
-    check_refresh_text(settings, 1);
+    check_refresh_text(settings, 1, game);
 }
 
 void check_plus_button(game_t *game,
@@ -60,7 +63,7 @@ static void minus_button(game_t *game, settings_screen_t *settings)
 {
     sfSprite_setTextureRect(settings->minus_button,
         (sfIntRect){176, 80, 16, 16});
-    check_refresh_text(settings, 0);
+    check_refresh_text(settings, 0, game);
     click_sound(game);
 }
 

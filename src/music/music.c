@@ -59,3 +59,11 @@ void click_sound(game_t *game)
     sfMusic_stop(game->music->button_click);
     sfMusic_play(game->music->button_click);
 }
+
+void manage_volume(music_t *music, int volume)
+{
+    sfMusic_setVolume(music->menu_music, volume);
+    sfMusic_setVolume(music->typing_music, volume);
+    sfMusic_setVolume(music->walking, volume);
+    sfMusic_setVolume(music->button_click, volume);
+}

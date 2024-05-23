@@ -20,6 +20,7 @@ music_t *init_music(void);
 */
 void music_manager(game_t *game);
 void click_sound(game_t *game);
+void manage_volume(music_t *music, int volume);
 
 /*
  * music_destroyer.c
