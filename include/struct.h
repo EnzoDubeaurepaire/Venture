@@ -68,6 +68,7 @@ typedef struct launch_screen {
 typedef struct settings_screen {
     sfTexture *texture;
     sfTexture *buttons_texture;
+    sfTexture *button_texture_screen;
     int main_volume;
     sfText *text_main_volume;
     sfText *text_volume;
@@ -78,6 +79,7 @@ typedef struct settings_screen {
     sfSprite *plus_button;
     sfSprite *minus_button;
     sfSprite *fullscreen_button;
+    sfSprite *resize_button;
     sfSprite *window_button;
     sfFont *font;
 } settings_screen_t;

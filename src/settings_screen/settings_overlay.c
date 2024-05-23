@@ -21,16 +21,35 @@ static sfText *init_text(sfFont *font, char *str)
     return text;
 }
 
+static void init_textures(settings_screen_t *settings)
+{
+    settings->texture = sfTexture_createFromFile(
+    "assets/settings/settings_overlay.png", NULL);
+    settings->buttons_texture = sfTexture_createFromFile(
+    "assets/settings/settings_buttons.png", NULL);
+    settings->button_texture_screen = sfTexture_createFromFile(
+    "assets/settings/buttons_screen.png", NULL);
+}
+
 static void init_sprites_buttons_settings(settings_screen_t *settings)
 {
     settings->plus_button = create_sprite(settings->buttons_texture,
     (sfVector2f){1750, 280}, (sfVector2f){2.25, 2.25});
     settings->minus_button = create_sprite(settings->buttons_texture,
     (sfVector2f){1580, 280}, (sfVector2f){2.25, 2.25});
-    settings->overlay = create_sprite(settings->texture, (sfVector2f){1450, 0},
-    (sfVector2f){0.95, 0.95});
+    settings->overlay = create_sprite(settings->texture,
+    (sfVector2f){1450, 0}, (sfVector2f){0.95, 0.95});
     settings->cross = create_sprite(settings->buttons_texture,
     (sfVector2f){1815, 50}, (sfVector2f){2.25, 2.25});
+    settings->fullscreen_button = create_sprite(
+    settings->button_texture_screen,
+    (sfVector2f){1580, 480}, (sfVector2f){0.5, 0.5});
+    settings->window_button = create_sprite(
+    settings->button_texture_screen,
+    (sfVector2f){1580, 650}, (sfVector2f){0.5, 0.5});
+    settings->resize_button = create_sprite(
+    settings->button_texture_screen,
+    (sfVector2f){1580, 750}, (sfVector2f){0.5, 0.5});
 }
 
 screen_t *init_settings_screen(void)
@@ -39,11 +58,8 @@ screen_t *init_settings_screen(void)
     settings_screen_t *settings = malloc(sizeof(settings_screen_t));
 
     settings->main_volume = 50;
+    init_textures(settings);
     settings->font = sfFont_createFromFile("assets/fonts/venite.ttf");
-    settings->texture = sfTexture_createFromFile(
-    "assets/settings/settings_overlay.png", NULL);
-    settings->buttons_texture = sfTexture_createFromFile(
-    "assets/settings/settings_buttons.png", NULL);
     settings->text_main_volume = init_text(settings->font, "50 %\0");
     settings->text_volume = init_text(settings->font, "Volume :\0");
     settings->window_mode = init_text(settings->font, "Window mode :\0");
@@ -66,6 +82,12 @@ void manage_settings_buttons(game_t *game, settings_screen_t *settings_screen)
     (sfVector2f){(float)pos.x, (float)pos.y});
     check_cross_button(game, settings_screen,
     (sfVector2f){(float)pos.x, (float)pos.y});
+    check_fullscreen_button(game, settings_screen,
+    (sfVector2f){(float)pos.x, (float)pos.y});
+    check_1280x720_button(game, settings_screen,
+    (sfVector2f){(float)pos.x, (float)pos.y});
+    check_1920x1080_button(game, settings_screen,
+    (sfVector2f){(float)pos.x, (float)pos.y});
 }
 
 void render_settings(game_t *game, screen_t *screen)
@@ -78,6 +100,10 @@ void render_settings(game_t *game, screen_t *screen)
     sfRenderWindow_drawSprite(game->window, settings_screen->cross, 0);
     sfRenderWindow_drawSprite(game->window, settings_screen->plus_button, 0);
     sfRenderWindow_drawSprite(game->window, settings_screen->minus_button, 0);
+    sfRenderWindow_drawSprite(game->window,
+    settings_screen->fullscreen_button, 0);
+    sfRenderWindow_drawSprite(game->window, settings_screen->resize_button, 0);
+    sfRenderWindow_drawSprite(game->window, settings_screen->window_button, 0);
     sfRenderWindow_drawText(game->window,
     settings_screen->text_main_volume, 0);
     sfRenderWindow_drawText(game->window, settings_screen->text_volume, 0);

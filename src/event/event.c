@@ -45,7 +45,7 @@ static void event_mouse_keybord(game_t *game, sfEvent event)
     event_hitbox(game, event);
 }
 
-static void update_resolution(game_t *game)
+void update_resolution(game_t *game)
 {
     const sfView *view = sfRenderWindow_getView(game->window);
     sfVideoMode mode;
@@ -65,7 +65,7 @@ static void update_resolution(game_t *game)
     sfRenderWindow_setView(game->window, sfView_copy(view));
 }
 
-static void update_window(game_t *game)
+void update_window(game_t *game)
 {
     const sfView *view = sfRenderWindow_getView(game->window);
     sfVideoMode mode = (game->resolution_state) ? (sfVideoMode){1280,
