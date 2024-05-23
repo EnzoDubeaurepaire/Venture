@@ -111,6 +111,7 @@ void save(game_t *game)
     map_screen_t *map = game->screens[2]->screen;
     player_stat_t *stat = game->screens[5]->screen;
 
+    click_sound(game);
     if (fd == -1)
         return;
     dprintf(fd, "%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n",

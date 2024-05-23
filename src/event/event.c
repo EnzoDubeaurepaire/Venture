@@ -50,6 +50,7 @@ void update_resolution(game_t *game)
     const sfView *view = sfRenderWindow_getView(game->window);
     sfVideoMode mode;
 
+    click_sound(game);
     if (game->resolution_state == 0) {
         game->resolution_state = 1;
         mode = (sfVideoMode){1280, 720, 32};
@@ -71,6 +72,7 @@ void update_window(game_t *game)
     sfVideoMode mode = (game->resolution_state) ? (sfVideoMode){1280,
         720, 32} : (sfVideoMode){1920, 1080, 32};
 
+    click_sound(game);
     if (game->window_state == 0) {
         game->window_state = 1;
         sfRenderWindow_close(game->window);

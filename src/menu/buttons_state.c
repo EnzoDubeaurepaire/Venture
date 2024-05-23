@@ -9,6 +9,7 @@
 
 static void start(game_t *game)
 {
+    click_sound(game);
     game->active_screen = 0;
     game->active_screen |= MAP_SCREEN;
     check_save(game);
