@@ -19,9 +19,9 @@
 
 #ifndef HUNTER_H
     #define HUNTER_H
-    #include "utils.h"
     #include "math.h"
     #include "macros.h"
+    #include "items.h"
     #include "struct.h"
     #include "launch_screen.h"
     #include "game_struct.h"
@@ -34,6 +34,8 @@
     #include "collision.h"
     #include "stats.h"
     #include "pause_screen.h"
+    #include "inventory.h"
+    #include "utils.h"
     #include "destroyer.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {

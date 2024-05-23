@@ -35,9 +35,10 @@ typedef struct inventory {
     sfTexture *hotbar_texture;
     sfTexture *items_texture;
     sfSprite *hotbar;
+    sfIntRect *rect_tab;
     slot_t **slot_tab;
     sfVector2f *pos_tab;
-} inventory_t ;
+} inventory_t;
 
 typedef struct map_screen {
     inventory_t *inventory;
