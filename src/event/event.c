@@ -133,7 +133,9 @@ void poll_event(game_t *game)
             == sfKeyEnter) {
             game->active_screen |= MENU_SCREEN;
             ((launch_screen_t *)game->screens[0]->screen)->vanish_clock =
-                sfClock_create();
+                (((launch_screen_t *)game->screens[0]->screen)->vanish_clock
+                == NULL) ? sfClock_create() :
+                ((launch_screen_t *)game->screens[0]->screen)->vanish_clock;
         }
         event_tuto(game, event);
         event_resolution(game, event);

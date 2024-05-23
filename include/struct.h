@@ -87,6 +87,8 @@ typedef struct settings_screen {
     sfSprite *resize_button;
     sfSprite *window_button;
     sfFont *font;
+    sfSprite *controls;
+    sfTexture *controls_texture;
 } settings_screen_t;
 
 typedef struct menu_screen {
