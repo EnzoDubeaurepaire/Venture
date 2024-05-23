@@ -28,6 +28,7 @@ int main(void)
             sfClock_getElapsedTime(game->clock).microseconds;
         sfRenderWindow_display(game->window);
         poll_event(game);
+        music_manager(game);
     }
     free_game(game);
 }

@@ -38,5 +38,6 @@ void free_game(game_t *game)
     free_dialogue_screen(game->screens[3]);
     sfRenderWindow_destroy(game->window);
     sfClock_destroy(game->clock);
+    music_destroyer(game->music);
     free(game);
 }

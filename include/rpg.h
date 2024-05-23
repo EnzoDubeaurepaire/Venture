@@ -20,7 +20,6 @@
 #ifndef HUNTER_H
     #define HUNTER_H
     #include "math.h"
-    #include "../linked_list/list.h"
     #include "macros.h"
     #include "struct.h"
     #include "launch_screen.h"
@@ -37,6 +36,7 @@
     #include "pause_screen.h"
     #include "destroyer.h"
     #include "save.h"
+    #include "music.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {
     &render_launch_screen, &render_menu, &map_renderer,
