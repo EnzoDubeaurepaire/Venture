@@ -22,6 +22,10 @@ void settings_screen_destroyer(screen_t *screen)
     sfText_destroy(settings->text_volume);
     sfText_destroy(settings->window_mode);
     sfText_destroy(settings->window_size);
+    sfTexture_destroy(settings->button_texture_screen);
+    sfSprite_destroy(settings->fullscreen_button);
+    sfSprite_destroy(settings->window_button);
+    sfSprite_destroy(settings->resize_button);
     free(settings);
     free(screen);
 }
