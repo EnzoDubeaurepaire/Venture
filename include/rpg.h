@@ -20,7 +20,6 @@
 #ifndef HUNTER_H
     #define HUNTER_H
     #include "math.h"
-    #include "../linked_list/list.h"
     #include "macros.h"
     #include "struct.h"
     #include "launch_screen.h"
