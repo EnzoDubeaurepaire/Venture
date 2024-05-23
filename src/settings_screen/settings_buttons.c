@@ -7,29 +7,31 @@
 
 #include "../../include/rpg.h"
 
-static void check_refresh_text(settings_screen_t *settings, int mode,
-    game_t *game)
+static void change_volume(settings_screen_t *settings,
+    game_t *game, int volume)
 {
     char *new_text;
 
+    new_text = malloc(5);
+    settings->main_volume += volume;
+    sprintf(new_text, "%d %%", settings->main_volume);
+    sfText_setString(settings->text_main_volume, new_text);
+    free(new_text);
+    manage_volume(game->music, settings->main_volume);
+}
+
+static void check_refresh_text(settings_screen_t *settings, int mode,
+    game_t *game)
+{
     if ((settings->main_volume == 100 && mode == 1)
         || (settings->main_volume == 0 && mode == 0))
         return;
-    new_text = malloc(5);
     if (mode == 1) {
-        settings->main_volume += 1;
-        sprintf(new_text, "%d %%", settings->main_volume);
-        sfText_setString(settings->text_main_volume, new_text);
-        free(new_text);
-        manage_volume(game->music, settings->main_volume);
+        change_volume(settings, game, 1);
         return;
     }
     if (mode == 0) {
-        settings->main_volume -= 1;
-        sprintf(new_text, "%d %%", settings->main_volume);
-        sfText_setString(settings->text_main_volume, new_text);
-        free(new_text);
-        manage_volume(game->music, settings->main_volume);
+        change_volume(settings, game, -1);
         return;
     }
 }
