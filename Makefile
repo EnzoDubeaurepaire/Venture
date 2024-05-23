@@ -39,6 +39,8 @@ SRC	=	src/main.c \
 		src/pause_screen/destroyer.c \
 		src/settings_screen/destroyer.c \
 		src/stats/destroyer.c \
+		src/save/save.c \
+		src/save/check_save_elements.c \
 
 OBJ	=	$(SRC:.c=.o)
 

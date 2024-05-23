@@ -18,5 +18,21 @@
     #define STATS_SCREEN 32
     #define SETTINGS_SCREEN 64
     #define DELAY 0.05
+    #define SAVED_ELEMENTS 12
+
+enum saved_elements {
+    MAP_X,
+    MAP_Y,
+    LEVEL,
+    POINTS,
+    ATT,
+    ATT_ACTIV,
+    AS,
+    AS_ACTIV,
+    HP,
+    HP_ACTIV,
+    RES,
+    RES_ACTIV
+};
 
 #endif
