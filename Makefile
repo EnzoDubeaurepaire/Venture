@@ -38,9 +38,11 @@ SRC	=	src/main.c \
 		src/stats/destroyer.c \
 		src/save/save.c \
 		src/save/check_save_elements.c \
-		src/music/music.c	\
-		src/music/destroyer.c	\
-		src/music/init_music.c	\
+		src/music/music.c \
+		src/music/destroyer.c \
+		src/music/init_music.c \
+		src/utils/check_env.c \
+		src/utils/check_assets.c \
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -52,7 +54,7 @@ FAST	=	-Ofast -march=native -fno-builtin
 
 NAME	=	my_rpg
 
-all:		best
+all:		$(NAME)
 
 tests_run:
 		echo "No Tests"
