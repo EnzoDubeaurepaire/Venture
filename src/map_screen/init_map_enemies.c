@@ -36,6 +36,8 @@ static enemy_t *init_enemy(map_screen_t *map, int i)
     enemy->type = (rand() % 4) + 1;
     enemy->direction_steps = 0;
     enemy->anim_steps = 15;
+    enemy->health = 50;
+    enemy->strength = 5;
     asset_path[21] = enemy->type + '0';
     init_enemy_entity(enemy, asset_path, pos);
     return enemy;

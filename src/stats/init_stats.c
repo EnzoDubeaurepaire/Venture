@@ -42,7 +42,7 @@ static void init_hp(player_stat_t *stats)
 
 static void init_att(player_stat_t *stats)
 {
-    stats->att = 5;
+    stats->att = 10;
     stats->att_activated = 0;
     stats->att_sprite = sfSprite_create();
     sfSprite_setTexture(stats->att_sprite, stats->stat_button, true);
@@ -103,7 +103,7 @@ screen_t *init_stats(void)
         NULL);
     stats->level = 1;
     stats->needed_exp = 100;
-    stats->total_points = 0;
+    stats->total_points = 20;
     init_text(stats);
     init_as(stats);
     init_att(stats);
