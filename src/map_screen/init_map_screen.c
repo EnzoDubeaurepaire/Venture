@@ -143,6 +143,7 @@ screen_t *init_map(void)
     init_value_map(map);
     init_mini_map(map);
     init_inventory(map);
+    init_npc(map);
     screen->screen = map;
     return screen;
 }

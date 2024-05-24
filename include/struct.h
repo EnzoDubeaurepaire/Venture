@@ -73,6 +73,7 @@ typedef struct map_screen {
     sfTexture *health_bar_t;
     sfSprite *health_bar;
     sfIntRect health_rect;
+    sfSprite *npc;
 } map_screen_t;
 
 typedef struct bubble_s {
