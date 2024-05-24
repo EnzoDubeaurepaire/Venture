@@ -17,6 +17,9 @@ typedef struct entity {
     sfRectangleShape *hitbox;
     sfBool is_hitbox;
     sfVector2f pos_rel_to_map;
+    sfSprite *attack;
+    sfTexture *attack_t;
+    int attack_state;
 } entity_t;
 
 typedef struct enemy {
@@ -25,10 +28,8 @@ typedef struct enemy {
     int direction_steps;
     int anim_steps;
     int type;
-    float health;
-    float strength;
-    float robustness;
-    float attack_speed;
+    int health;
+    int strength;
 } enemy_t;
 
 typedef struct sprint {
