@@ -135,7 +135,6 @@ screen_t *init_map(void)
     map->speed = 1000;
     map->sprint_speed = 400;
     map->map_position = (sfVector2f){0, 0};
-    map->got_wood = 0;
     map->map_texture = sfTexture_createFromFile("assets/map_nobridge.png",
         NULL);
     map->collision_texture = sfTexture_createFromFile

@@ -9,7 +9,7 @@
 
 static void no_wood_message(game_t *game, map_screen_t *map, int *show)
 {
-    if (*show == 1 && map->got_wood == false) {
+    if (*show == 1 && map->is_picked_up[6] == false) {
         game->active_screen |= DIALOGUE_SCREEN;
         ((bubble_t *) (game->screens[3]->screen))->compteur = 0;
         ((bubble_t *) (game->screens[3]->screen))->skip_animation = sfFalse;
@@ -26,7 +26,7 @@ static void no_wood_message(game_t *game, map_screen_t *map, int *show)
 
 static void wood_message(game_t *game, map_screen_t *map, int *show)
 {
-    if (*show == 1 && map->got_wood == true) {
+    if (*show == 1 && map->is_picked_up[6]) {
         game->active_screen |= DIALOGUE_SCREEN;
         ((bubble_t *) (game->screens[3]->screen))->compteur = 0;
         ((bubble_t *) (game->screens[3]->screen))->skip_animation = sfFalse;

@@ -35,6 +35,7 @@ void switch_map(map_screen_t *map);
 */
 void show_bush(game_t *game, map_screen_t *map);
 void display_object(game_t *game, map_screen_t *map);
+void pickup_item(game_t *game, map_screen_t *map);
 
 /*
  * init_sprite_object

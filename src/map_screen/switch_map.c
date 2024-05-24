@@ -22,7 +22,6 @@ void switch_map(map_screen_t *map)
 {
     sfVector2f pos = sfSprite_getPosition(map->collision_sprite);
 
-    map->got_wood = true;
     sfSprite_destroy(map->collision_sprite);
     sfTexture_destroy(map->collision_texture);
     map->collision_texture = sfTexture_createFromFile(
