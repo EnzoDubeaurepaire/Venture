@@ -21,7 +21,7 @@ void display_npc(game_t *game, map_screen_t *map)
     sfVector2f pos;
 
     sfSprite_setPosition(map->npc, (sfVector2f){6 +
-             sfSprite_getPosition(map->map_sprite).x, 6910 +
-             sfSprite_getPosition(map->map_sprite).y});
+        sfSprite_getPosition(map->map_sprite).x, 6910 +
+        sfSprite_getPosition(map->map_sprite).y});
     sfRenderWindow_drawSprite(game->window, map->npc, NULL);
 }

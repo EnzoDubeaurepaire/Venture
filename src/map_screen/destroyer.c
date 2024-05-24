@@ -93,6 +93,7 @@ void map_screen_destroyer(screen_t *screen)
     destroy_object_sprite(map);
     sfSprite_destroy(map->health_bar);
     sfTexture_destroy(map->health_bar_t);
+    sfSprite_destroy(map->npc);
     free(map);
     free(screen);
 }
