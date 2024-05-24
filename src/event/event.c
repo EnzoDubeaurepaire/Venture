@@ -114,7 +114,7 @@ static void event_tuto(game_t *game, sfEvent event)
 {
     if (((launch_screen_t *)game->screens[0]->screen)->show_tuto &&
         game->active_screen & LAUNCH_SCREEN && event.type == sfEvtKeyPressed
-        && event.key.code == sfKeyEnter) {
+        && event.key.code == sfKeySpace) {
         game->active_screen = 0;
         game->active_screen |= MAP_SCREEN;
     }
