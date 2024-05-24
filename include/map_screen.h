@@ -49,4 +49,9 @@ void update_player_pos(map_screen_t *map);
 void update_player_rect(map_screen_t *map);
 void update_direction(map_screen_t *map);
 
+/*
+ * health_bar.c
+*/
+void update_health_bar(map_screen_t *map, game_t *game);
+
 #endif

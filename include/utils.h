@@ -9,6 +9,9 @@
     #define UTILS_H
     #include "rpg.h"
 
+/*
+ * get_mouse.c
+*/
 sfVector2i get_mouse(game_t *game);
 
 /*

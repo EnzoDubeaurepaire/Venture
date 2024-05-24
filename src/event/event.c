@@ -25,6 +25,9 @@ static void event_hitbox(game_t *game, sfEvent event)
         ((bubble_t *)(game->screens[3]->screen))->compteur = 0;
         ((bubble_t *)(game->screens[3]->screen))->skip_animation = sfFalse;
     }
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyB) {
+        pick_up_item(game, MAP);
+    }
 }
 
 static void event_mouse_keybord(game_t *game, sfEvent event)
@@ -114,7 +117,7 @@ static void event_tuto(game_t *game, sfEvent event)
 {
     if (((launch_screen_t *)game->screens[0]->screen)->show_tuto &&
         game->active_screen & LAUNCH_SCREEN && event.type == sfEvtKeyPressed
-        && event.key.code == sfKeyEnter) {
+        && event.key.code == sfKeySpace) {
         game->active_screen = 0;
         game->active_screen |= MAP_SCREEN;
     }

@@ -60,7 +60,8 @@ static void check_textures(void)
         !exist("assets/settings/settings_overlay.png") ||
         !exist("assets/settings/settings_overlay.png") ||
         !exist("assets/how_to_play.png") ||
-        !exist("assets/settings/controls.png"))
+        !exist("assets/settings/controls.png") ||
+        !exist("assets/health_bar.png"))
         exit(84);
 }
 
