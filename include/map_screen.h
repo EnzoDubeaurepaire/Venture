@@ -25,4 +25,19 @@ void update_map(game_t *game, map_screen_t *map_screen);
 */
 screen_t *init_map(void);
 
+/*
+ * switch_map.c
+*/
+void switch_map(map_screen_t *map);
+
+/*
+ * display_object.c
+*/
+void show_bush(game_t *game, map_screen_t *map);
+
+/*
+ * init_sprite_object
+*/
+void init_sprite_object(map_screen_t *map);
+
 #endif

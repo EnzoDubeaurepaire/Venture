@@ -18,13 +18,6 @@ static void event_hitbox(game_t *game, sfEvent event)
             ((map_screen_t *)(game->screens[2]->screen))->player->is_hitbox =
             sfTrue;
     }
-    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyE &&
-        (game->active_screen & DIALOGUE_SCREEN) == 0) {
-        game->active_screen |= DIALOGUE_SCREEN;
-        ((bubble_t *)(game->screens[3]->screen))->message = "ca marche ?";
-        ((bubble_t *)(game->screens[3]->screen))->compteur = 0;
-        ((bubble_t *)(game->screens[3]->screen))->skip_animation = sfFalse;
-    }
 }
 
 static void event_mouse_keybord(game_t *game, sfEvent event)
@@ -114,9 +107,20 @@ static void event_tuto(game_t *game, sfEvent event)
 {
     if (((launch_screen_t *)game->screens[0]->screen)->show_tuto &&
         game->active_screen & LAUNCH_SCREEN && event.type == sfEvtKeyPressed
-        && event.key.code == sfKeyEnter) {
+        && event.key.code == sfKeySpace) {
         game->active_screen = 0;
         game->active_screen |= MAP_SCREEN;
+        game->active_screen |= DIALOGUE_SCREEN;
+        ((bubble_t *)(game->screens[3]->screen))->compteur = 0;
+        ((bubble_t *)(game->screens[3]->screen))->skip_animation = sfFalse;
+        ((bubble_t *)(game->screens[3]->screen))->message =
+            "Wow ca cest un atterissage qui atterit !\n"
+            "Plus de peur que de mal, tout va bien.....\n"
+            "AH ! Mon beau vaisseau ! Comment vais-je repartir ?\n"
+            "Et comment retrouver mon ami qui s'est aussi perdu ici ?\n"
+            "Il va falloir que je trouve un moyen de quittez cette planete.\n"
+            "Mais d'abord mon ami !\n"
+            "appuyer sur entree";
     }
 }
 
