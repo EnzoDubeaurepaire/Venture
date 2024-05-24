@@ -53,7 +53,7 @@ static void update_as(player_stat_t *stats, sfVector2i pos, game_t *game)
         stats->total_points -= stats->as_activated + 1;
         sprintf(text, "%d", stats->total_points);
         sfText_setString(stats->points_text, text);
-        stats->as += 0.5;
+        stats->as -= 0.2;
         stats->as_activated += 1;
         click_sound(game);
     }

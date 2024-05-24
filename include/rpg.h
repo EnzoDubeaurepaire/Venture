@@ -41,6 +41,7 @@
     #include "save.h"
     #include "music.h"
     #include "message.h"
+    #include "combat.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {
     &render_launch_screen, &render_menu, &map_renderer,
