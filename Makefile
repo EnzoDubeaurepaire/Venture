@@ -20,8 +20,11 @@ SRC	=	src/main.c \
 		src/settings_screen/settings_buttons_screen.c \
 		src/settings_screen/settings_buttons.c \
 		src/map_screen/init_map_screen.c \
+		src/map_screen/init_map_enemies.c \
 		src/map_screen/map_screen.c \
+		src/map_screen/map_player.c \
 		src/map_screen/map_renderer.c	\
+		src/map_screen/map_enemies.c	\
 		src/dialogue/init_struct_dialogue.c	\
 		src/dialogue/dialogue.c	\
 		src/dialogue/event_dialogue.c	\

@@ -129,4 +129,5 @@ void stats_renderer(game_t *game, screen_t *screen)
 {
     update_stats(game, (player_stat_t *)screen->screen);
     show_stats(game, (player_stat_t *)screen->screen);
+    show_inventory_map(game, (map_screen_t *)game->screens[2]->screen);
 }

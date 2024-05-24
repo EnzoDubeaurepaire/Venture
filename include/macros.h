@@ -19,6 +19,8 @@
     #define SETTINGS_SCREEN 64
     #define DELAY 0.05
     #define SAVED_ELEMENTS 20
+    #define ENEMIES 20
+    #define LAZINESS 30
 
 enum saved_elements {
     MAP_X,

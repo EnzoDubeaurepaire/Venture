@@ -22,10 +22,42 @@ static void destroy_entity(entity_t *entity)
     free(entity);
 }
 
+static void destroy_enemies(enemy_t **enemies)
+{
+    for (int i = 0; i < ENEMIES; i++) {
+        destroy_entity(enemies[i]->e);
+        free(enemies[i]);
+    }
+    free(enemies);
+}
+
+static void free_slots(slot_t **slot_tab)
+{
+    for (int i = 0; slot_tab[i] != NULL; i++) {
+        sfSprite_destroy(slot_tab[i]->slot);
+        free(slot_tab[i]);
+    }
+    free(slot_tab);
+}
+
+static void destroy_free_inventory(map_screen_t *map)
+{
+    inventory_t *inventory = map->inventory;
+
+    sfTexture_destroy(inventory->hotbar_texture);
+    sfTexture_destroy(inventory->items_texture);
+    sfSprite_destroy(inventory->hotbar);
+    free(inventory->rect_tab);
+    free(inventory->pos_tab);
+    free_slots(inventory->slot_tab);
+    free(inventory);
+}
+
 void map_screen_destroyer(screen_t *screen)
 {
     map_screen_t *map = screen->screen;
 
+    destroy_free_inventory(map);
     sfSprite_destroy(map->mini_map_player);
     sfRectangleShape_destroy(map->mini_map);
     sfSprite_destroy(map->map_sprite);
@@ -35,6 +67,7 @@ void map_screen_destroyer(screen_t *screen)
     sfImage_destroy(map->image_collision);
     destroy_entity(map->player);
     destroy_sprint(map->sprint);
+    destroy_enemies(map->enemies);
     sfSprite_destroy(map->bush_sprite);
     sfTexture_destroy(map->bush_texture);
     sfSprite_destroy(map->health_bar);
