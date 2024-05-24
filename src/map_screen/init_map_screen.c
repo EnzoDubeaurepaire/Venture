@@ -141,7 +141,7 @@ screen_t *init_map(void)
     map_screen_t *map = malloc(sizeof(map_screen_t));
 
     map->player_direction = (sfVector2f){0, 0};
-    map->speed = 1000;
+    map->speed = 200;
     map->sprint_speed = 400;
     map->map_position = (sfVector2f){0, 0};
     map->map_texture = sfTexture_createFromFile("assets/map_nobridge.png",

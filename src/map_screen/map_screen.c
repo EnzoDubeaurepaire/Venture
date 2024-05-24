@@ -137,8 +137,10 @@ static void show_map(game_t *game, map_screen_t *map)
     show_entities(game, map);
     sfRenderWindow_drawSprite(game->window, map->sprint->sprite, NULL);
     sfRenderWindow_drawSprite(game->window, map->health_bar, NULL);
-    sfRenderWindow_drawRectangleShape(game->window, map->mini_map, NULL);
-    sfRenderWindow_drawSprite(game->window, map->mini_map_player, NULL);
+    if (map->is_picked_up[7] == true) {
+        sfRenderWindow_drawRectangleShape(game->window, map->mini_map, NULL);
+        sfRenderWindow_drawSprite(game->window, map->mini_map_player, NULL);
+    }
     if (map->player->attack_state != 0) {
         sfRenderWindow_drawSprite(game->window, map->player->attack, NULL);
         update_attack(map->player, game);
