@@ -6,6 +6,9 @@
 ##
 
 SRC	=	src/main.c \
+		src/inventory/init_inventory.c	\
+		src/inventory/show_inventory.c	\
+		src/inventory/pick_up_item.c	\
 		src/launch_screen/launch_screen.c \
 		src/game_struct/init_game_struct.c \
 		src/game_struct/free_game_struct.c \
@@ -47,12 +50,15 @@ SRC	=	src/main.c \
 		src/music/init_music.c \
 		src/utils/check_env.c \
 		src/utils/check_assets.c \
+		src/stats/get_stats.c \
+		src/stats/set_stats.c \
+		src/map_screen/health_bar.c \
 
 OBJ	=	$(SRC:.c=.o)
 
 LDFLAGS	=	-lcsfml-graphics -lcsfml-system -lcsfml-window
 LDFLAGS	+=	-lcsfml-network -lcsfml-audio -lm
-CFLAGS	=	-Wall -Wextra -I./include
+CFLAGS	=	-Wall -Wextra -I./include -g
 CFLAGS	+=	-Wno-unused-parameter -Wno-unused-variable -Wno-unused-function
 FAST	=	-Ofast -march=native -fno-builtin
 

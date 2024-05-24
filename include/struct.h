@@ -26,7 +26,22 @@ typedef struct sprint {
     float stamina;
 } sprint_t;
 
+typedef struct inventory_slot {
+    enum items stored_item;
+    sfSprite *slot;
+} slot_t;
+
+typedef struct inventory {
+    sfTexture *hotbar_texture;
+    sfTexture *items_texture;
+    sfSprite *hotbar;
+    sfIntRect *rect_tab;
+    slot_t **slot_tab;
+    sfVector2f *pos_tab;
+} inventory_t;
+
 typedef struct map_screen {
+    inventory_t *inventory;
     sfSprite *collision_sprite;
     sfTexture *collision_texture;
     sfSprite *map_sprite;
@@ -46,6 +61,9 @@ typedef struct map_screen {
     sfTexture *object_texture[8];
     sfSprite *object_table[8];
     sfVector2f *object_pos[8];
+    sfTexture *health_bar_t;
+    sfSprite *health_bar;
+    sfIntRect health_rect;
 } map_screen_t;
 
 typedef struct bubble_s {
@@ -126,6 +144,7 @@ typedef struct player_stat {
     int att_activated;
     sfSprite *att_sprite;
     sfRectangleShape *att_hitbox;
+    int actual_hp;
     int hp;
     int hp_activated;
     sfSprite *hp_sprite;

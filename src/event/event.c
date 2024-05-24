@@ -18,6 +18,9 @@ static void event_hitbox(game_t *game, sfEvent event)
             ((map_screen_t *)(game->screens[2]->screen))->player->is_hitbox =
             sfTrue;
     }
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyB) {
+        pick_up_item(game, MAP);
+    }
 }
 
 static void event_mouse_keybord(game_t *game, sfEvent event)

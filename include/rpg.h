@@ -22,6 +22,7 @@
     #include "math.h"
     #include <stdbool.h>
     #include "macros.h"
+    #include "items.h"
     #include "struct.h"
     #include "launch_screen.h"
     #include "game_struct.h"
@@ -32,8 +33,9 @@
     #include "dialogue.h"
     #include "collision.h"
     #include "stats.h"
-    #include "utils.h"
     #include "pause_screen.h"
+    #include "inventory.h"
+    #include "utils.h"
     #include "destroyer.h"
     #include "save.h"
     #include "music.h"

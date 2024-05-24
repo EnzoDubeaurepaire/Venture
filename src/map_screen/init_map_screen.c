@@ -113,6 +113,18 @@ static void init_bush(map_screen_t *map)
     sfSprite_setPosition(map->bush_sprite, (sfVector2f){500, 500});
 }
 
+static void init_health_bar(map_screen_t *map)
+{
+    map->health_bar_t = sfTexture_createFromFile("assets/health_bar.png",
+        NULL);
+    map->health_bar = sfSprite_create();
+    map->health_rect = (sfIntRect){0, 40, 64, 8};
+    sfSprite_setTexture(map->health_bar, map->health_bar_t, 0);
+    sfSprite_setTextureRect(map->health_bar, map->health_rect);
+    sfSprite_setPosition(map->health_bar, (sfVector2f){ 50, 100});
+    sfSprite_setScale(map->health_bar, (sfVector2f){3, 3});
+}
+
 screen_t *init_map(void)
 {
     screen_t *screen = malloc(sizeof(screen_t));
@@ -131,6 +143,11 @@ screen_t *init_map(void)
     init_value_map(map);
     init_mini_map(map);
     init_sprite_object(map);
+    init_health_bar(map);
+    init_bush(map);
+    init_value_map(map);
+    init_mini_map(map);
+    init_inventory(map);
     screen->screen = map;
     return screen;
 }

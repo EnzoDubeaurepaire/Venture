@@ -117,6 +117,7 @@ static void show_map(game_t *game, map_screen_t *map)
         sfRenderWindow_drawRectangleShape(game->window, map->player->hitbox,
         NULL);
     sfRenderWindow_drawSprite(game->window, map->sprint->sprite, NULL);
+    sfRenderWindow_drawSprite(game->window, map->health_bar, NULL);
     sfRenderWindow_drawRectangleShape(game->window, map->mini_map, NULL);
     sfRenderWindow_drawSprite(game->window, map->mini_map_player, NULL);
 }
@@ -142,6 +143,8 @@ static void animate_player(game_t *game, map_screen_t *map_screen)
 void update_map(game_t *game, map_screen_t *map_screen)
 {
     update_position(game, map_screen);
+    update_health_bar(map_screen, game);
     animate_player(game, map_screen);
     show_map(game, map_screen);
+    show_inventory_map(game, map_screen);
 }

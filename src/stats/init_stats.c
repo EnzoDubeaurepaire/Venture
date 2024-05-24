@@ -26,6 +26,7 @@ static void init_res(player_stat_t *stats)
 static void init_hp(player_stat_t *stats)
 {
     stats->hp = 50;
+    stats->actual_hp = 50;
     stats->hp_activated = 0;
     stats->hp_sprite = sfSprite_create();
     sfSprite_setTexture(stats->hp_sprite, stats->stat_button, true);

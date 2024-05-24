@@ -40,4 +40,9 @@ void show_bush(game_t *game, map_screen_t *map);
 */
 void init_sprite_object(map_screen_t *map);
 
+/*
+ * health_bar.c
+*/
+void update_health_bar(map_screen_t *map, game_t *game);
+
 #endif
