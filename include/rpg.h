@@ -20,6 +20,7 @@
 #ifndef HUNTER_H
     #define HUNTER_H
     #include "math.h"
+    #include <stdbool.h>
     #include "macros.h"
     #include "items.h"
     #include "struct.h"
@@ -30,7 +31,6 @@
     #include "settings_overlay.h"
     #include "map_screen.h"
     #include "dialogue.h"
-    #include <stdbool.h>
     #include <time.h>
     #include "collision.h"
     #include "stats.h"
@@ -40,6 +40,7 @@
     #include "destroyer.h"
     #include "save.h"
     #include "music.h"
+    #include "message.h"
     #include "combat.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {

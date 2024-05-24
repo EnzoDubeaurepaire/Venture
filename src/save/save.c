@@ -58,6 +58,9 @@ void load_save(int *elements, game_t *game)
     stats->res = elements[10];
     stats->res_activated = elements[11];
     load_items(game, elements);
+    if (elements[20])
+        switch_map(map);
+    map->bridge_repared = elements[20];
 }
 
 static int count_lines(FILE *file)
@@ -123,13 +126,14 @@ void save(game_t *game)
     if (fd == -1)
         return;
     dprintf(fd, "%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d"
-        "\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n",
+        "\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n",
         (int)sfSprite_getPosition(map->map_sprite).x,
         (int)sfSprite_getPosition(map->map_sprite).y, stat->level,
         stat->total_points, stat->att, stat->att_activated, (int)stat->as,
         stat->as_activated, stat->hp, stat->hp_activated, stat->res,
         stat->res_activated, inv[0]->stored_item, inv[1]->stored_item,
         inv[2]->stored_item, inv[3]->stored_item, inv[4]->stored_item,
-        inv[5]->stored_item, inv[6]->stored_item, inv[7]->stored_item);
+        inv[5]->stored_item, inv[6]->stored_item, inv[7]->stored_item,
+        map->bridge_repared);
     close(fd);
 }

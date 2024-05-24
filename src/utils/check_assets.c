@@ -20,7 +20,17 @@ static _Bool exist(char *path)
 static void check_fonts(void)
 {
     if (!exist("assets/fonts/commando.ttf") ||
-        !exist("assets/fonts/venite.ttf"))
+        !exist("assets/fonts/venite.ttf") ||
+        !exist("assets/inventory/piece1.png") ||
+        !exist("assets/inventory/piece2.png") ||
+        !exist("assets/inventory/piece3.png") ||
+        !exist("assets/inventory/piece4.png") ||
+        !exist("assets/inventory/piece5.png") ||
+        !exist("assets/inventory/piece6.png") ||
+        !exist("assets/inventory/mini_map.png") ||
+        !exist("assets/inventory/log.png") ||
+        !exist("assets/collision_nobridge.png") ||
+        !exist("assets/map_nobridge.png"))
         exit(84);
 }
 
@@ -36,7 +46,9 @@ static void check_musics(void)
         !exist("assets/music/mystery.ogg") ||
         !exist("assets/music/sinister.ogg") ||
         !exist("assets/music/space.ogg") ||
-        !exist("assets/music/truth.ogg"))
+        !exist("assets/music/truth.ogg") ||
+        !exist("assets/menu/lose_screen.png") ||
+        !exist("assets/menu/win_screen.png"))
         exit(84);
 }
 

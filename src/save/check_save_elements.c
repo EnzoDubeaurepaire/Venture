@@ -7,6 +7,15 @@
 
 #include "../../include/rpg.h"
 
+_Bool check_bool(const char *line, ssize_t size)
+{
+    if (size > 2)
+        return 0;
+    if ((line[0] < '0' || line[0] > '1') && line[0] != '\n')
+        return 0;
+    return 1;
+}
+
 _Bool check_stat_activ(const char *line, ssize_t size)
 {
     if (size > 2)

@@ -72,9 +72,15 @@ typedef struct map_screen {
     sfImage *image_collision;
     sfTexture *bush_texture;
     sfSprite *bush_sprite;
+    sfTexture *object_texture[8];
+    sfSprite *object_table[8];
+    sfVector2f object_pos[8];
+    bool is_picked_up[8];
     sfTexture *health_bar_t;
     sfSprite *health_bar;
     sfIntRect health_rect;
+    bool bridge_repared;
+    bool is_end;
     sfSprite *npc;
 } map_screen_t;
 

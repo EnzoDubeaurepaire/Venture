@@ -25,11 +25,16 @@ SRC	=	src/main.c \
 		src/map_screen/map_screen.c \
 		src/map_screen/map_player.c \
 		src/map_screen/map_renderer.c	\
+		src/map_screen/switch_map.c	\
+		src/map_screen/display_object.c	\
 		src/map_screen/map_enemies.c	\
+		src/map_screen/init_sprite_object.c	\
 		src/dialogue/init_struct_dialogue.c	\
 		src/dialogue/dialogue.c	\
 		src/dialogue/event_dialogue.c	\
 		src/collision/collision.c	\
+		src/collision/collision_event.c	\
+		src/collision/message.c	\
 		src/stats/init_stats.c \
 		src/stats/stats_renderer.c \
 		src/utils/get_mouse_pos.c \
@@ -57,6 +62,7 @@ SRC	=	src/main.c \
 		src/combat/init.c \
 		src/stats/regen_player.c \
 		src/stats/give_xp.c \
+		src/menu/end_win.c \
 
 OBJ	=	$(SRC:.c=.o)
 

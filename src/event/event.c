@@ -9,24 +9,10 @@
 
 static void event_hitbox(game_t *game, sfEvent event)
 {
-    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyH) {
-        if (((map_screen_t *) (game->screens[2]->screen))->player->is_hitbox
-            == sfTrue)
-            ((map_screen_t *) (game->screens[2]->screen))->player->is_hitbox
-            = sfFalse;
-        else
-            ((map_screen_t *)(game->screens[2]->screen))->player->is_hitbox =
-            sfTrue;
-    }
-    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyE &&
-        (game->active_screen & DIALOGUE_SCREEN) == 0) {
-        game->active_screen |= DIALOGUE_SCREEN;
-        ((bubble_t *)(game->screens[3]->screen))->message = "ca marche ?";
-        ((bubble_t *)(game->screens[3]->screen))->compteur = 0;
-        ((bubble_t *)(game->screens[3]->screen))->skip_animation = sfFalse;
-    }
-    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyB) {
-        pick_up_item(game, MAP);
+    if (game->active_screen - MAP_SCREEN)
+        return;
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyE) {
+        pickup_item(game, ((map_screen_t *)(game->screens[2]->screen)));
     }
 }
 
@@ -120,6 +106,17 @@ static void event_tuto(game_t *game, sfEvent event)
         && event.key.code == sfKeySpace) {
         game->active_screen = 0;
         game->active_screen |= MAP_SCREEN;
+        game->active_screen |= DIALOGUE_SCREEN;
+        ((bubble_t *)(game->screens[3]->screen))->compteur = 0;
+        ((bubble_t *)(game->screens[3]->screen))->skip_animation = sfFalse;
+        ((bubble_t *)(game->screens[3]->screen))->message =
+            "WOW that is some well landing !\n"
+            "More shaken up that hurt, everything is okay...\n"
+            "NOO ! My beautiful spaceship ! How will I go back ?\n"
+            "And how am I going to find my lost friend here ???\n"
+            "I need to find a way to leave this planet.\n"
+            "But first I need to find my friend !\n"
+            "Press enter";
     }
 }
 
