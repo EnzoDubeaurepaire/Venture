@@ -186,6 +186,7 @@ typedef struct music_s {
 
 typedef struct game {
     sfRenderWindow *window;
+    _Bool is_new_game;
     _Bool window_state;
     _Bool resolution_state;
     sfClock *clock;

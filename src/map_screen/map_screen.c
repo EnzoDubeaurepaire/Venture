@@ -47,7 +47,7 @@ static void move_map(game_t *game, map_screen_t *map,
 
     sfSprite_move(map->map_sprite, offset);
     sfSprite_move(map->collision_sprite, offset);
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < ENEMIES; i++) {
         sfSprite_move(map->enemies[i]->e->sprite, offset);
         sfRectangleShape_move(map->enemies[i]->e->hitbox, offset);
     }
@@ -79,7 +79,8 @@ static void update_position(game_t *game, map_screen_t *map)
     move_map(game, map, sprinting, time_diff);
     update_player_rect(map);
     update_player_pos(map);
-    update_enemies_pos(map);
+    if (game->is_new_game)
+        update_enemies_pos(map);
     update_bush(map);
 }
 
