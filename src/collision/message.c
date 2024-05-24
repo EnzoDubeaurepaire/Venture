@@ -14,13 +14,12 @@ static void no_wood_message(game_t *game, map_screen_t *map, int *show)
         ((bubble_t *) (game->screens[3]->screen))->compteur = 0;
         ((bubble_t *) (game->screens[3]->screen))->skip_animation = sfFalse;
         ((bubble_t *) (game->screens[3]->screen))->message =
-        "Oh non encore quelque chose de brise !\n"
-        "Bon je n'ai pas vraiment le choix si je veux continuer il va falloir "
-        "reparer ce pont .\n"
-        "Je peux peu etre trouve du bois ou quelque chose pour le reparer dans"
-        " les debris du vaisseau\n"
-        "Est ce que j'ai essaye le buisson ? (appuyez sur E)"
-        "\n\n\nappuyez sur entree";
+            "Oh no another broken thing !\n"
+            "I have no choice... If I want to carry on, "
+            "i need to repair this bridge.\n"
+            "Maybe I can find some wood towards the"
+            "spaceship debris\n"
+            "\n\n\nPress enter";
     }
 }
 
@@ -31,11 +30,11 @@ static void wood_message(game_t *game, map_screen_t *map, int *show)
         ((bubble_t *) (game->screens[3]->screen))->compteur = 0;
         ((bubble_t *) (game->screens[3]->screen))->skip_animation = sfFalse;
         ((bubble_t *) (game->screens[3]->screen))->message =
-        "Trop bien maintenant que j'ai le bois je vais pour reparer ce fichu "
-        "pont."
-        "(appuyez sur E)\n"
-        "Je vas pouvoir aller sauve mon amie !\n"
-        "\n\n\nappuyez sur entree";
+            "Nice, now that I got the wood, I can repair this damn"
+            "bridge."
+            "(press E)\n"
+            "I can finally go and save my friend !\n"
+            "\n\n\nPress enter";
         *show = 2;
     }
     if (*show == 2 && sfKeyboard_isKeyPressed(sfKeyE)) {
@@ -54,12 +53,12 @@ void bridge_message(game_t *game, map_screen_t *map)
         ((bubble_t *) (game->screens[3]->screen))->compteur = 0;
         ((bubble_t *) (game->screens[3]->screen))->skip_animation = sfFalse;
         ((bubble_t *) (game->screens[3]->screen))->message =
-        "Oh non encore quelque chose de brise !\n"
-        "Bon je n'ai pas vraiment le choix si je veux continuer il va falloir "
-        "reparer ce pont .\n"
-        "Je peux peu etre trouve du bois ou quelque chose pour le reparer dans"
-        " les debris du vaisseau\n\n\n\n"
-        "appuyer sur entree";
+            "Oh no another broken thing !\n"
+            "I have no choice... If I want to carry on, "
+            "i need to repair this bridge.\n"
+            "Maybe I can find some wood towards the"
+            "spaceship debris\n"
+            "\n\n\nPress enter";
         show = 1;
     }
     no_wood_message(game, map, &show);
@@ -72,8 +71,8 @@ void save_succeed(game_t *game, map_screen_t *map)
     ((bubble_t *) (game->screens[3]->screen))->compteur = 0;
     ((bubble_t *) (game->screens[3]->screen))->skip_animation = sfFalse;
     ((bubble_t *) (game->screens[3]->screen))->message =
-    "Here we go !\n\n\n\n"
-    "appuyer sur entree";
+        "Here we go !\n\n\n\n"
+        "\nPress enter";
     map->is_end = true;
 }
 
@@ -84,14 +83,15 @@ void save_message(game_t *game, map_screen_t *map)
         ((bubble_t *) (game->screens[3]->screen))->compteur = 0;
         ((bubble_t *) (game->screens[3]->screen))->skip_animation = sfFalse;
         ((bubble_t *) (game->screens[3]->screen))->message =
-        "WOw mon sauveur je ne pensez pas revoir une autre personne ici !\n"
-        "quand est ce quon repart !?"
-        "quoi ton vaisseau est aussi casser ?!"
-        "il ne reste qu'une seul possibilité tu vas devoir retrouver les piece"
-        "s \nde vaisseau qui ont ete perdue a travers la map\n"
-        "Il y en a 6 ! fais attention cest une endroit dangereux, enfin tu as "
-        "deja du le remarquer !\n"
-        "appuyer sur entree";
+            "WOW, my savior, I never thought I'd see anyone here again.\n"
+            "WHEN DO WE LIVE !?!"
+            "\nWHAT ? Your spaceship is also broken ?!"
+            " there's only one possibility left you'll have to find the pieces"
+            " \nof your spaceship through the planet\n"
+            "There are 6 of them ! "
+            "watch out this is a dangerous place, well you may "
+            "have already noticed !\n"
+            "\nPress enter";
     } else
         save_succeed(game, map);
 }
