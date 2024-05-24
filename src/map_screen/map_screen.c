@@ -51,32 +51,17 @@ static void move_map(game_t *game, map_screen_t *map,
         sfSprite_move(map->enemies[i]->e->sprite, offset);
         sfRectangleShape_move(map->enemies[i]->e->hitbox, offset);
     }
+    check_direction_event(map, game);
 }
 
 static void update_bush(map_screen_t *map)
 {
-<<<<<<< HEAD
     map->map_position = sfSprite_getPosition(map->map_sprite);
     map->player->pos_rel_to_map = get_pos_rel_to_map(map->player->position,
         map->map_position);
     sfSprite_setPosition(map->mini_map_player, (sfVector2f){1620 +
         map->player->pos_rel_to_map.x * (25.f / 960), 50 +
         map->player->pos_rel_to_map.y * (25.f / 960)});
-}
-
-static void move_map(game_t *game, map_screen_t *map, _Bool sprinting,
-    float time_diff)
-{
-    sfSprite_move(map->map_sprite, (sfVector2f){-map->player_direction.x * (
-    map->speed * (float)!sprinting + map->sprint_speed * (float)sprinting)
-        * time_diff, -map->player_direction.y * (map->speed * (float)!
-    sprinting + map->sprint_speed * (float)sprinting) * time_diff});
-    check_direction_event(map, game);
-=======
-    sfSprite_setPosition(map->bush_sprite, (sfVector2f){500 +
-        sfSprite_getPosition(map->map_sprite).x, 500 +
-        sfSprite_getPosition(map->map_sprite).y});
->>>>>>> f871a973f2a67c6a7bd2d84625fc05e05c534d08
 }
 
 static void update_position(game_t *game, map_screen_t *map)
@@ -104,20 +89,10 @@ static void update_position(game_t *game, map_screen_t *map)
 
 static void show_entities(game_t *game, map_screen_t *map)
 {
-<<<<<<< HEAD
     sfSprite_setTextureRect(map->sprint->sprite, map->sprint->rect);
     sfRenderWindow_drawSprite(game->window, map->map_sprite, NULL);
     show_bush(game, map);
-=======
-    if (sfSprite_getPosition(map->bush_sprite).y <
-        sfSprite_getPosition(map->player->sprite).y - 90) {
-        sfRenderWindow_drawSprite(game->window, map->bush_sprite, NULL);
-        sfRenderWindow_drawSprite(game->window, map->player->sprite, NULL);
-    } else {
-        sfRenderWindow_drawSprite(game->window, map->player->sprite, NULL);
-        sfRenderWindow_drawSprite(game->window, map->bush_sprite, NULL);
-    }
->>>>>>> f871a973f2a67c6a7bd2d84625fc05e05c534d08
+
     if (map->player->is_hitbox == sfTrue)
         sfRenderWindow_drawRectangleShape(
             game->window, map->player->hitbox, NULL);

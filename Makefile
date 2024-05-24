@@ -27,6 +27,7 @@ SRC	=	src/main.c \
 		src/map_screen/switch_map.c	\
 		src/map_screen/display_object.c	\
 		src/map_screen/map_enemies.c	\
+		src/map_screen/init_sprite_object.c	\
 		src/dialogue/init_struct_dialogue.c	\
 		src/dialogue/dialogue.c	\
 		src/dialogue/event_dialogue.c	\
