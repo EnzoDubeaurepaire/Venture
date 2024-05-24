@@ -7,12 +7,20 @@
 
 #include "../../include/rpg.h"
 
-bool is_red_pixel(sfColor color)
+bool check_sprite_collision(sfSprite *sprite1, sfSprite *sprite2)
+{
+    sfFloatRect bounds1 = sfSprite_getGlobalBounds(sprite1);
+    sfFloatRect bounds2 = sfSprite_getGlobalBounds(sprite2);
+
+    return sfFloatRect_intersects(&bounds1, &bounds2, NULL);
+}
+
+static bool is_red_pixel(sfColor color)
 {
     return color.r == 255 && color.g == 0 && color.b == 0;
 }
 
-bool check_pixel(map_screen_t *map, float x, float y)
+static bool check_pixel(map_screen_t *map, float x, float y)
 {
     if (is_red_pixel(sfImage_getPixel(map->image_collision, x, y))) {
         return true;
@@ -20,7 +28,7 @@ bool check_pixel(map_screen_t *map, float x, float y)
     return false;
 }
 
-bool collision_y(sfFloatRect rect_bounds, int y, map_screen_t *map,
+static bool collision_y(sfFloatRect rect_bounds, int y, map_screen_t *map,
     sfVector2u image_size)
 {
     bool col = false;
@@ -42,7 +50,7 @@ bool collision_y(sfFloatRect rect_bounds, int y, map_screen_t *map,
     return col;
 }
 
-bool collision_x(sfFloatRect rect_bounds, int x, map_screen_t *map,
+static bool collision_x(sfFloatRect rect_bounds, int x, map_screen_t *map,
     sfVector2u image_size)
 {
     bool col = false;
@@ -66,10 +74,9 @@ bool collision_x(sfFloatRect rect_bounds, int x, map_screen_t *map,
 
 bool check_collision(map_screen_t *map, entity_t *entity, int x, int y)
 {
-    sfFloatRect rect_bounds =
-        sfRectangleShape_getGlobalBounds(entity->hitbox);
+    sfFloatRect rect_bounds = sfRectangleShape_getGlobalBounds(entity->hitbox);
     sfVector2f pos_on_map = get_pos_rel_to_map((sfVector2f)
-    {rect_bounds.left, rect_bounds.top}, (sfVector2f){map->map_position.x,
+        {rect_bounds.left, rect_bounds.top}, (sfVector2f){map->map_position.x,
         map->map_position.y});
     sfVector2f scale = sfSprite_getScale(entity->sprite);
     sfVector2f position_offset = {0.0f, 0.0f};

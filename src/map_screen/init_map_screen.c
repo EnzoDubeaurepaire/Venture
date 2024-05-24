@@ -132,6 +132,7 @@ static void init_health_bar(map_screen_t *map)
     sfSprite_setTextureRect(map->health_bar, map->health_rect);
     sfSprite_setPosition(map->health_bar, (sfVector2f){ 50, 100});
     sfSprite_setScale(map->health_bar, (sfVector2f){3, 3});
+    init_npc(map);
 }
 
 screen_t *init_map(void)
@@ -140,19 +141,20 @@ screen_t *init_map(void)
     map_screen_t *map = malloc(sizeof(map_screen_t));
 
     map->player_direction = (sfVector2f){0, 0};
-    map->speed = 200;
+    map->speed = 1000;
     map->sprint_speed = 400;
     map->map_position = (sfVector2f){0, 0};
-    map->map_texture = sfTexture_createFromFile("assets/map.png", NULL);
-    map->collision_texture = sfTexture_createFromFile("assets/collision.png",
+    map->map_texture = sfTexture_createFromFile("assets/map_nobridge.png",
         NULL);
-    init_health_bar(map);
+    map->collision_texture = sfTexture_createFromFile
+        ("assets/collision_nobridge.png", NULL);
     init_bush(map);
     init_combat(map);
     init_value_map(map);
     init_mini_map(map);
+    init_sprite_object(map);
+    init_health_bar(map);
     init_inventory(map);
-    init_npc(map);
     screen->screen = map;
     return screen;
 }

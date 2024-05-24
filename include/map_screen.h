@@ -26,6 +26,24 @@ void update_map(game_t *game, map_screen_t *map_screen);
 screen_t *init_map(void);
 
 /*
+ * switch_map.c
+*/
+void switch_map(map_screen_t *map);
+
+/*
+ * display_object.c
+*/
+void show_bush(game_t *game, map_screen_t *map);
+void display_object(game_t *game, map_screen_t *map);
+void pickup_item(game_t *game, map_screen_t *map);
+bool get_all_object(map_screen_t *map);
+
+/*
+ * init_sprite_object
+*/
+void init_sprite_object(map_screen_t *map);
+
+/*
  * init_map_screen.c
 */
 sfRectangleShape *init_hitbox(entity_t *player);

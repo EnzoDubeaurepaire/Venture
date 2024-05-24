@@ -13,5 +13,11 @@
  * collsion.c
 */
 bool check_collision(map_screen_t *map, entity_t *entity, int x, int y);
+bool check_sprite_collision(sfSprite *sprite1, sfSprite *sprite2);
+
+/*
+ * collsion_event.c
+*/
+void check_direction_event(map_screen_t *map, game_t *game);
 
 #endif //COLLISION_H
