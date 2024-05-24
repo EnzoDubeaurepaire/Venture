@@ -43,6 +43,8 @@ SRC	=	src/main.c \
 		src/music/init_music.c \
 		src/utils/check_env.c \
 		src/utils/check_assets.c \
+		src/stats/get_stats.c \
+		src/stats/set_stats.c \
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -122,6 +122,7 @@ typedef struct player_stat {
     int att_activated;
     sfSprite *att_sprite;
     sfRectangleShape *att_hitbox;
+    int actual_hp;
     int hp;
     int hp_activated;
     sfSprite *hp_sprite;

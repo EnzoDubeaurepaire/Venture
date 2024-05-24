@@ -39,6 +39,7 @@ void load_save(int *elements, game_t *game)
     stats->att_activated = elements[5];
     stats->as = elements[6];
     stats->as_activated = elements[7];
+    stats->actual_hp = elements[8];
     stats->hp = elements[8];
     stats->hp_activated = elements[9];
     stats->res = elements[10];
