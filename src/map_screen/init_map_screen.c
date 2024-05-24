@@ -126,6 +126,16 @@ static void init_health_bar(map_screen_t *map)
     sfSprite_setScale(map->health_bar, (sfVector2f){3, 3});
 }
 
+static void init_combat(map_screen_t *map)
+{
+    map->player_reach = sfCircleShape_create();
+    sfCircleShape_setRadius(map->player_reach, 100);
+    sfVector2f position = {1920 / 2.0f - 100, 1080 / 2.0f - 100};
+    sfCircleShape_setPosition(map->player_reach, position);
+    sfColor transparentRed = {255, 0, 0, 128};
+    sfCircleShape_setFillColor(map->player_reach, transparentRed);
+}
+
 screen_t *init_map(void)
 {
     screen_t *screen = malloc(sizeof(screen_t));
@@ -140,6 +150,7 @@ screen_t *init_map(void)
         NULL);
     init_health_bar(map);
     init_bush(map);
+    init_combat(map);
     init_value_map(map);
     init_mini_map(map);
     init_inventory(map);

@@ -66,6 +66,7 @@ typedef struct map_screen {
     float sprint_speed;
     sprint_t *sprint;
     sfRectangleShape *mini_map;
+    sfCircleShape *player_reach;
     sfSprite *mini_map_player;
     sfImage *image_collision;
     sfTexture *bush_texture;

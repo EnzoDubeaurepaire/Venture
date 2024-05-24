@@ -47,6 +47,7 @@ void map_screen_destroyer(screen_t *screen)
     destroy_enemies(map->enemies);
     sfSprite_destroy(map->bush_sprite);
     sfTexture_destroy(map->bush_texture);
+    sfCircleShape_destroy(map->player_reach);
     free(map);
     free(screen);
 }

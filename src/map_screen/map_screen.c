@@ -120,5 +120,6 @@ void update_map(game_t *game, map_screen_t *map_screen)
     animate_player(game, map_screen);
     animate_enemies(game, map_screen);
     show_map(game, map_screen);
+    combat_system(game, map_screen);
     show_inventory_map(game, map_screen);
 }
