@@ -100,6 +100,7 @@ static void show_entities(game_t *game, map_screen_t *map)
         if (map->enemies[i]->health > 0)
             sfRenderWindow_drawSprite(game->window,
                 map->enemies[i]->e->sprite, NULL);
+    display_npc(game, map);
 }
 
 static void update_attack(entity_t *player, game_t *game)

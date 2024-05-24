@@ -85,6 +85,7 @@ void map_screen_destroyer(screen_t *screen)
     sfCircleShape_destroy(map->player_reach);
     sfSprite_destroy(map->health_bar);
     sfTexture_destroy(map->health_bar_t);
+    sfSprite_destroy(map->npc);
     free(map);
     free(screen);
 }
