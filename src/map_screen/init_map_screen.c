@@ -132,7 +132,7 @@ screen_t *init_map(void)
     map_screen_t *map = malloc(sizeof(map_screen_t));
 
     map->player_direction = (sfVector2f){0, 0};
-    map->speed = 200;
+    map->speed = 2000;
     map->sprint_speed = 400;
     map->map_position = (sfVector2f){0, 0};
     map->map_texture = sfTexture_createFromFile("assets/map.png", NULL);
@@ -143,6 +143,7 @@ screen_t *init_map(void)
     init_value_map(map);
     init_mini_map(map);
     init_inventory(map);
+    init_npc(map);
     screen->screen = map;
     return screen;
 }

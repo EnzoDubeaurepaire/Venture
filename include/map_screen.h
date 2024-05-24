@@ -36,6 +36,12 @@ sfRectangleShape *init_hitbox(entity_t *player);
 enemy_t **init_enemies(void);
 
 /*
+ * manage_npc.c
+*/
+void display_npc(game_t *game, map_screen_t *map);
+void init_npc(map_screen_t *map);
+
+/*
  * map_enemies.c
 */
 void animate_enemies(game_t *game, map_screen_t *map_screen);
