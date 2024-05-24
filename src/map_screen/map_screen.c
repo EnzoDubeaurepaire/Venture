@@ -154,6 +154,7 @@ static void animate_player(game_t *game, map_screen_t *map_screen)
 void update_map(game_t *game, map_screen_t *map_screen)
 {
     update_position(game, map_screen);
+    regen_hp(game);
     update_health_bar(map_screen, game);
     animate_player(game, map_screen);
     show_map(game, map_screen);

@@ -37,6 +37,8 @@ void map_screen_destroyer(screen_t *screen)
     destroy_sprint(map->sprint);
     sfSprite_destroy(map->bush_sprite);
     sfTexture_destroy(map->bush_texture);
+    sfSprite_destroy(map->health_bar);
+    sfTexture_destroy(map->health_bar_t);
     free(map);
     free(screen);
 }

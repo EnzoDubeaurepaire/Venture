@@ -32,3 +32,12 @@ _Bool check_int(const char *line, ssize_t size)
             return 0;
     return 1;
 }
+
+_Bool check_inv_item(const char *line, ssize_t size)
+{
+    if (size > 2)
+        return 0;
+    if ((line[0] < '0' || line[0] > '8') && line[0] != '\n')
+        return 0;
+    return 1;
+}
