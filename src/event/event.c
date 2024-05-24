@@ -50,6 +50,7 @@ void update_resolution(game_t *game)
     const sfView *view = sfRenderWindow_getView(game->window);
     sfVideoMode mode;
 
+    click_sound(game);
     if (game->resolution_state == 0) {
         game->resolution_state = 1;
         mode = (sfVideoMode){1280, 720, 32};
@@ -71,6 +72,7 @@ void update_window(game_t *game)
     sfVideoMode mode = (game->resolution_state) ? (sfVideoMode){1280,
         720, 32} : (sfVideoMode){1920, 1080, 32};
 
+    click_sound(game);
     if (game->window_state == 0) {
         game->window_state = 1;
         sfRenderWindow_close(game->window);
@@ -108,6 +110,16 @@ static void check_echap(sfEvent event, game_t *game)
         game->active_screen ^= STATS_SCREEN;
 }
 
+static void event_tuto(game_t *game, sfEvent event)
+{
+    if (((launch_screen_t *)game->screens[0]->screen)->show_tuto &&
+        game->active_screen & LAUNCH_SCREEN && event.type == sfEvtKeyPressed
+        && event.key.code == sfKeyEnter) {
+        game->active_screen = 0;
+        game->active_screen |= MAP_SCREEN;
+    }
+}
+
 void poll_event(game_t *game)
 {
     sfEvent event;
@@ -121,8 +133,11 @@ void poll_event(game_t *game)
             == sfKeyEnter) {
             game->active_screen |= MENU_SCREEN;
             ((launch_screen_t *)game->screens[0]->screen)->vanish_clock =
-                sfClock_create();
+                (((launch_screen_t *)game->screens[0]->screen)->vanish_clock
+                == NULL) ? sfClock_create() :
+                ((launch_screen_t *)game->screens[0]->screen)->vanish_clock;
         }
+        event_tuto(game, event);
         event_resolution(game, event);
         event_mouse_keybord(game, event);
     }

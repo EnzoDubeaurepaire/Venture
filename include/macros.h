@@ -20,5 +20,21 @@
     #define DELAY 0.05
     #define ENEMIES 20
     #define LAZINESS 30
+    #define SAVED_ELEMENTS 12
+
+enum saved_elements {
+    MAP_X,
+    MAP_Y,
+    LEVEL,
+    POINTS,
+    ATT,
+    ATT_ACTIV,
+    AS,
+    AS_ACTIV,
+    HP,
+    HP_ACTIV,
+    RES,
+    RES_ACTIV
+};
 
 #endif

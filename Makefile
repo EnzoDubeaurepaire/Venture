@@ -19,6 +19,7 @@ SRC	=	src/main.c \
 		src/map_screen/init_map_screen.c \
 		src/map_screen/init_map_enemies.c \
 		src/map_screen/map_screen.c \
+		src/map_screen/map_player.c \
 		src/map_screen/map_renderer.c	\
 		src/map_screen/map_enemies.c	\
 		src/dialogue/init_struct_dialogue.c	\
@@ -38,6 +39,13 @@ SRC	=	src/main.c \
 		src/pause_screen/destroyer.c \
 		src/settings_screen/destroyer.c \
 		src/stats/destroyer.c \
+		src/save/save.c \
+		src/save/check_save_elements.c \
+		src/music/music.c \
+		src/music/destroyer.c \
+		src/music/init_music.c \
+		src/utils/check_env.c \
+		src/utils/check_assets.c \
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -49,7 +57,7 @@ FAST	=	-Ofast -march=native -fno-builtin
 
 NAME	=	my_rpg
 
-all:		best
+all:		$(NAME)
 
 tests_run:
 		echo "No Tests"

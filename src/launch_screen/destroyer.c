@@ -17,6 +17,8 @@ void launch_screen_destroyer(screen_t *screen)
     sfFont_destroy(launch->font);
     sfRectangleShape_destroy(launch->fade);
     sfClock_destroy(launch->vanish_clock);
+    sfSprite_destroy(launch->tuto);
+    sfTexture_destroy(launch->tuto_texture);
     free(launch);
     free(screen);
 }
