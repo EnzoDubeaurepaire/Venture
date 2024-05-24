@@ -25,4 +25,9 @@ void update_map(game_t *game, map_screen_t *map_screen);
 */
 screen_t *init_map(void);
 
+/*
+ * health_bar.c
+*/
+void update_health_bar(map_screen_t *map, game_t *game);
+
 #endif

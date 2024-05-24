@@ -42,6 +42,9 @@ typedef struct map_screen {
     sfImage *image_collision;
     sfTexture *bush_texture;
     sfSprite *bush_sprite;
+    sfTexture *health_bar_t;
+    sfSprite *health_bar;
+    sfIntRect health_rect;
 } map_screen_t;
 
 typedef struct bubble_s {

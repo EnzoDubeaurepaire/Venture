@@ -45,6 +45,7 @@ SRC	=	src/main.c \
 		src/utils/check_assets.c \
 		src/stats/get_stats.c \
 		src/stats/set_stats.c \
+		src/map_screen/health_bar.c \
 
 OBJ	=	$(SRC:.c=.o)
 
