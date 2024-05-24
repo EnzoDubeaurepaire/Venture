@@ -15,10 +15,10 @@ static sfVector2f *init_pos_tab(void)
     tab[1] = (sfVector2f){780, 970};
     tab[2] = (sfVector2f){842, 970};
     tab[3] = (sfVector2f){906, 970};
-    tab[4] = (sfVector2f){728, 970};
-    tab[5] = (sfVector2f){0, 970};
-    tab[6] = (sfVector2f){0, 970};
-    tab[7] = (sfVector2f){0, 970};
+    tab[4] = (sfVector2f){980, 970};
+    tab[5] = (sfVector2f){1038, 970};
+    tab[6] = (sfVector2f){1100, 970};
+    tab[7] = (sfVector2f){1158, 970};
     return tab;
 }
 
