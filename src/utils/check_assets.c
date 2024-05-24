@@ -62,7 +62,8 @@ static void check_textures_part2(void)
         !exist("assets/menu/buttons.png") ||
         !exist("assets/pause_buttons.png") ||
         !exist("assets/player_sprite.png") ||
-        !exist("assets/sprint_bar.png"))
+        !exist("assets/sprint_bar.png") ||
+        !exist("assets/attack.png"))
         exit(84);
 }
 

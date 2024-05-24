@@ -71,6 +71,19 @@ static void destroy_free_inventory(map_screen_t *map)
     free(inventory->pos_tab);
     free_slots(inventory->slot_tab);
     free(inventory);
+    sfSprite_destroy(map->npc);
+}
+
+static void destroy_attack(entity_t *entity)
+{
+    sfSprite_destroy(entity->attack);
+    sfTexture_destroy(entity->attack_t);
+}
+
+static void destroy_sprite(sfSprite *sprite, sfTexture *texture)
+{
+    sfSprite_destroy(sprite);
+    sfTexture_destroy(texture);
 }
 
 void map_screen_destroyer(screen_t *screen)
@@ -80,20 +93,19 @@ void map_screen_destroyer(screen_t *screen)
     destroy_free_inventory(map);
     sfSprite_destroy(map->mini_map_player);
     sfRectangleShape_destroy(map->mini_map);
-    sfSprite_destroy(map->map_sprite);
-    sfTexture_destroy(map->map_texture);
-    sfSprite_destroy(map->collision_sprite);
-    sfTexture_destroy(map->collision_texture);
+    destroy_sprite(map->map_sprite, map->map_texture);
+    destroy_sprite(map->collision_sprite, map->collision_texture);
     sfImage_destroy(map->image_collision);
+    destroy_attack(map->player);
     destroy_entity(map->player);
     destroy_sprint(map->sprint);
     destroy_enemies(map->enemies);
     sfSprite_destroy(map->bush_sprite);
     sfTexture_destroy(map->bush_texture);
     destroy_object_sprite(map);
+    sfCircleShape_destroy(map->player_reach);
     sfSprite_destroy(map->health_bar);
     sfTexture_destroy(map->health_bar_t);
-    sfSprite_destroy(map->npc);
     free(map);
     free(screen);
 }

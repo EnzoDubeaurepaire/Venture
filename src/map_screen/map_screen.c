@@ -96,14 +96,38 @@ static void show_entities(game_t *game, map_screen_t *map)
     sfRenderWindow_drawSprite(game->window, map->map_sprite, NULL);
     display_object(game, map);
     show_bush(game, map);
-
     if (map->player->is_hitbox == sfTrue)
         sfRenderWindow_drawRectangleShape(
             game->window, map->player->hitbox, NULL);
     for (int i = 0; i < ENEMIES; i++)
-        sfRenderWindow_drawSprite(game->window,
-            map->enemies[i]->e->sprite, NULL);
+        if (map->enemies[i]->health > 0)
+            sfRenderWindow_drawSprite(game->window,
+                map->enemies[i]->e->sprite, NULL);
     display_npc(game, map);
+}
+
+static void update_attack(entity_t *player, game_t *game)
+{
+    double time = (double)sfClock_getElapsedTime(game->clock).microseconds;
+    static double last_frame = 0;
+
+    if (time / 1000000 - last_frame < 0.1)
+        return;
+    last_frame = time / 1000000;
+    if (player->attack_state == 1)
+        sfSprite_setTextureRect(player->attack, (sfIntRect){130, 0, 130, 140});
+    if (player->attack_state == 2)
+        sfSprite_setTextureRect(player->attack, (sfIntRect){260, 0, 130, 140});
+    if (player->attack_state == 3)
+        sfSprite_setTextureRect(player->attack, (sfIntRect){390, 0, 130, 140});
+    if (player->attack_state == 4)
+        sfSprite_setTextureRect(player->attack, (sfIntRect){0, 140, 130, 140});
+    if (player->attack_state == 5)
+        sfSprite_setTextureRect(player->attack, (sfIntRect){130, 140, 130,
+            140});
+    if (player->attack_state == 6)
+        sfSprite_setTextureRect(player->attack, (sfIntRect){0, 0, 130, 140});
+    player->attack_state = (player->attack_state + 1) % 7;
 }
 
 static void show_map(game_t *game, map_screen_t *map)
@@ -115,6 +139,10 @@ static void show_map(game_t *game, map_screen_t *map)
     sfRenderWindow_drawSprite(game->window, map->health_bar, NULL);
     sfRenderWindow_drawRectangleShape(game->window, map->mini_map, NULL);
     sfRenderWindow_drawSprite(game->window, map->mini_map_player, NULL);
+    if (map->player->attack_state != 0) {
+        sfRenderWindow_drawSprite(game->window, map->player->attack, NULL);
+        update_attack(map->player, game);
+    }
 }
 
 void update_map(game_t *game, map_screen_t *map_screen)
@@ -125,5 +153,6 @@ void update_map(game_t *game, map_screen_t *map_screen)
     animate_player(game, map_screen);
     animate_enemies(game, map_screen);
     show_map(game, map_screen);
+    combat_system(game, map_screen);
     show_inventory_map(game, map_screen);
 }

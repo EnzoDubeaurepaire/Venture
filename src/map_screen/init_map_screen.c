@@ -17,16 +17,6 @@ static sfSprite *init_collision_sprite(sfTexture *texture_col)
     return sprite_col;
 }
 
-static sfSprite *init_map_sprite(sfTexture *texture)
-{
-    sfSprite *sprite = sfSprite_create();
-
-    sfSprite_setTexture(sprite, texture, 0);
-    sfSprite_setPosition(sprite, (sfVector2f){0, 0});
-    sfSprite_setScale(sprite, (sfVector2f){3, 3});
-    return sprite;
-}
-
 sfRectangleShape *init_hitbox(entity_t *player)
 {
     sfRectangleShape *hitbox = sfRectangleShape_create();
@@ -40,6 +30,18 @@ sfRectangleShape *init_hitbox(entity_t *player)
     sfRectangleShape_setOutlineThickness(hitbox, 2);
     sfRectangleShape_setFillColor(hitbox, sfTransparent);
     return hitbox;
+}
+
+static void init_attack(entity_t *player)
+{
+    player->attack_t = sfTexture_createFromFile("assets/attack.png", NULL);
+    player->attack = sfSprite_create();
+    sfSprite_setTexture(player->attack, player->attack_t, 1);
+    sfSprite_setTextureRect(player->attack, (sfIntRect){0, 0, 130, 140});
+    sfSprite_setOrigin(player->attack, (sfVector2f){65, 70});
+    sfSprite_setPosition(player->attack, (sfVector2f){967, 540});
+    sfSprite_setScale(player->attack, (sfVector2f){2, 2});
+    player->attack_state = 0;
 }
 
 static entity_t *init_player(void)
@@ -58,6 +60,7 @@ static entity_t *init_player(void)
     sfSprite_setPosition(player->sprite, player->position);
     sfSprite_setScale(player->sprite, (sfVector2f){3, 3});
     player->hitbox = init_hitbox(player);
+    init_attack(player);
     return player;
 }
 
@@ -93,7 +96,12 @@ static void init_mini_map(map_screen_t *map)
 
 static void init_value_map(map_screen_t *map)
 {
-    map->map_sprite = init_map_sprite(map->map_texture);
+    sfSprite *sprite = sfSprite_create();
+
+    sfSprite_setTexture(sprite, map->map_texture, 0);
+    sfSprite_setPosition(sprite, (sfVector2f){0, 0});
+    sfSprite_setScale(sprite, (sfVector2f){3, 3});
+    map->map_sprite = sprite;
     map->collision_sprite = init_collision_sprite(map->collision_texture);
     map->player = init_player();
     map->enemies = init_enemies(map);
@@ -124,6 +132,7 @@ static void init_health_bar(map_screen_t *map)
     sfSprite_setTextureRect(map->health_bar, map->health_rect);
     sfSprite_setPosition(map->health_bar, (sfVector2f){ 50, 100});
     sfSprite_setScale(map->health_bar, (sfVector2f){3, 3});
+    init_npc(map);
 }
 
 screen_t *init_map(void)
@@ -140,12 +149,12 @@ screen_t *init_map(void)
     map->collision_texture = sfTexture_createFromFile
         ("assets/collision_nobridge.png", NULL);
     init_bush(map);
+    init_combat(map);
     init_value_map(map);
     init_mini_map(map);
     init_sprite_object(map);
     init_health_bar(map);
     init_inventory(map);
-    init_npc(map);
     screen->screen = map;
     return screen;
 }
