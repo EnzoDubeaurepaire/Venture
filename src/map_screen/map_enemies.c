@@ -44,33 +44,43 @@ static sfVector2f calculate_direction(
 
 static void determine_movement(enemy_t *e, sfVector2f direction)
 {
+    float speed = 5;
+
     if (direction.x > 0.5)
-        e->move.x = 4;
+        e->move.x = speed;
     else if (direction.x < -0.5)
-        e->move.x = -4;
+        e->move.x = -speed;
     else
         e->move.x = 0;
     if (direction.y > 0.5)
-        e->move.y = 4;
+        e->move.y = speed;
     else if (direction.y < -0.5)
-        e->move.y = -4;
+        e->move.y = -speed;
     else
         e->move.y = 0;
+}
+
+static int init_route(enemy_t *e)
+{
+    e->direction_steps--;
+    if (e->direction_steps > 0)
+        return 1;
+    e->direction_steps = rand() % 300 + 150;
+    e->move.x = 0;
+    e->move.y = 0;
+    return 0;
 }
 
 static void update_route(map_screen_t *map, enemy_t *e, int wait_p)
 {
     sfVector2f enemy_pos = sfSprite_getPosition(e->e->sprite);
     sfVector2f player_pos = sfSprite_getPosition(map->player->sprite);
+    sfVector2f direction;
 
-    e->direction_steps--;
-    if (e->direction_steps > 0)
+    if (init_route(e))
         return;
-    e->direction_steps = rand() % 300 + 150;
-    e->move.x = 0;
-    e->move.y = 0;
     if (check_reach(player_pos, enemy_pos)) {
-        sfVector2f direction = calculate_direction(enemy_pos, player_pos);
+        direction = calculate_direction(enemy_pos, player_pos);
         determine_movement(e, direction);
         e->direction_steps = 50;
     } else {
@@ -83,57 +93,45 @@ static void update_route(map_screen_t *map, enemy_t *e, int wait_p)
     }
 }
 
-//            if (check_collision(map, e->e, enemy_pos.x + 1, enemy_pos.y + 1)) {
-//                e->move.x = enemy_pos.x + 1;
-//                e->move.y = enemy_pos.y + 1;
-//            } else if (check_collision(map, e->e, enemy_pos.x + 1, enemy_pos.y + 0)) {
-//                e->move.x = enemy_pos.x + 1;
-//                e->move.y = enemy_pos.y + 0;
-//            } else if (check_collision(map, e->e, enemy_pos.x + 1, enemy_pos.y - 1)) {
-//                e->move.x = enemy_pos.x + 1;
-//                e->move.y = enemy_pos.y - 1;
-//            } else if (check_collision(map, e->e, enemy_pos.x + 0, enemy_pos.y + 1)) {
-//                e->move.x = enemy_pos.x + 0;
-//                e->move.y = enemy_pos.y + 1;
-//            } else if (check_collision(map, e->e, enemy_pos.x + 0, enemy_pos.y + 0)) {
-//                e->move.x = enemy_pos.x + 0;
-//                e->move.y = enemy_pos.y + 0;
-//            } else if (check_collision(map, e->e, enemy_pos.x + 0, enemy_pos.y - 1)) {
-//                e->move.x = enemy_pos.x + 0;
-//                e->move.y = enemy_pos.y - 1;
-//            } else if (check_collision(map, e->e, enemy_pos.x - 1, enemy_pos.y + 1)) {
-//                e->move.x = enemy_pos.x - 1;
-//                e->move.y = enemy_pos.y + 1;
-//            } else if (check_collision(map, e->e, enemy_pos.x - 1, enemy_pos.y + 0)) {
-//                e->move.x = enemy_pos.x - 1;
-//                e->move.y = enemy_pos.y + 0;
-//            } else if (check_collision(map, e->e, enemy_pos.x - 1, enemy_pos.y - 1)) {
-//                e->move.x = enemy_pos.x - 1;
-//                e->move.y = enemy_pos.y - 1;
-//            }
-//            update_route(map, e, 0);
+static void update_enemy_pos(map_screen_t *map, enemy_t *e,
+    sfVector2f move, sfVector2f move_cpy)
+{
+    sfVector2f enemy_pos = sfSprite_getPosition(e->e->sprite);
+    sfVector2f player_pos = sfSprite_getPosition(map->player->sprite);
+
+    if (check_collision(map, e->e, move_cpy.x, move_cpy.y)) {
+        e->direction_steps = 0;
+        update_route(map, e, 0);
+    }
+    if (move.x && move.y) {
+        move.x *= 1.0 / (float)(M_SQRT2);
+        move.y *= 1.0 / (float)(M_SQRT2);
+    }
+    update_enemy_rect(e->e, &move);
+    sfSprite_move(e->e->sprite, move);
+    sfRectangleShape_move(e->e->hitbox, move);
+}
+
 void update_enemies_pos(map_screen_t *map)
 {
+    enemy_t *e;
     sfVector2f move;
+    sfVector2f move_cpy;
 
     for (int i = 0; i < ENEMIES; i++) {
-        enemy_t *e = map->enemies[i];
+        e = map->enemies[i];
         move = e->move;
+        move_cpy = e->move;
         update_route(map, e, LAZINESS);
-        sfVector2f enemy_pos = sfSprite_getPosition(e->e->sprite);
-        sfVector2f player_pos = sfSprite_getPosition(map->player->sprite);
-        if (check_collision(map, e->e, move.x, move.y)) {
-            printf("CACA\n");
-            e->direction_steps = 0;
-            return;
-        }
-        if (move.x && move.y) {
-            move.x *= 1.0 / (float)(M_SQRT2);
-            move.y *= 1.0 / (float)(M_SQRT2);
-        }
-        update_enemy_rect(e->e, &move);
-        sfSprite_move(e->e->sprite, move);
-        sfRectangleShape_move(e->e->hitbox, move);
+        if (move.x > 0)
+            move_cpy.x = 1;
+        if (move.x < 0)
+            move_cpy.x = -1;
+        if (move.y > 0)
+            move_cpy.y = 1;
+        if (move.y < 0)
+            move_cpy.y = -1;
+        update_enemy_pos(map, e, move, move_cpy);
     }
 }
 

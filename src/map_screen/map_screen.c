@@ -99,12 +99,9 @@ static void show_map(game_t *game, map_screen_t *map)
     if (map->player->is_hitbox == sfTrue)
         sfRenderWindow_drawRectangleShape(
             game->window, map->player->hitbox, NULL);
-    for (int i = 0; i < ENEMIES; i++) {
+    for (int i = 0; i < ENEMIES; i++)
         sfRenderWindow_drawSprite(game->window,
             map->enemies[i]->e->sprite, NULL);
-        sfRenderWindow_drawRectangleShape(
-            game->window, map->enemies[i]->e->hitbox, NULL);
-    }
     sfRenderWindow_drawSprite(game->window, map->sprint->sprite, NULL);
     sfRenderWindow_drawRectangleShape(game->window, map->mini_map, NULL);
     sfRenderWindow_drawSprite(game->window, map->mini_map_player, NULL);
