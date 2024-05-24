@@ -27,11 +27,10 @@ static void check_fonts(void)
         !exist("assets/inventory/piece4.png") ||
         !exist("assets/inventory/piece5.png") ||
         !exist("assets/inventory/piece6.png") ||
-        !exist("assets/inventory/piece7.png") ||
         !exist("assets/inventory/mini_map.png") ||
         !exist("assets/inventory/log.png") ||
-        !exist("assets/collision_nobrigde") ||
-        !exist("assets/map_nobridge"))
+        !exist("assets/collision_nobridge.png") ||
+        !exist("assets/map_nobridge.png"))
         exit(84);
 }
 

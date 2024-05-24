@@ -73,10 +73,12 @@ typedef struct map_screen {
     bool got_wood;
     sfTexture *object_texture[8];
     sfSprite *object_table[8];
-    sfVector2f *object_pos[8];
+    sfVector2f object_pos[8];
+    bool is_picked_up[8];
     sfTexture *health_bar_t;
     sfSprite *health_bar;
     sfIntRect health_rect;
+    bool bridge_repared;
 } map_screen_t;
 
 typedef struct bubble_s {

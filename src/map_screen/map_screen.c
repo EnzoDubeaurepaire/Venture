@@ -52,6 +52,9 @@ static void move_map(game_t *game, map_screen_t *map,
         sfRectangleShape_move(map->enemies[i]->e->hitbox, offset);
     }
     check_direction_event(map, game);
+    sfSprite_setPosition(map->bush_sprite, (sfVector2f){500 +
+        sfSprite_getPosition(map->map_sprite).x, 500 +
+        sfSprite_getPosition(map->map_sprite).y});
 }
 
 static void update_bush(map_screen_t *map)
@@ -91,6 +94,7 @@ static void show_entities(game_t *game, map_screen_t *map)
 {
     sfSprite_setTextureRect(map->sprint->sprite, map->sprint->rect);
     sfRenderWindow_drawSprite(game->window, map->map_sprite, NULL);
+    display_object(game, map);
     show_bush(game, map);
 
     if (map->player->is_hitbox == sfTrue)
@@ -103,7 +107,6 @@ static void show_entities(game_t *game, map_screen_t *map)
 
 static void show_map(game_t *game, map_screen_t *map)
 {
-    sfRenderWindow_drawSprite(game->window, map->collision_sprite, NULL);
     sfSprite_setTextureRect(map->sprint->sprite, map->sprint->rect);
     sfRenderWindow_drawSprite(game->window, map->map_sprite, NULL);
     show_entities(game, map);
