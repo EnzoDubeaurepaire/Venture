@@ -33,5 +33,7 @@ double get_as(game_t *game);
  * set_stats.c
 */
 void set_hp(game_t *game, int new_hp);
+void give_xp(game_t *game, int xp);
+void regen_hp(game_t *game);
 
 #endif
