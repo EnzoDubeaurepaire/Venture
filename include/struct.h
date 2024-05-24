@@ -19,6 +19,18 @@ typedef struct entity {
     sfVector2f pos_rel_to_map;
 } entity_t;
 
+typedef struct enemy {
+    entity_t *e;
+    sfVector2f move;
+    int direction_steps;
+    int anim_steps;
+    int type;
+    float health;
+    float strength;
+    float robustness;
+    float attack_speed;
+} enemy_t;
+
 typedef struct sprint {
     sfSprite *sprite;
     sfTexture *texture;
@@ -32,6 +44,7 @@ typedef struct map_screen {
     sfSprite *map_sprite;
     sfTexture *map_texture;
     entity_t *player;
+    enemy_t **enemies;
     sfVector2f map_position;
     sfVector2f player_direction;
     float speed;

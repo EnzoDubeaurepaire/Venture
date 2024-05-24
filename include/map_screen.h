@@ -25,4 +25,20 @@ void update_map(game_t *game, map_screen_t *map_screen);
 */
 screen_t *init_map(void);
 
+/*
+ * init_map_screen.c
+*/
+sfRectangleShape *init_hitbox(entity_t *player);
+
+/*
+ * init_map_enemies.c
+*/
+enemy_t **init_enemies(void);
+
+/*
+ * map_enemies.c
+*/
+void animate_enemies(game_t *game, map_screen_t *map_screen);
+void update_enemies_pos(map_screen_t *map);
+
 #endif

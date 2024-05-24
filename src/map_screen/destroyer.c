@@ -22,6 +22,15 @@ static void destroy_entity(entity_t *entity)
     free(entity);
 }
 
+static void destroy_enemies(enemy_t **enemies)
+{
+    for (int i = 0; i < ENEMIES; i++) {
+        destroy_entity(enemies[i]->e);
+        free(enemies[i]);
+    }
+    free(enemies);
+}
+
 void map_screen_destroyer(screen_t *screen)
 {
     map_screen_t *map = screen->screen;
@@ -35,6 +44,7 @@ void map_screen_destroyer(screen_t *screen)
     sfImage_destroy(map->image_collision);
     destroy_entity(map->player);
     destroy_sprint(map->sprint);
+    destroy_enemies(map->enemies);
     free(map);
     free(screen);
 }

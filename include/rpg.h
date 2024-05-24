@@ -30,6 +30,7 @@
     #include "map_screen.h"
     #include "dialogue.h"
     #include <stdbool.h>
+    #include <time.h>
     #include "collision.h"
     #include "stats.h"
     #include "utils.h"

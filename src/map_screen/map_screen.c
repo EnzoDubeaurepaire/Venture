@@ -51,16 +51,16 @@ static void update_stam_bar(float time_diff, map_screen_t *map)
 static void update_direction(map_screen_t *map)
 {
     if (sfKeyboard_isKeyPressed(sfKeyQ))
-        if (check_collision(map, -1, 0) == false)
+        if (check_collision(map, map->player, -1, 0) == false)
         map->player_direction.x -= 1;
     if (sfKeyboard_isKeyPressed(sfKeyD))
-        if (check_collision(map, 1, 0) == false)
+        if (check_collision(map, map->player, 1, 0) == false)
         map->player_direction.x += 1;
     if (sfKeyboard_isKeyPressed(sfKeyZ))
-        if (check_collision(map, 0, -1) == false)
+        if (check_collision(map, map->player, 0, -1) == false)
         map->player_direction.y -= 1;
     if (sfKeyboard_isKeyPressed(sfKeyS))
-        if (check_collision(map, 0, 1) == false)
+        if (check_collision(map, map->player, 0, 1) == false)
         map->player_direction.y += 1;
 }
 
@@ -74,17 +74,22 @@ static void update_player_pos(map_screen_t *map)
         map->player->pos_rel_to_map.y * (25.f / 960)});
 }
 
-static void move_map(game_t *game, map_screen_t *map, _Bool sprinting,
-    float time_diff)
+static void move_map(game_t *game, map_screen_t *map,
+    _Bool sprinting, float time_diff)
 {
-    sfSprite_move(map->map_sprite, (sfVector2f){-map->player_direction.x * (
-    map->speed * (float)!sprinting + map->sprint_speed * (float)sprinting)
-        * time_diff, -map->player_direction.y * (map->speed * (float)!
-    sprinting + map->sprint_speed * (float)sprinting) * time_diff});
-    sfSprite_move(map->collision_sprite, (sfVector2f){-map->player_direction.x
-    * (map->speed * (float)!sprinting + map->sprint_speed * (float)sprinting)
-        * time_diff, -map->player_direction.y * (map->speed * (float)!
-    sprinting + map->sprint_speed * (float)sprinting) * time_diff});
+    float speed_modifier = map->speed *
+        (float)!sprinting + map->sprint_speed * (float)sprinting;
+    sfVector2f offset = {
+        -map->player_direction.x * speed_modifier * time_diff,
+        -map->player_direction.y * speed_modifier * time_diff
+    };
+
+    sfSprite_move(map->map_sprite, offset);
+    sfSprite_move(map->collision_sprite, offset);
+    for (int i = 0; i < 20; i++) {
+        sfSprite_move(map->enemies[i]->e->sprite, offset);
+        sfRectangleShape_move(map->enemies[i]->e->hitbox, offset);
+    }
 }
 
 static void update_position(game_t *game, map_screen_t *map)
@@ -106,6 +111,7 @@ static void update_position(game_t *game, map_screen_t *map)
     move_map(game, map, sprinting, time_diff);
     update_player_rect(map);
     update_player_pos(map);
+    update_enemies_pos(map);
 }
 
 static void show_map(game_t *game, map_screen_t *map)
@@ -115,8 +121,11 @@ static void show_map(game_t *game, map_screen_t *map)
     sfRenderWindow_drawSprite(game->window, map->map_sprite, NULL);
     sfRenderWindow_drawSprite(game->window, map->player->sprite, NULL);
     if (map->player->is_hitbox == sfTrue)
-        sfRenderWindow_drawRectangleShape(game->window, map->player->hitbox,
-        NULL);
+        sfRenderWindow_drawRectangleShape(
+            game->window, map->player->hitbox, NULL);
+    for (int i = 0; i < ENEMIES; i++)
+        sfRenderWindow_drawSprite(game->window,
+            map->enemies[i]->e->sprite, NULL);
     sfRenderWindow_drawSprite(game->window, map->sprint->sprite, NULL);
     sfRenderWindow_drawRectangleShape(game->window, map->mini_map, NULL);
     sfRenderWindow_drawSprite(game->window, map->mini_map_player, NULL);
@@ -144,5 +153,6 @@ void update_map(game_t *game, map_screen_t *map_screen)
 {
     update_position(game, map_screen);
     animate_player(game, map_screen);
+    animate_enemies(game, map_screen);
     show_map(game, map_screen);
 }
