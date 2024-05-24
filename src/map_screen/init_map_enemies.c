@@ -6,12 +6,13 @@
 */
 
 #include "../../include/rpg.h"
+#include "../../include/enemies_positions.h"
 
-static void init_enemy_entity(enemy_t *enemy, char *asset_path)
+static void init_enemy_entity(enemy_t *enemy, char *asset_path, sfVector2f pos)
 {
     enemy->e = malloc(sizeof(entity_t));
     enemy->e->rect = (sfIntRect){0, 0, 32, 32};
-    enemy->e->position = (sfVector2f) {rand() % 3000 + 50, rand() % 3000 + 50};
+    enemy->e->position = pos;
     enemy->e->texture = sfTexture_createFromFile(asset_path, NULL);
     enemy->e->sprite = sfSprite_create();
     enemy->e->is_hitbox = sfFalse;
@@ -23,10 +24,12 @@ static void init_enemy_entity(enemy_t *enemy, char *asset_path)
     enemy->e->hitbox = init_hitbox(enemy->e);
 }
 
-static enemy_t *init_enemy(int enemy_nbr)
+static enemy_t *init_enemy(map_screen_t *map, int i)
 {
     enemy_t *enemy = malloc(sizeof(enemy_t));
     char asset_path[27] = "assets/enemies/enemy_x.png";
+    sfVector2f pos = get_pos_rel_to_map(enemies_positions[i],
+        map->map_position);
 
     enemy->move.x = 0;
     enemy->move.y = 0;
@@ -34,16 +37,16 @@ static enemy_t *init_enemy(int enemy_nbr)
     enemy->direction_steps = 0;
     enemy->anim_steps = 15;
     asset_path[21] = enemy->type + '0';
-    init_enemy_entity(enemy, asset_path);
+    init_enemy_entity(enemy, asset_path, pos);
     return enemy;
 }
 
-enemy_t **init_enemies(void)
+enemy_t **init_enemies(map_screen_t *map)
 {
     enemy_t **enemies = malloc(sizeof(enemy_t *) * ENEMIES);
 
     srand(time(NULL));
     for (int i = 0; i < ENEMIES; i++)
-        enemies[i] = init_enemy(i);
+        enemies[i] = init_enemy(map, i);
     return enemies;
 }
