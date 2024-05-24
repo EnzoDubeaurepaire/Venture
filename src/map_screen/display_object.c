@@ -63,3 +63,12 @@ void display_object(game_t *game, map_screen_t *map)
         }
     }
 }
+
+bool get_all_object(map_screen_t *map)
+{
+    for (int i = 0; i < 6; i++) {
+        if (map->is_picked_up[i] == false)
+            return false;
+    }
+    return true;
+}

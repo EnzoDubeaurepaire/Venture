@@ -78,6 +78,7 @@ typedef struct map_screen {
     sfSprite *health_bar;
     sfIntRect health_rect;
     bool bridge_repared;
+    bool is_end;
     sfSprite *npc;
 } map_screen_t;
 

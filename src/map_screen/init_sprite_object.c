@@ -98,4 +98,5 @@ void init_sprite_object(map_screen_t *map)
     set_next_sprite(map);
     init_pos_object(map);
     map->bridge_repared = false;
+    map->is_end = false;
 }

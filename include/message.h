@@ -10,5 +10,6 @@
     #include "rpg.h"
 
 void bridge_message(game_t *game, map_screen_t *map);
+void save_message(game_t *game, map_screen_t *map);
 
 #endif //MESSAGE_H
