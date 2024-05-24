@@ -87,8 +87,8 @@ void save_message(game_t *game, map_screen_t *map)
         "WOw mon sauveur je ne pensez pas revoir une autre personne ici !\n"
         "quand est ce quon repart !?"
         "quoi ton vaisseau est aussi casser ?!"
-        "il ne reste qu'une seul possibilité tu vas devoir retrouver les pieces "
-        "\nde vaisseau qui ont ete perdue a travers la map\n"
+        "il ne reste qu'une seul possibilité tu vas devoir retrouver les piece"
+        "s \nde vaisseau qui ont ete perdue a travers la map\n"
         "Il y en a 6 ! fais attention cest une endroit dangereux, enfin tu as "
         "deja du le remarquer !\n"
         "appuyer sur entree";
