@@ -83,11 +83,8 @@ static void update_position(game_t *game, map_screen_t *map)
     update_bush(map);
 }
 
-static void show_map(game_t *game, map_screen_t *map)
+static void show_entities(game_t *game, map_screen_t *map)
 {
-    sfRenderWindow_drawSprite(game->window, map->collision_sprite, NULL);
-    sfSprite_setTextureRect(map->sprint->sprite, map->sprint->rect);
-    sfRenderWindow_drawSprite(game->window, map->map_sprite, NULL);
     if (sfSprite_getPosition(map->bush_sprite).y <
         sfSprite_getPosition(map->player->sprite).y - 90) {
         sfRenderWindow_drawSprite(game->window, map->bush_sprite, NULL);
@@ -102,6 +99,14 @@ static void show_map(game_t *game, map_screen_t *map)
     for (int i = 0; i < ENEMIES; i++)
         sfRenderWindow_drawSprite(game->window,
             map->enemies[i]->e->sprite, NULL);
+}
+
+static void show_map(game_t *game, map_screen_t *map)
+{
+    sfRenderWindow_drawSprite(game->window, map->collision_sprite, NULL);
+    sfSprite_setTextureRect(map->sprint->sprite, map->sprint->rect);
+    sfRenderWindow_drawSprite(game->window, map->map_sprite, NULL);
+    show_entities(game, map);
     sfRenderWindow_drawSprite(game->window, map->sprint->sprite, NULL);
     sfRenderWindow_drawSprite(game->window, map->health_bar, NULL);
     sfRenderWindow_drawRectangleShape(game->window, map->mini_map, NULL);

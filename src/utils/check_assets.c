@@ -40,7 +40,7 @@ static void check_musics(void)
         exit(84);
 }
 
-static void check_textures(void)
+static void check_textures_part2(void)
 {
     if (!exist("assets/enemies/enemy_1.png") ||
         !exist("assets/enemies/enemy_2.png") ||
@@ -52,8 +52,13 @@ static void check_textures(void)
         !exist("assets/menu/buttons.png") ||
         !exist("assets/pause_buttons.png") ||
         !exist("assets/player_sprite.png") ||
-        !exist("assets/sprint_bar.png") ||
-        !exist("assets/stats.png") ||
+        !exist("assets/sprint_bar.png"))
+        exit(84);
+}
+
+static void check_textures_part1(void)
+{
+    if (!exist("assets/stats.png") ||
         !exist("assets/stats_button.png") ||
         !exist("assets/settings/buttons_screen.png") ||
         !exist("assets/settings/settings.png") ||
@@ -63,11 +68,12 @@ static void check_textures(void)
         !exist("assets/settings/controls.png") ||
         !exist("assets/health_bar.png"))
         exit(84);
+    check_textures_part2();
 }
 
 void check_assets(void)
 {
     check_musics();
     check_fonts();
-    check_textures();
+    check_textures_part1();
 }
