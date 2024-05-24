@@ -122,12 +122,15 @@ screen_t *init_map(void)
     map->speed = 200;
     map->sprint_speed = 400;
     map->map_position = (sfVector2f){0, 0};
-    map->map_texture = sfTexture_createFromFile("assets/map.png", NULL);
-    map->collision_texture = sfTexture_createFromFile("assets/collision.png",
+    map->got_wood = 0;
+    map->map_texture = sfTexture_createFromFile("assets/map_nobridge.png",
         NULL);
+    map->collision_texture = sfTexture_createFromFile
+        ("assets/collision_nobridge.png", NULL);
     init_bush(map);
     init_value_map(map);
     init_mini_map(map);
+    init_sprite_object(map);
     screen->screen = map;
     return screen;
 }
