@@ -11,15 +11,6 @@ static void event_hitbox(game_t *game, sfEvent event)
 {
     if (game->active_screen - MAP_SCREEN)
         return;
-    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyH) {
-        if (((map_screen_t *) (game->screens[2]->screen))->player->is_hitbox
-            == sfTrue)
-            ((map_screen_t *) (game->screens[2]->screen))->player->is_hitbox
-            = sfFalse;
-        else
-            ((map_screen_t *)(game->screens[2]->screen))->player->is_hitbox =
-            sfTrue;
-    }
     if (event.type == sfEvtKeyReleased && event.key.code == sfKeyE) {
         pickup_item(game, ((map_screen_t *)(game->screens[2]->screen)));
     }
