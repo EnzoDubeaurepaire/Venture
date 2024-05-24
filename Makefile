@@ -21,6 +21,7 @@ SRC	=	src/main.c \
 		src/settings_screen/settings_buttons.c \
 		src/map_screen/init_map_screen.c \
 		src/map_screen/init_map_enemies.c \
+		src/map_screen/manage_npc.c \
 		src/map_screen/map_screen.c \
 		src/map_screen/map_player.c \
 		src/map_screen/map_renderer.c	\
