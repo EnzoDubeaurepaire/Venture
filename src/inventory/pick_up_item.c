@@ -18,7 +18,7 @@ void pick_up_item(game_t *game, enum items item)
     inventory_t *inventory = map->inventory;
 
     for (int i = 0; i < 8; i++) {
-        if ((item >= NONE && item <= SWORD)
+        if ((item >= NONE && item <= DEBRIS_5)
         && inventory->slot_tab[i]->stored_item == NONE) {
             inventory->slot_tab[i]->stored_item = item;
             sfSprite_setTextureRect(inventory->slot_tab[i]->slot,

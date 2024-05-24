@@ -11,7 +11,13 @@
 enum items {
     NONE = 0,
     MAP,
-    SWORD
+    LOG,
+    DEBRIS_0,
+    DEBRIS_1,
+    DEBRIS_2,
+    DEBRIS_3,
+    DEBRIS_4,
+    DEBRIS_5
 };
 
 #endif

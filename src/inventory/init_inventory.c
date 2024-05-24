@@ -18,17 +18,23 @@ static sfVector2f *init_pos_tab(void)
     tab[4] = (sfVector2f){980, 970};
     tab[5] = (sfVector2f){1038, 970};
     tab[6] = (sfVector2f){1100, 970};
-    tab[7] = (sfVector2f){1158, 970};
+    tab[7] = (sfVector2f){1156, 970};
     return tab;
 }
 
 static sfIntRect *init_rect_tab(void)
 {
-    sfIntRect *tab = malloc(sizeof(sfIntRect) * 3);
+    sfIntRect *tab = malloc(sizeof(sfIntRect) * 9);
 
     tab[0] = (sfIntRect){0, 0, 32, 32};
     tab[1] = (sfIntRect){32, 0, 32, 32};
     tab[2] = (sfIntRect){64, 0, 32, 32};
+    tab[3] = (sfIntRect){96, 0, 32, 32};
+    tab[4] = (sfIntRect){128, 0, 32, 32};
+    tab[5] = (sfIntRect){160, 0, 32, 32};
+    tab[6] = (sfIntRect){192, 0, 32, 32};
+    tab[7] = (sfIntRect){224, 0, 32, 32};
+    tab[8] = (sfIntRect){256, 0, 32, 32};
     return tab;
 }
 
