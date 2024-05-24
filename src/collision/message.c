@@ -39,6 +39,7 @@ static void wood_message(game_t *game, map_screen_t *map, int *show)
         *show = 2;
     }
     if (*show == 2 && sfKeyboard_isKeyPressed(sfKeyE)) {
+        map->bridge_repared = true;
         switch_map(map);
         *show = 3;
     }
