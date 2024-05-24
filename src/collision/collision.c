@@ -64,14 +64,14 @@ bool collision_x(sfFloatRect rect_bounds, int x, map_screen_t *map,
     return col;
 }
 
-bool check_collision(map_screen_t *map, int x, int y)
+bool check_collision(map_screen_t *map, entity_t *entity, int x, int y)
 {
     sfFloatRect rect_bounds =
-        sfRectangleShape_getGlobalBounds(map->player->hitbox);
+        sfRectangleShape_getGlobalBounds(entity->hitbox);
     sfVector2f pos_on_map = get_pos_rel_to_map((sfVector2f)
     {rect_bounds.left, rect_bounds.top}, (sfVector2f){map->map_position.x,
         map->map_position.y});
-    sfVector2f scale = sfSprite_getScale(map->player->sprite);
+    sfVector2f scale = sfSprite_getScale(entity->sprite);
     sfVector2f position_offset = {0.0f, 0.0f};
     sfVector2u image_size = sfImage_getSize(map->image_collision);
 

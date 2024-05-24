@@ -18,6 +18,8 @@
     #define STATS_SCREEN 32
     #define SETTINGS_SCREEN 64
     #define DELAY 0.05
+    #define ENEMIES 20
+    #define LAZINESS 30
     #define SAVED_ELEMENTS 12
 
 enum saved_elements {
