@@ -26,7 +26,22 @@ typedef struct sprint {
     float stamina;
 } sprint_t;
 
+typedef struct inventory_slot {
+    enum items stored_item;
+    sfSprite *slot;
+} slot_t;
+
+typedef struct inventory {
+    sfTexture *hotbar_texture;
+    sfTexture *items_texture;
+    sfSprite *hotbar;
+    sfIntRect *rect_tab;
+    slot_t **slot_tab;
+    sfVector2f *pos_tab;
+} inventory_t;
+
 typedef struct map_screen {
+    inventory_t *inventory;
     sfSprite *collision_sprite;
     sfTexture *collision_texture;
     sfSprite *map_sprite;

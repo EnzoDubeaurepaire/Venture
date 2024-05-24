@@ -157,4 +157,5 @@ void update_map(game_t *game, map_screen_t *map_screen)
     update_health_bar(map_screen, game);
     animate_player(game, map_screen);
     show_map(game, map_screen);
+    show_inventory_map(game, map_screen);
 }
