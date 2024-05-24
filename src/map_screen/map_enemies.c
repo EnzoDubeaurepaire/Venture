@@ -44,7 +44,7 @@ static sfVector2f calculate_direction(
 
 static void determine_movement(enemy_t *e, sfVector2f direction)
 {
-    float speed = 5;
+    float speed = 4;
 
     if (direction.x > 0.5)
         e->move.x = speed;
