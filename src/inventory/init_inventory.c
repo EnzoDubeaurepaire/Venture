@@ -24,7 +24,7 @@ static sfVector2f *init_pos_tab(void)
 
 static sfIntRect *init_rect_tab(void)
 {
-    sfIntRect *tab = malloc(sizeof(sfIntRect) * 3);
+    sfIntRect *tab = malloc(sizeof(sfIntRect) * 9);
 
     tab[0] = (sfIntRect){0, 0, 32, 32};
     tab[1] = (sfIntRect){32, 0, 32, 32};
