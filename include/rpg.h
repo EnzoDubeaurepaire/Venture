@@ -31,6 +31,7 @@
     #include "settings_overlay.h"
     #include "map_screen.h"
     #include "dialogue.h"
+    #include <time.h>
     #include "collision.h"
     #include "stats.h"
     #include "pause_screen.h"

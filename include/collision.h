@@ -12,7 +12,7 @@
 /*
  * collsion.c
 */
-bool check_collision(map_screen_t *map, int x, int y);
+bool check_collision(map_screen_t *map, entity_t *entity, int x, int y);
 bool check_sprite_collision(sfSprite *sprite1, sfSprite *sprite2);
 
 /*
