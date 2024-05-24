@@ -65,3 +65,19 @@ void bridge_message(game_t *game, map_screen_t *map)
     no_wood_message(game, map, &show);
     wood_message(game, map, &show);
 }
+
+void save_message(game_t *game, map_screen_t *map)
+{
+    game->active_screen |= DIALOGUE_SCREEN;
+    ((bubble_t *) (game->screens[3]->screen))->compteur = 0;
+    ((bubble_t *) (game->screens[3]->screen))->skip_animation = sfFalse;
+    ((bubble_t *) (game->screens[3]->screen))->message =
+    "WOw mon sauveur je ne pensez pas revoir une autre personne ici !\n"
+    "quand est ce quon repart !?"
+    "quoi ton vaisseau est aussi casser ?!"
+    "il ne reste qu'une seul possibilité tu vas devoir retrouver les pieces "
+    "\nde vaisseau qui ont ete perdue a travers la map\n"
+    "Il y en a 6 ! fais attention cest une endroit dangereux, enfin tu as "
+    "deja du le remarquer !\n"
+    "appuyer sur entree";
+}

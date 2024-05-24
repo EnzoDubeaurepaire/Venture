@@ -84,7 +84,8 @@ static void check_color(map_screen_t *map, int x, int y, game_t *game)
         return;
     if (color.r == 0 && color.g == 255 && color.b == 0) {
         bridge_message(game, map);
-    }
+    } else if (color.r == 0 && color.g == 0 && color.b == 255)
+        save_message();
 }
 
 void check_direction_event(map_screen_t *map, game_t *game)
