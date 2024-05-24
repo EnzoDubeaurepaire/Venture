@@ -20,7 +20,16 @@ static _Bool exist(char *path)
 static void check_fonts(void)
 {
     if (!exist("assets/fonts/commando.ttf") ||
-        !exist("assets/fonts/venite.ttf"))
+        !exist("assets/fonts/venite.ttf") ||
+        !exist("assets/inventory/piece1.png") ||
+        !exist("assets/inventory/piece2.png") ||
+        !exist("assets/inventory/piece3.png") ||
+        !exist("assets/inventory/piece4.png") ||
+        !exist("assets/inventory/piece5.png") ||
+        !exist("assets/inventory/piece6.png") ||
+        !exist("assets/inventory/piece7.png") ||
+        !exist("assets/inventory/mini_map.png") ||
+        !exist("assets/inventory/log.png"))
         exit(84);
 }
 
