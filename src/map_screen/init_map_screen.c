@@ -145,6 +145,7 @@ screen_t *init_map(void)
     init_sprite_object(map);
     init_health_bar(map);
     init_inventory(map);
+    init_npc(map);
     screen->screen = map;
     return screen;
 }

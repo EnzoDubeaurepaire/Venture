@@ -78,6 +78,7 @@ typedef struct map_screen {
     sfSprite *health_bar;
     sfIntRect health_rect;
     bool bridge_repared;
+    sfSprite *npc;
 } map_screen_t;
 
 typedef struct bubble_s {

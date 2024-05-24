@@ -103,6 +103,7 @@ static void show_entities(game_t *game, map_screen_t *map)
     for (int i = 0; i < ENEMIES; i++)
         sfRenderWindow_drawSprite(game->window,
             map->enemies[i]->e->sprite, NULL);
+    display_npc(game, map);
 }
 
 static void show_map(game_t *game, map_screen_t *map)
