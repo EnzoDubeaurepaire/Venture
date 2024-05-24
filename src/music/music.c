@@ -10,7 +10,7 @@
 static void music_manager_dialogue(game_t *game)
 {
     if (game->active_screen & DIALOGUE_SCREEN) {
-        if (((bubble_t *)(game->screens[3]->screen))->compteur == 0) {
+        if (((bubble_t *)(game->screens[3]->screen))->compteur <= 1) {
             sfMusic_setLoop(game->music->typing_music, true);
             sfMusic_play(game->music->typing_music);
         }
