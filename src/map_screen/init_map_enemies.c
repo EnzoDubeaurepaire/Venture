@@ -28,8 +28,10 @@ static enemy_t *init_enemy(map_screen_t *map, int i)
 {
     enemy_t *enemy = malloc(sizeof(enemy_t));
     char asset_path[27] = "assets/enemies/enemy_x.png";
-    sfVector2f pos = get_pos_rel_to_map(enemies_positions[i],
-        map->map_position);
+    sfVector2f pos = (sfVector2f){
+        enemies_positions[i % 20].x + sfSprite_getPosition(map->map_sprite).x,
+        enemies_positions[i % 20].y + sfSprite_getPosition(map->map_sprite).y
+    };
 
     enemy->move.x = 0;
     enemy->move.y = 0;

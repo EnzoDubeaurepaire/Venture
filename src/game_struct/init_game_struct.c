@@ -19,6 +19,15 @@ static void init_screens(game_t *game)
     game->screens[SCREEN_NB] = NULL;
 }
 
+static void step_init(game_t *game)
+{
+    game->last_frame_time = 0;
+    game->mouse_hold = 0;
+    game->window_state = 0;
+    game->is_new_game = false;
+    game->resolution_state = 0;
+}
+
 game_t *init_game(void)
 {
     game_t *game = malloc(sizeof(game_t));
@@ -35,10 +44,7 @@ game_t *init_game(void)
         game->screen_destroyer[i] = destroyers[i];
     }
     game->screen_renderer[SCREEN_NB] = NULL;
-    game->last_frame_time = 0;
-    game->mouse_hold = 0;
-    game->window_state = 0;
-    game->resolution_state = 0;
+    step_init(game);
     game->music = init_music();
     return game;
 }
