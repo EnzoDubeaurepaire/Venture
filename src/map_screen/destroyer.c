@@ -71,6 +71,7 @@ static void destroy_free_inventory(map_screen_t *map)
     free(inventory->pos_tab);
     free_slots(inventory->slot_tab);
     free(inventory);
+    sfSprite_destroy(map->npc);
 }
 
 static void destroy_attack(entity_t *entity)
@@ -105,7 +106,6 @@ void map_screen_destroyer(screen_t *screen)
     sfCircleShape_destroy(map->player_reach);
     sfSprite_destroy(map->health_bar);
     sfTexture_destroy(map->health_bar_t);
-    sfSprite_destroy(map->npc);
     free(map);
     free(screen);
 }

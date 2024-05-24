@@ -96,7 +96,6 @@ static void show_entities(game_t *game, map_screen_t *map)
     sfRenderWindow_drawSprite(game->window, map->map_sprite, NULL);
     display_object(game, map);
     show_bush(game, map);
-
     if (map->player->is_hitbox == sfTrue)
         sfRenderWindow_drawRectangleShape(
             game->window, map->player->hitbox, NULL);

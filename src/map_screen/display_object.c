@@ -11,19 +11,19 @@ static void get_item_picked_up(game_t *game, int i)
 {
     if (i == 7)
         pick_up_item(game, MAP);
-    else if (i == 6)
+    if (i == 6)
         pick_up_item(game, LOG);
-    else if (i == 0)
+    if (i == 0)
         pick_up_item(game, DEBRIS_4);
-    else if (i == 1)
+    if (i == 1)
         pick_up_item(game, DEBRIS_0);
-    else if (i == 2)
+    if (i == 2)
         pick_up_item(game, DEBRIS_3);
-    else if (i == 3)
+    if (i == 3)
         pick_up_item(game, DEBRIS_5);
-    else if (i == 4)
+    if (i == 4)
         pick_up_item(game, DEBRIS_2);
-    else if (i == 5)
+    if (i == 5)
         pick_up_item(game, DEBRIS_1);
 }
 

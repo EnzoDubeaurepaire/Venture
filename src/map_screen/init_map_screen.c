@@ -132,6 +132,7 @@ static void init_health_bar(map_screen_t *map)
     sfSprite_setTextureRect(map->health_bar, map->health_rect);
     sfSprite_setPosition(map->health_bar, (sfVector2f){ 50, 100});
     sfSprite_setScale(map->health_bar, (sfVector2f){3, 3});
+    init_npc(map);
 }
 
 screen_t *init_map(void)
@@ -154,7 +155,6 @@ screen_t *init_map(void)
     init_sprite_object(map);
     init_health_bar(map);
     init_inventory(map);
-    init_npc(map);
     screen->screen = map;
     return screen;
 }
