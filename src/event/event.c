@@ -119,13 +119,13 @@ static void event_tuto(game_t *game, sfEvent event)
         ((bubble_t *)(game->screens[3]->screen))->compteur = 0;
         ((bubble_t *)(game->screens[3]->screen))->skip_animation = sfFalse;
         ((bubble_t *)(game->screens[3]->screen))->message =
-            "Wow ca cest un atterissage qui atterit !\n"
-            "Plus de peur que de mal, tout va bien.....\n"
-            "AH ! Mon beau vaisseau ! Comment vais-je repartir ?\n"
-            "Et comment retrouver mon ami qui s'est aussi perdu ici ?\n"
-            "Il va falloir que je trouve un moyen de quittez cette planete.\n"
-            "Mais d'abord mon ami !\n"
-            "appuyer sur entree";
+            "WOW that is some well landing !\n"
+            "More shaken up that hurt, everything is okay...\n"
+            "NOO ! My beautiful spaceship ! How will I go back ?\n"
+            "And how am I going to find my lost friend here ???\n"
+            "I need to find a way to leave this planet.\n"
+            "But first I need to find my friend !\n"
+            "Press enter";
     }
 }
 
