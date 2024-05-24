@@ -157,4 +157,8 @@ void update_map(game_t *game, map_screen_t *map_screen)
     show_map(game, map_screen);
     combat_system(game, map_screen);
     show_inventory_map(game, map_screen);
+    if (get_hp(game) <= 0)
+        end_win(game, 0);
+    if (map_screen->is_end)
+        end_win(game, 1);
 }

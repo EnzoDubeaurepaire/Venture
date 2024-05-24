@@ -20,4 +20,6 @@ screen_t *init_menu(void);
 */
 void check_mouse_on_menu(game_t *game, menu_screen_t *menu);
 
+void end_win(game_t *game, _Bool win);
+
 #endif

@@ -46,7 +46,9 @@ static void check_musics(void)
         !exist("assets/music/mystery.ogg") ||
         !exist("assets/music/sinister.ogg") ||
         !exist("assets/music/space.ogg") ||
-        !exist("assets/music/truth.ogg"))
+        !exist("assets/music/truth.ogg") ||
+        !exist("assets/menu/lose_screen.png") ||
+        !exist("assets/menu/win_screen.png"))
         exit(84);
 }
 
