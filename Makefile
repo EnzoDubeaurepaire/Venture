@@ -53,6 +53,7 @@ SRC	=	src/main.c \
 		src/stats/set_stats.c \
 		src/map_screen/health_bar.c \
 		src/combat/combat.c \
+		src/combat/init.c \
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -14,4 +14,9 @@
 */
 void combat_system(game_t *game, map_screen_t *map_screen);
 
+/*
+ * init.c
+*/
+void init_combat(map_screen_t *map);
+
 #endif // COMBAT_H
