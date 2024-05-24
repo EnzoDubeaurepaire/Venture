@@ -106,6 +106,9 @@ static void update_position(game_t *game, map_screen_t *map)
     move_map(game, map, sprinting, time_diff);
     update_player_rect(map);
     update_player_pos(map);
+    sfSprite_setPosition(map->bush_sprite, (sfVector2f){500 +
+        sfSprite_getPosition(map->map_sprite).x, 500 +
+        sfSprite_getPosition(map->map_sprite).y});
 }
 
 static void show_map(game_t *game, map_screen_t *map)
@@ -113,11 +116,19 @@ static void show_map(game_t *game, map_screen_t *map)
     sfRenderWindow_drawSprite(game->window, map->collision_sprite, NULL);
     sfSprite_setTextureRect(map->sprint->sprite, map->sprint->rect);
     sfRenderWindow_drawSprite(game->window, map->map_sprite, NULL);
-    sfRenderWindow_drawSprite(game->window, map->player->sprite, NULL);
+    if (sfSprite_getPosition(map->bush_sprite).y <
+        sfSprite_getPosition(map->player->sprite).y - 90) {
+        sfRenderWindow_drawSprite(game->window, map->bush_sprite, NULL);
+        sfRenderWindow_drawSprite(game->window, map->player->sprite, NULL);
+    } else {
+        sfRenderWindow_drawSprite(game->window, map->player->sprite, NULL);
+        sfRenderWindow_drawSprite(game->window, map->bush_sprite, NULL);
+    }
     if (map->player->is_hitbox == sfTrue)
         sfRenderWindow_drawRectangleShape(game->window, map->player->hitbox,
         NULL);
     sfRenderWindow_drawSprite(game->window, map->sprint->sprite, NULL);
+    sfRenderWindow_drawSprite(game->window, map->health_bar, NULL);
     sfRenderWindow_drawRectangleShape(game->window, map->mini_map, NULL);
     sfRenderWindow_drawSprite(game->window, map->mini_map_player, NULL);
 }
@@ -143,6 +154,7 @@ static void animate_player(game_t *game, map_screen_t *map_screen)
 void update_map(game_t *game, map_screen_t *map_screen)
 {
     update_position(game, map_screen);
+    update_health_bar(map_screen, game);
     animate_player(game, map_screen);
     show_map(game, map_screen);
     show_inventory_map(game, map_screen);

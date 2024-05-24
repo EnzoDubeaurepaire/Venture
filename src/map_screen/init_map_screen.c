@@ -102,6 +102,29 @@ static void init_value_map(map_screen_t *map)
         map->map_position);
 }
 
+static void init_bush(map_screen_t *map)
+{
+    map->bush_texture = sfTexture_createFromFile("assets/bush.png", NULL);
+    map->bush_sprite = sfSprite_create();
+    sfSprite_setTexture(map->bush_sprite, map->bush_texture, 1);
+    sfSprite_setOrigin(map->bush_sprite, (sfVector2f){
+        (float)sfTexture_getSize(map->bush_texture).x / 2,
+        (float)sfTexture_getSize(map->bush_texture).y / 2});
+    sfSprite_setPosition(map->bush_sprite, (sfVector2f){500, 500});
+}
+
+static void init_health_bar(map_screen_t *map)
+{
+    map->health_bar_t = sfTexture_createFromFile("assets/health_bar.png",
+        NULL);
+    map->health_bar = sfSprite_create();
+    map->health_rect = (sfIntRect){0, 40, 64, 8};
+    sfSprite_setTexture(map->health_bar, map->health_bar_t, 0);
+    sfSprite_setTextureRect(map->health_bar, map->health_rect);
+    sfSprite_setPosition(map->health_bar, (sfVector2f){ 50, 100});
+    sfSprite_setScale(map->health_bar, (sfVector2f){3, 3});
+}
+
 screen_t *init_map(void)
 {
     screen_t *screen = malloc(sizeof(screen_t));
@@ -114,6 +137,8 @@ screen_t *init_map(void)
     map->map_texture = sfTexture_createFromFile("assets/map.png", NULL);
     map->collision_texture = sfTexture_createFromFile("assets/collision.png",
         NULL);
+    init_health_bar(map);
+    init_bush(map);
     init_value_map(map);
     init_mini_map(map);
     init_inventory(map);

@@ -55,6 +55,11 @@ typedef struct map_screen {
     sfRectangleShape *mini_map;
     sfSprite *mini_map_player;
     sfImage *image_collision;
+    sfTexture *bush_texture;
+    sfSprite *bush_sprite;
+    sfTexture *health_bar_t;
+    sfSprite *health_bar;
+    sfIntRect health_rect;
 } map_screen_t;
 
 typedef struct bubble_s {
@@ -78,6 +83,9 @@ typedef struct launch_screen {
     sfTime text_vanish;
     sfClock *vanish_clock;
     sfMusic *music;
+    sfTexture *tuto_texture;
+    sfSprite *tuto;
+    _Bool show_tuto;
 } launch_screen_t;
 
 typedef struct settings_screen {
@@ -97,6 +105,8 @@ typedef struct settings_screen {
     sfSprite *resize_button;
     sfSprite *window_button;
     sfFont *font;
+    sfSprite *controls;
+    sfTexture *controls_texture;
 } settings_screen_t;
 
 typedef struct menu_screen {
@@ -107,6 +117,7 @@ typedef struct menu_screen {
     sfSprite *settings;
     sfSprite *quit;
     _Bool resume_is_usable;
+    sfMusic *music;
 } menu_screen_t;
 
 typedef struct pause_screen {
@@ -129,6 +140,7 @@ typedef struct player_stat {
     int att_activated;
     sfSprite *att_sprite;
     sfRectangleShape *att_hitbox;
+    int actual_hp;
     int hp;
     int hp_activated;
     sfSprite *hp_sprite;
@@ -149,6 +161,13 @@ typedef struct player_stat {
     sfFont *font;
 } player_stat_t;
 
+typedef struct music_s {
+    sfMusic *menu_music;
+    sfMusic *typing_music;
+    sfMusic *button_click;
+    sfMusic *walking;
+} music_t;
+
 typedef struct game {
     sfRenderWindow *window;
     _Bool window_state;
@@ -162,6 +181,8 @@ typedef struct game {
         *screen);
     void (*screen_destroyer[SCREEN_NB + 1])(screen_t *screen);
     long long last_frame_time;
+    _Bool save;
+    music_t *music;
 } game_t;
 
 #endif

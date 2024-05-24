@@ -7,6 +7,12 @@
 
 #include "../../include/rpg.h"
 
+static void destroy_controls(settings_screen_t *settings)
+{
+    sfSprite_destroy(settings->controls);
+    sfTexture_destroy(settings->controls_texture);
+}
+
 void settings_screen_destroyer(screen_t *screen)
 {
     settings_screen_t *settings = screen->screen;
@@ -26,6 +32,7 @@ void settings_screen_destroyer(screen_t *screen)
     sfSprite_destroy(settings->fullscreen_button);
     sfSprite_destroy(settings->window_button);
     sfSprite_destroy(settings->resize_button);
+    destroy_controls(settings);
     free(settings);
     free(screen);
 }

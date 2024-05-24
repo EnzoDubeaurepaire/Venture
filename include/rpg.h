@@ -37,6 +37,8 @@
     #include "inventory.h"
     #include "utils.h"
     #include "destroyer.h"
+    #include "save.h"
+    #include "music.h"
 
 static void (*renderers[SCREEN_NB + 1])(game_t *game, screen_t *screen) = {
     &render_launch_screen, &render_menu, &map_renderer,

@@ -20,4 +20,18 @@ screen_t *init_stats(void);
 */
 void stats_renderer(game_t *game, screen_t *screen);
 
+/*
+ * get_stats.c
+*/
+int get_att(game_t *game);
+int get_hp(game_t *game);
+int get_max_hp(game_t *game);
+int get_res(game_t *game);
+double get_as(game_t *game);
+
+/*
+ * set_stats.c
+*/
+void set_hp(game_t *game, int new_hp);
+
 #endif

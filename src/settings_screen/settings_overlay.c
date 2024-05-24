@@ -52,6 +52,15 @@ static void init_sprites_buttons_settings(settings_screen_t *settings)
     (sfVector2f){1580, 750}, (sfVector2f){0.5, 0.5});
 }
 
+static void init_controls(settings_screen_t *settings)
+{
+    settings->controls_texture = sfTexture_createFromFile(
+        "assets/settings/controls.png", NULL);
+    settings->controls = sfSprite_create();
+    sfSprite_setTexture(settings->controls, settings->controls_texture, 1);
+    sfSprite_setPosition(settings->controls, (sfVector2f){0, 0});
+}
+
 screen_t *init_settings_screen(void)
 {
     screen_t *screen = malloc(sizeof(screen_t));
@@ -68,6 +77,7 @@ screen_t *init_settings_screen(void)
     sfText_setPosition(settings->window_mode, (sfVector2f){2020, 400});
     sfText_setPosition(settings->window_size, (sfVector2f){2035, 600});
     init_sprites_buttons_settings(settings);
+    init_controls(settings);
     screen->screen = settings;
     return screen;
 }
@@ -109,4 +119,5 @@ void render_settings(game_t *game, screen_t *screen)
     sfRenderWindow_drawText(game->window, settings_screen->text_volume, 0);
     sfRenderWindow_drawText(game->window, settings_screen->window_mode, 0);
     sfRenderWindow_drawText(game->window, settings_screen->window_size, 0);
+    sfRenderWindow_drawSprite(game->window, settings_screen->controls, 0);
 }
