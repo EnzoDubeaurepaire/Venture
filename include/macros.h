@@ -18,9 +18,9 @@
     #define STATS_SCREEN 32
     #define SETTINGS_SCREEN 64
     #define DELAY 0.05
+    #define SAVED_ELEMENTS 20
     #define ENEMIES 20
     #define LAZINESS 30
-    #define SAVED_ELEMENTS 12
 
 enum saved_elements {
     MAP_X,
@@ -34,7 +34,15 @@ enum saved_elements {
     HP,
     HP_ACTIV,
     RES,
-    RES_ACTIV
+    RES_ACTIV,
+    INV1,
+    INV2,
+    INV3,
+    INV4,
+    INV5,
+    INV6,
+    INV7,
+    INV8,
 };
 
 #endif

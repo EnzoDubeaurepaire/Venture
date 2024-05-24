@@ -103,7 +103,7 @@ screen_t *init_stats(void)
         NULL);
     stats->level = 1;
     stats->needed_exp = 100;
-    stats->total_points = 50;
+    stats->total_points = 0;
     init_text(stats);
     init_as(stats);
     init_att(stats);
