@@ -120,6 +120,30 @@ static void event_tuto(game_t *game, sfEvent event)
     }
 }
 
+void event_god(game_t *game, sfEvent event)
+{
+    static int press = 0;
+    map_screen_t *map = game->screens[2]->screen;
+    player_stat_t *stat = game->screens[5]->screen;
+
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyG && press == 0) {
+        map->speed = 800;
+        map->sprint_speed = 1600;
+        stat->hp = 9999;
+        stat->actual_hp = 9999;
+        press = 1;
+        return;
+    }
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyG && press == 1) {
+        map->speed = 200;
+        map->sprint_speed = 400;
+        stat->hp = 100;
+        stat->actual_hp = 100;
+        press = 0;
+        return;
+    }
+}
+
 void poll_event(game_t *game)
 {
     sfEvent event;
@@ -137,6 +161,7 @@ void poll_event(game_t *game)
                 == NULL) ? sfClock_create() :
                 ((launch_screen_t *)game->screens[0]->screen)->vanish_clock;
         }
+        event_god(game, event);
         event_tuto(game, event);
         event_resolution(game, event);
         event_mouse_keybord(game, event);
